@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AlgoFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:    #08090C;
+  --bg1:   #0E1016;
+  --green: #00E87A;
+  --red:   #FF3D5A;
+  --gold:  #F5C842;
+  --white: #F0F2F8;
+  --muted: #4A4E62;
+  --dim:   #1C1F2E;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--muted); }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  display: flex; align-items:center; justify-content:space-between;
+  padding: 24px 64px;
+  mix-blend-mode: normal;
+}
+
+nav::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(to bottom, rgba(8,9,12,0.95), transparent);
+  pointer-events:none;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 4px;
+  color: var(--white);
+  position:relative;
+  z-index:1;
+}
+
+.nav-logo em { color:var(--green); font-style:normal; }
+
+.nav-right {
+  display:flex; align-items:center; gap:40px;
+  position:relative; z-index:1;
+}
+
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+  color:var(--muted); text-decoration:none;
+  font-size:13px; font-weight:400; letter-spacing:1.5px;
+  text-transform:uppercase; transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--white); }
+
+.nav-btn {
+  background:var(--green); color:#000;
+  padding:11px 28px; border-radius:4px;
+  font-size:12px; font-weight:500; letter-spacing:2px;
+  text-transform:uppercase; text-decoration:none;
+  transition:all 0.25s;
+  box-shadow:0 0 30px rgba(0,232,122,0.25);
+}
+.nav-btn:hover { transform:translateY(-2px); box-shadow:0 0 50px rgba(0,232,122,0.4); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  align-items:center;
+  padding: 140px 64px 80px;
+  position:relative;
+  overflow:hidden;
+  gap:80px;
+}
+
+/* Animated glow blobs */
+.blob {
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  pointer-events:none;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+
+.blob-1 {
+  width:500px; height:500px;
+  background:rgba(0,232,122,0.04);
+  top:-100px; left:-100px;
+  animation-delay:0s;
+}
+
+.blob-2 {
+  width:400px; height:400px;
+  background:rgba(245,200,66,0.04);
+  bottom:-100px; right:200px;
+  animation-delay:3s;
+}
+
+@keyframes blobFloat {
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-30px) scale(1.05);}
+}
+
+/* Ticker tape */
+.ticker-wrap {
+  position:absolute;
+  top:0; left:0; right:0;
+  height:36px;
+  background:rgba(14,16,22,0.9);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+
+.ticker {
+  display:flex;
+  gap:0;
+  animation: tickerScroll 30s linear infinite;
+  white-space:nowrap;
+}
+
+@keyframes tickerScroll {
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+.ticker-item {
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  padding:0 28px;
+  letter-spacing:1px;
+  display:flex; align-items:center; gap:8px;
+  border-right:1px solid rgba(255,255,255,0.05);
+}
+
+.ticker-item .up { color:var(--green); }
+.ticker-item .dn { color:var(--red); }
+.ticker-item .sym { color:var(--muted); }
+
+/* Hero left */
+.hero-left { position:relative; z-index:1; }
+
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:3px; color:var(--green);
+  text-transform:uppercase; margin-bottom:32px;
+}
+
+.hero-eyebrow::before {
+  content:'';
+  width:24px; height:1px; background:var(--green);
+}
+
+.hero-h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size: clamp(80px, 8vw, 130px);
+  line-height:0.92;
+  letter-spacing:2px;
+  margin-bottom:36px;
+}
+
+.hero-h1 .line-gold { color:var(--gold); display:block; }
+.hero-h1 .line-dim  { color:var(--muted); display:block; font-size:0.55em; letter-spacing:8px; margin-bottom:4px; font-family:'DM Mono',monospace; }
+
+.hero-body {
+  font-size:16px;
+  line-height:1.8;
+  color:rgba(240,242,248,0.55);
+  max-width:420px;
+  margin-bottom:48px;
+}
+
+.hero-actions { display:flex; gap:16px; align-items:center; }
+
+.btn-big {
+  background:var(--green); color:#000;
+  padding:16px 40px; border-radius:4px;
+  font-size:13px; font-weight:500; letter-spacing:2px;
+  text-transform:uppercase; text-decoration:none;
+  transition:all 0.3s;
+  box-shadow:0 0 40px rgba(0,232,122,0.2);
+  border:none; cursor:pointer;
+}
+.btn-big:hover { transform:translateY(-3px); box-shadow:0 10px 60px rgba(0,232,122,0.35); }
+
+.btn-ghost {
+  background:transparent; color:var(--white);
+  padding:16px 32px; border-radius:4px;
+  font-size:13px; font-weight:400; letter-spacing:2px;
+  text-transform:uppercase; text-decoration:none;
+  border:1px solid rgba(255,255,255,0.12);
+  transition:all 0.3s; cursor:pointer;
+}
+.btn-ghost:hover { border-color:rgba(255,255,255,0.3); }
+
+/* Instruments strip */
+.instruments {
+  display:flex; gap:12px; flex-wrap:wrap;
+  margin-top:48px;
+}
+
+.inst-tag {
+  background:var(--dim);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:3px;
+  padding:6px 14px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:2px;
+  color:var(--muted);
+  transition:all 0.2s;
+}
+
+.inst-tag:hover { color:var(--gold); border-color:rgba(245,200,66,0.3); }
+
+/* Hero right — chart */
+.hero-right {
+  position:relative; z-index:1;
+  animation: fadeRight 0.8s 0.2s ease both;
+}
+
+@keyframes fadeRight {
+  from{opacity:0;transform:translateX(40px);}
+  to{opacity:1;transform:translateX(0);}
+}
+
+.chart-card {
+  background:var(--bg1);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.chart-bar {
+  display:flex; align-items:center; gap:10px;
+  padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.02);
+}
+
+.chart-dots { display:flex; gap:6px; }
+.cd { width:8px; height:8px; border-radius:50%; }
+.cd.r{background:#FF5F57;} .cd.y{background:#FEBC2E;} .cd.g{background:#28C840;}
+
+.chart-bar-title {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted); letter-spacing:1px; margin-left:4px;
+}
+
+.chart-bar-right {
+  margin-left:auto;
+  display:flex; gap:16px;
+}
+
+.chart-stat { text-align:right; }
+.chart-stat-val { font-family:'DM Mono',monospace; font-size:12px; color:var(--white); }
+.chart-stat-lbl { font-size:10px; color:var(--muted); letter-spacing:1px; }
+
+.chart-body { padding:20px; position:relative; }
+
+/* Animated candles SVG */
+.candle-chart { width:100%; height:220px; display:block; }
+
+/* Signal chips on chart */
+.signal-chip {
+  position:absolute;
+  padding:5px 12px;
+  border-radius:3px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; font-weight:500; letter-spacing:1px;
+}
+
+.signal-chip.buy { background:var(--green); color:#000; }
+.signal-chip.sell { background:var(--red); color:#fff; }
+
+/* ─── MARQUEE (instruments) ─── */
+.marquee-section {
+  border-top:1px solid rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  padding:20px 0;
+  overflow:hidden;
+  background: var(--bg1);
+}
+
+.marquee-track {
+  display:flex; gap:0;
+  animation: marqueeScroll 20s linear infinite;
+  white-space:nowrap;
+}
+
+@keyframes marqueeScroll {
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+.mq-item {
+  display:flex; align-items:center; gap:10px;
+  padding:0 40px;
+  border-right:1px solid rgba(255,255,255,0.05);
+  font-family:'DM Mono',monospace;
+  font-size:13px; letter-spacing:2px;
+  color:var(--muted);
+}
+.mq-item span { color:var(--green); }
+
+/* ─── STATS ─── */
+.stats-section {
+  padding:100px 64px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:rgba(255,255,255,0.04);
+  position:relative;
+}
+
+.stat-block {
+  background:var(--bg);
+  padding:60px 48px;
+}
+
+.stat-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:72px;
+  line-height:1;
+  color:var(--white);
+  margin-bottom:12px;
+  letter-spacing:2px;
+}
+
+.stat-num.green { color:var(--green); }
+.stat-num.gold  { color:var(--gold);  }
+
+.stat-label {
+  font-size:12px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--muted);
+}
+
+/* ─── FEATURES ─── */
+.features-section {
+  padding:120px 64px;
+  max-width:1400px; margin:0 auto;
+}
+
+.section-header { margin-bottom:80px; }
+
+.section-eyebrow {
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:3px;
+  color:var(--green); text-transform:uppercase;
+  margin-bottom:24px;
+  display:flex; align-items:center; gap:12px;
+}
+.section-eyebrow::before { content:''; width:24px; height:1px; background:var(--green); }
+
+.section-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,5vw,80px);
+  line-height:0.95;
+  letter-spacing:2px;
+}
+
+.section-title .gold { color:var(--gold); }
+.section-title .dim  { color:var(--muted); }
+
+.feat-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.feat-card {
+  padding:48px;
+  border-right:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:background 0.4s;
+  position:relative; overflow:hidden;
+}
+
+.feat-card:nth-child(3n) { border-right:none; }
+.feat-card:nth-last-child(-n+3) { border-bottom:none; }
+
+.feat-card::after {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.5s;
+}
+
+.feat-card:hover { background:rgba(0,232,122,0.02); }
+.feat-card:hover::after { transform:scaleX(1); }
+
+.feat-num {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:56px; color:rgba(255,255,255,0.04);
+  line-height:1; margin-bottom:24px; letter-spacing:2px;
+}
+
+.feat-icon { font-size:28px; margin-bottom:20px; display:block; }
+
+.feat-title {
+  font-size:18px; font-weight:500;
+  margin-bottom:14px; color:var(--white);
+  letter-spacing:0.3px;
+}
+
+.feat-desc {
+  font-size:14px; color:rgba(240,242,248,0.45);
+  line-height:1.8;
+}
+
+/* ─── HOW IT WORKS ─── */
+.how-section {
+  padding:120px 64px;
+  background:var(--bg1);
+  border-top:1px solid rgba(255,255,255,0.05);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.how-inner { max-width:1400px; margin:0 auto; }
+
+.how-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  margin-top:80px;
+  background:rgba(255,255,255,0.04);
+}
+
+.how-card {
+  background:var(--bg1);
+  padding:56px 48px;
+  position:relative;
+}
+
+.how-step {
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:3px; color:var(--muted);
+  text-transform:uppercase; margin-bottom:32px;
+  display:flex; align-items:center; gap:12px;
+}
+
+.how-step::before {
+  content:'';
+  width:8px; height:8px; border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+}
+
+.how-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:40px; letter-spacing:1px;
+  color:var(--white); margin-bottom:20px; line-height:1;
+}
+
+.how-desc {
+  font-size:14px; color:rgba(240,242,248,0.45); line-height:1.8;
+}
+
+/* ─── REVIEWS ─── */
+.reviews-section { padding:120px 64px; max-width:1400px; margin:0 auto; }
+
+.reviews-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:80px;
+}
+
+.review-card {
+  background:var(--bg1);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px;
+  padding:40px;
+  transition:all 0.4s;
+  position:relative; overflow:hidden;
+}
+
+.review-card::before {
+  content:'';
+  position:absolute; top:0; left:0;
+  width:3px; height:0;
+  background:var(--green);
+  transition:height 0.4s;
+}
+
+.review-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.12); }
+.review-card:hover::before { height:100%; }
+
+.review-stars {
+  display:flex; gap:3px; margin-bottom:24px;
+}
+
+.star { color:var(--gold); font-size:14px; }
+
+.review-quote {
+  font-size:15px; line-height:1.8;
+  color:rgba(240,242,248,0.7);
+  margin-bottom:32px;
+  font-style:italic;
+  font-weight:300;
+}
+
+.review-footer { display:flex; align-items:center; justify-content:space-between; }
+
+.review-avatar {
+  width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:500;
+}
+
+.review-info { margin-left:12px; }
+.review-name { font-size:14px; font-weight:500; }
+.review-handle { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); }
+
+.review-pnl {
+  font-family:'DM Mono',monospace;
+  font-size:14px; color:var(--green); font-weight:500;
+}
+
+/* ─── PRICING ─── */
+.pricing-section {
+  padding:120px 64px;
+  background:var(--bg1);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.pricing-inner { max-width:1100px; margin:0 auto; }
+
+.pricing-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:rgba(255,255,255,0.04);
+  margin-top:80px;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.price-card {
+  background:var(--bg1);
+  padding:56px 48px;
+  position:relative;
+  transition:background 0.3s;
+}
+
+.price-card.hot {
+  background:#0B1A12;
+}
+
+.price-card.hot::before {
+  content:'BEST VALUE';
+  position:absolute; top:24px; right:24px;
+  background:var(--green); color:#000;
+  font-family:'DM Mono',monospace;
+  font-size:9px; font-weight:500; letter-spacing:2px;
+  padding:4px 10px; border-radius:2px;
+}
+
+.price-plan {
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--muted);
+  margin-bottom:32px;
+}
+
+.price-amount {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:72px; line-height:1;
+  color:var(--white); letter-spacing:2px;
+  margin-bottom:4px;
+}
+
+.price-amount .currency {
+  font-size:28px; color:var(--gold);
+}
+
+.price-period {
+  font-family:'DM Mono',monospace;
+  font-size:11px; color:var(--muted); letter-spacing:1px;
+  margin-bottom:40px;
+}
+
+.price-divider {
+  height:1px; background:rgba(255,255,255,0.06);
+  margin-bottom:32px;
+}
+
+.price-features { list-style:none; margin-bottom:40px; }
+
+.price-features li {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 0;
+  font-size:14px; color:rgba(240,242,248,0.6);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+
+.price-features li:last-child { border-bottom:none; }
+
+.feat-check { color:var(--green); font-size:12px; flex-shrink:0; }
+.feat-x     { color:var(--muted); font-size:12px; flex-shrink:0; }
+.price-features li.off { color:var(--muted); }
+
+/* ─── FAQ ─── */
+.faq-section { padding:120px 64px; max-width:900px; margin:0 auto; }
+
+.faq-list { margin-top:80px; }
+
+.faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+
+.faq-q {
+  width:100%; background:none; border:none;
+  color:var(--white); font-family:'DM Sans',sans-serif;
+  font-size:16px; font-weight:400; text-align:left;
+  padding:28px 0;
+  cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:24px; transition:color 0.2s;
+}
+.faq-q:hover { color:var(--green); }
+
+.faq-icon {
+  width:28px; height:28px; border-radius:50%;
+  border:1px solid rgba(255,255,255,0.15);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; color:var(--muted); flex-shrink:0;
+  transition:all 0.3s;
+}
+
+.faq-item.open .faq-icon { border-color:var(--green); color:var(--green); transform:rotate(45deg); }
+
+.faq-a {
+  font-size:14px; color:rgba(240,242,248,0.45);
+  line-height:1.9; max-height:0; overflow:hidden;
+  transition:max-height 0.4s ease, padding 0.3s;
+}
+.faq-item.open .faq-a { max-height:200px; padding-bottom:28px; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:48px 64px;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:24px;
+}
+
+.footer-logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px; letter-spacing:4px; color:var(--white);
+}
+.footer-logo em { color:var(--green); font-style:normal; }
+
+.footer-disclaimer {
+  font-size:12px; color:var(--muted);
+  max-width:500px; line-height:1.6; text-align:center;
+}
+
+/* ─── MODAL ─── */
+.modal-overlay {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.9); backdrop-filter:blur(16px);
+  z-index:999; display:none; align-items:center; justify-content:center; padding:20px;
+}
+.modal-overlay.open { display:flex; }
+
+.modal {
+  background:var(--bg1);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  padding:56px;
+  max-width:500px; width:100%;
+  position:relative;
+  animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow:0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(0,232,122,0.1);
+}
+
+@keyframes modalIn {
+  from{opacity:0;transform:scale(0.9);}
+  to{opacity:1;transform:scale(1);}
+}
+
+.modal-close {
+  position:absolute; top:20px; right:20px;
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(255,255,255,0.05); border:none;
+  color:var(--muted); font-size:16px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s;
+}
+.modal-close:hover { background:rgba(255,255,255,0.1); color:var(--white); }
+
+.modal-eyebrow {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:3px; color:var(--green);
+  text-transform:uppercase; margin-bottom:16px;
+}
+
+.modal-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:48px; letter-spacing:2px;
+  color:var(--white); margin-bottom:8px; line-height:1;
+}
+
+.modal-sub {
+  font-size:14px; color:rgba(240,242,248,0.45); margin-bottom:36px; line-height:1.7;
+}
+
+.modal-plan {
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(0,232,122,0.05);
+  border:1px solid rgba(0,232,122,0.15);
+  border-radius:6px; padding:18px 24px; margin-bottom:24px;
+}
+.modal-plan-name { font-size:14px; font-weight:500; }
+.modal-plan-price {
+  font-family:'Bebas Neue',monospace;
+  font-size:28px; color:var(--gold); letter-spacing:1px;
+}
+
+.addr-box {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:6px; padding:20px 24px; margin-bottom:16px;
+}
+.addr-label {
+  font-family:'DM Mono',monospace;
+  font-size:9px; letter-spacing:3px; color:var(--muted);
+  text-transform:uppercase; margin-bottom:10px;
+}
+.addr-text {
+  font-family:'DM Mono',monospace;
+  font-size:12px; color:var(--green);
+  word-break:break-all; line-height:1.7;
+}
+
+.copy-btn {
+  width:100%;
+  background:rgba(0,232,122,0.08);
+  border:1px solid rgba(0,232,122,0.25);
+  color:var(--green); padding:15px;
+  border-radius:6px; cursor:pointer;
+  font-family:'DM Mono',monospace;
+  font-size:12px; letter-spacing:2px; text-transform:uppercase;
+  transition:all 0.2s; margin-bottom:20px;
+}
+.copy-btn:hover { background:rgba(0,232,122,0.14); }
+.copy-btn.done { color:var(--white); background:rgba(0,232,122,0.2); }
+
+.modal-note {
+  text-align:center; font-size:12px;
+  color:rgba(240,242,248,0.3); line-height:1.8;
+}
+.modal-note a { color:var(--gold); text-decoration:none; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(32px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.hero-left { animation: fadeUp 0.7s ease both; }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px) {
+  nav { padding:20px 28px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; padding:120px 28px 60px; gap:60px; }
+  .hero-right { display:none; }
+  .stats-section { grid-template-columns:repeat(2,1fr); padding:60px 28px; }
+  .stat-block { padding:40px 28px; }
+  .features-section, .reviews-section, .how-inner, .faq-section { padding:80px 28px; }
+  .feat-grid { grid-template-columns:1fr; }
+  .feat-card { border-right:none; }
+  .feat-card:nth-last-child(-n+3) { border-bottom:1px solid rgba(255,255,255,0.06); }
+  .feat-card:last-child { border-bottom:none; }
+  .how-section { padding:80px 28px; }
+  .how-grid { grid-template-columns:1fr; }
+  .reviews-grid { grid-template-columns:1fr; }
+  .pricing-section { padding:80px 28px; }
+  .pricing-grid { grid-template-columns:1fr; }
+  footer { padding:40px 28px; flex-direction:column; text-align:center; }
+  .footer-disclaimer { text-align:center; }
+  .modal { padding:36px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="sym">XAUUSD</span> <span class="up">3,321.45 +0.37%</span></div>
+    <div class="ticker-item"><span class="sym">NQ1!</span> <span class="up">21,482.50 +0.84%</span></div>
+    <div class="ticker-item"><span class="sym">EURUSD</span> <span class="up">1.0842 +0.12%</span></div>
+    <div class="ticker-item"><span class="sym">XAGUSD</span> <span class="dn">32.18 -0.21%</span></div>
+    <div class="ticker-item"><span class="sym">US30</span> <span class="up">44,210 +0.55%</span></div>
+    <div class="ticker-item"><span class="sym">GBPUSD</span> <span class="dn">1.2631 -0.08%</span></div>
+    <div class="ticker-item"><span class="sym">ES1!</span> <span class="up">5,848.25 +0.62%</span></div>
+    <div class="ticker-item"><span class="sym">XAUUSD</span> <span class="up">3,321.45 +0.37%</span></div>
+    <div class="ticker-item"><span class="sym">NQ1!</span> <span class="up">21,482.50 +0.84%</span></div>
+    <div class="ticker-item"><span class="sym">EURUSD</span> <span class="up">1.0842 +0.12%</span></div>
+    <div class="ticker-item"><span class="sym">XAGUSD</span> <span class="dn">32.18 -0.21%</span></div>
+    <div class="ticker-item"><span class="sym">US30</span> <span class="up">44,210 +0.55%</span></div>
+    <div class="ticker-item"><span class="sym">GBPUSD</span> <span class="dn">1.2631 -0.08%</span></div>
+    <div class="ticker-item"><span class="sym">ES1!</span> <span class="up">5,848.25 +0.62%</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Algo<em>Flow</em></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#pricing" class="nav-btn">Get Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">TradingView Indicator · v2.0</div>
+
+    <h1 class="hero-h1">
+      <span class="line-dim">Trade Every</span>
+      Market<br>
+      <span class="line-gold">With Edge.</span>
+    </h1>
+
+    <p class="hero-body">
+      AlgoFlow gives you institutional-grade BUY & SELL signals on any market. Multi-layer trend analysis, dynamic clouds, and precision entries — all inside TradingView.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-big">Get AlgoFlow</a>
+      <a href="#features" class="btn-ghost">See Features</a>
+    </div>
+
+    <div class="instruments">
+      <div class="inst-tag">XAUUSD</div>
+      <div class="inst-tag">XAGUSD</div>
+      <div class="inst-tag">NQ1!</div>
+      <div class="inst-tag">EURUSD</div>
+      <div class="inst-tag">GBPUSD</div>
+      <div class="inst-tag">US30</div>
+      <div class="inst-tag">ES1!</div>
+      <div class="inst-tag">+ MORE</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="chart-card">
+      <div class="chart-bar">
+        <div class="chart-dots">
+          <div class="cd r"></div><div class="cd y"></div><div class="cd g"></div>
+        </div>
+        <div class="chart-bar-title">XAUUSD · 5M &nbsp;|&nbsp; AlgoFlow</div>
+        <div class="chart-bar-right">
+          <div class="chart-stat">
+            <div class="chart-stat-val" style="color:var(--green)">3,321.45</div>
+            <div class="chart-stat-lbl">LAST</div>
+          </div>
+          <div class="chart-stat">
+            <div class="chart-stat-val" style="color:var(--green)">+0.37%</div>
+            <div class="chart-stat-lbl">CHG</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <svg class="candle-chart" viewBox="0 0 580 220" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00E87A" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#00E87A" stop-opacity="0.02"/>
+            </linearGradient>
+            <linearGradient id="cr" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF3D5A" stop-opacity="0.02"/>
+              <stop offset="100%" stop-color="#FF3D5A" stop-opacity="0.18"/>
+            </linearGradient>
+          </defs>
+          <!-- Cloud bull -->
+          <path d="M0,155 Q80,140 160,130 Q240,120 320,118 Q400,116 480,122 Q530,126 580,124 L580,175 Q530,173 480,168 Q400,162 320,158 Q240,154 160,160 Q80,167 0,175 Z" fill="url(#cg)"/>
+          <!-- Cloud bear section -->
+          <path d="M360,28 Q440,18 520,22 Q555,24 580,26 L580,62 Q555,60 520,58 Q440,54 360,64 Z" fill="url(#cr)"/>
+          <!-- Baseline EMA -->
+          <path d="M0,165 Q80,152 160,142 Q240,132 320,138 Q400,144 480,148 Q530,150 580,148" fill="none" stroke="rgba(245,200,66,0.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+          <!-- Candles - bullish section -->
+          <g>
+            <line x1="14" y1="148" x2="14" y2="172" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="10" y="152" width="8" height="16" fill="#00E87A" rx="1"/>
+            <line x1="29" y1="140" x2="29" y2="165" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="25" y="144" width="8" height="18" fill="#00E87A" rx="1"/>
+            <line x1="44" y1="132" x2="44" y2="158" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="40" y="136" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="59" y1="138" x2="59" y2="162" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="55" y="142" width="8" height="14" fill="#FF3D5A" rx="1"/>
+            <line x1="74" y1="126" x2="74" y2="150" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="70" y="130" width="8" height="18" fill="#00E87A" rx="1"/>
+            <line x1="89" y1="118" x2="89" y2="143" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="85" y="122" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="104" y1="120" x2="104" y2="144" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="100" y="124" width="8" height="12" fill="#FF3D5A" rx="1"/>
+            <line x1="119" y1="110" x2="119" y2="135" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="115" y="114" width="8" height="18" fill="#00E87A" rx="1"/>
+            <line x1="134" y1="102" x2="134" y2="128" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="130" y="106" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="149" y1="94" x2="149" y2="120" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="145" y="98" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="164" y1="98" x2="164" y2="122" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="160" y="102" width="8" height="14" fill="#FF3D5A" rx="1"/>
+            <line x1="179" y1="88" x2="179" y2="114" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="175" y="92" width="8" height="20" fill="#00E87A" rx="1"/>
+
+            <!-- Bear section -->
+            <line x1="209" y1="85" x2="209" y2="112" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="205" y="90" width="8" height="18" fill="#FF3D5A" rx="1"/>
+            <line x1="224" y1="94" x2="224" y2="120" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="220" y="98" width="8" height="18" fill="#FF3D5A" rx="1"/>
+            <line x1="239" y1="104" x2="239" y2="132" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="235" y="108" width="8" height="22" fill="#FF3D5A" rx="1"/>
+            <line x1="254" y1="118" x2="254" y2="144" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="250" y="122" width="8" height="18" fill="#FF3D5A" rx="1"/>
+            <line x1="269" y1="128" x2="269" y2="152" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="265" y="132" width="8" height="16" fill="#FF3D5A" rx="1"/>
+            <line x1="284" y1="136" x2="284" y2="160" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="280" y="140" width="8" height="14" fill="#00E87A" rx="1"/>
+            <line x1="299" y1="144" x2="299" y2="168" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="295" y="148" width="8" height="16" fill="#FF3D5A" rx="1"/>
+
+            <!-- Bearish spike section -->
+            <line x1="374" y1="20" x2="374" y2="56" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="370" y="26" width="8" height="24" fill="#FF3D5A" rx="1"/>
+            <line x1="389" y1="30" x2="389" y2="64" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="385" y="36" width="8" height="22" fill="#FF3D5A" rx="1"/>
+            <line x1="404" y1="42" x2="404" y2="74" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="400" y="48" width="8" height="20" fill="#FF3D5A" rx="1"/>
+            <line x1="419" y1="55" x2="419" y2="84" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="415" y="60" width="8" height="20" fill="#FF3D5A" rx="1"/>
+            <line x1="434" y1="68" x2="434" y2="94" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="430" y="72" width="8" height="18" fill="#FF3D5A" rx="1"/>
+
+            <!-- Recovery -->
+            <line x1="464" y1="95" x2="464" y2="120" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="460" y="98" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="479" y1="88" x2="479" y2="112" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="475" y="92" width="8" height="18" fill="#00E87A" rx="1"/>
+            <line x1="494" y1="82" x2="494" y2="106" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="490" y="86" width="8" height="14" fill="#FF3D5A" rx="1"/>
+            <line x1="509" y1="76" x2="509" y2="100" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="505" y="80" width="8" height="18" fill="#00E87A" rx="1"/>
+            <line x1="524" y1="68" x2="524" y2="94" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="520" y="72" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="539" y1="60" x2="539" y2="86" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="535" y="64" width="8" height="20" fill="#00E87A" rx="1"/>
+            <line x1="554" y1="55" x2="554" y2="78" stroke="#FF3D5A" stroke-width="1" opacity="0.5"/>
+            <rect x="550" y="58" width="8" height="16" fill="#FF3D5A" rx="1"/>
+            <line x1="569" y1="48" x2="569" y2="74" stroke="#00E87A" stroke-width="1" opacity="0.5"/>
+            <rect x="565" y="52" width="8" height="20" fill="#00E87A" rx="1"/>
+          </g>
+
+          <!-- Signal arrows -->
+          <polygon points="89,200 83,190 95,190" fill="#00E87A" opacity="0.9"/>
+          <polygon points="374,8 368,18 380,18" fill="#FF3D5A" opacity="0.9"/>
+          <polygon points="479,200 473,190 485,190" fill="#00E87A" opacity="0.9"/>
+
+          <!-- Current price line -->
+          <line x1="0" y1="52" x2="580" y2="52" stroke="rgba(245,200,66,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+        </svg>
+
+        <!-- Signal chips -->
+        <div class="signal-chip buy" style="bottom:52px;left:52px;">▲ BUY</div>
+        <div class="signal-chip sell" style="top:22px;left:46%;"> ▼ SELL</div>
+        <div class="signal-chip buy" style="bottom:52px;right:18%;">▲ BUY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUMENTS MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="mq-item">XAUUSD <span>GOLD</span></div>
+    <div class="mq-item">XAGUSD <span>SILVER</span></div>
+    <div class="mq-item">NQ1! <span>NASDAQ</span></div>
+    <div class="mq-item">EURUSD <span>FOREX</span></div>
+    <div class="mq-item">GBPUSD <span>FOREX</span></div>
+    <div class="mq-item">US30 <span>DOW</span></div>
+    <div class="mq-item">ES1! <span>S&P 500</span></div>
+    <div class="mq-item">BTCUSD <span>CRYPTO</span></div>
+    <div class="mq-item">USDJPY <span>FOREX</span></div>
+    <div class="mq-item">XAUUSD <span>GOLD</span></div>
+    <div class="mq-item">XAGUSD <span>SILVER</span></div>
+    <div class="mq-item">NQ1! <span>NASDAQ</span></div>
+    <div class="mq-item">EURUSD <span>FOREX</span></div>
+    <div class="mq-item">GBPUSD <span>FOREX</span></div>
+    <div class="mq-item">US30 <span>DOW</span></div>
+    <div class="mq-item">ES1! <span>S&P 500</span></div>
+    <div class="mq-item">BTCUSD <span>CRYPTO</span></div>
+    <div class="mq-item">USDJPY <span>FOREX</span></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stat-block">
+    <div class="stat-num green" id="s-wr">0%</div>
+    <div class="stat-label">Average Win Rate</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num" id="s-users">0</div>
+    <div class="stat-label">Active Traders</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num gold" id="s-sig">0K</div>
+    <div class="stat-label">Signals Generated</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num green" id="s-pnl">$0</div>
+    <div class="stat-label">Avg Monthly Return</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-header">
+    <div class="section-eyebrow">Why AlgoFlow</div>
+    <h2 class="section-title">Built for every<br>market. <span class="gold">Every edge.</span></h2>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-num">01</div>
+      <span class="feat-icon">⚡</span>
+      <div class="feat-title">Instant BUY & SELL Signals</div>
+      <div class="feat-desc">Labels appear the moment conditions align — confirmed on bar close, locked forever. No repainting, no guessing.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">02</div>
+      <span class="feat-icon">☁️</span>
+      <div class="feat-title">Dynamic Trend Cloud</div>
+      <div class="feat-desc">A living cloud wraps price — green in uptrends, red in downtrends. Trend bias is visible at a glance on any instrument.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">03</div>
+      <span class="feat-icon">🎯</span>
+      <div class="feat-title">TP & SL Zones</div>
+      <div class="feat-desc">Every signal draws Take Profit and Stop Loss boxes automatically. Know your risk before you click.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">04</div>
+      <span class="feat-icon">🌐</span>
+      <div class="feat-title">Works on Any Market</div>
+      <div class="feat-desc">Gold, Silver, Nasdaq, S&P, Forex pairs, Crypto — AlgoFlow adapts to any chart you put it on.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">05</div>
+      <span class="feat-icon">📊</span>
+      <div class="feat-title">Live Dashboard</div>
+      <div class="feat-desc">On-chart table shows trend, RSI, ATR, current signal and live win rate tracking so you always know where you stand.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-num">06</div>
+      <span class="feat-icon">🔔</span>
+      <div class="feat-title">TradingView Alerts</div>
+      <div class="feat-desc">Never miss a setup. BUY and SELL alerts fire automatically to your phone or email the moment a signal triggers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">Up and running<br>in <span class="gold">5 minutes.</span></h2>
+
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-step">Step 01</div>
+        <div class="how-title">Pay with Solana</div>
+        <div class="how-desc">Choose your plan and pay securely with Solana. The exact SOL amount is calculated live at checkout. No banks, no delays.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-step">Step 02</div>
+        <div class="how-title">Get Invited</div>
+        <div class="how-desc">We add you to the private Pine Script within 1 hour. You'll get a TradingView invite notification directly.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-step">Step 03</div>
+        <div class="how-title">Trade the Signals</div>
+        <div class="how-desc">Add the indicator to any chart. Set your alerts. Follow the cloud and the BUY/SELL labels. That's it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="section-eyebrow">Trader Reviews</div>
+  <h2 class="section-title">Real results.<br><span class="dim">Real traders.</span></h2>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-quote">"The trend cloud changed how I read charts. I'm not fighting the trend anymore. Win rate went from 48% to 71% in three weeks on gold alone."</p>
+      <div class="review-footer">
+        <div class="review-avatar" style="background:rgba(0,232,122,0.12);color:var(--green);">AK</div>
+        <div class="review-info">
+          <div class="review-name">Ahmed K.</div>
+          <div class="review-handle">@ahmedfx_trades</div>
+        </div>
+        <div class="review-pnl">+$2,840</div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-quote">"Tried it on NQ futures. The signals are clean and the TP zones are actually where price wants to go. Been running it three months now."</p>
+      <div class="review-footer">
+        <div class="review-avatar" style="background:rgba(245,200,66,0.12);color:var(--gold);">MR</div>
+        <div class="review-info">
+          <div class="review-name">Marcus R.</div>
+          <div class="review-handle">@marcusnq</div>
+        </div>
+        <div class="review-pnl">+$4,210</div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-quote">"I use it on EURUSD and GBPUSD mostly. The alerts save me — I get pinged, check the setup, and it's almost always a good trade. Simple."</p>
+      <div class="review-footer">
+        <div class="review-avatar" style="background:rgba(255,61,90,0.12);color:var(--red);">SL</div>
+        <div class="review-info">
+          <div class="review-name">Sofia L.</div>
+          <div class="review-handle">@sofiaforex</div>
+        </div>
+        <div class="review-pnl">+$1,620</div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star" style="color:var(--muted);">★</span>
+      </div>
+      <p class="review-quote">"Solid tool. I wish there were more signals per session but I get that the filter is strict — quality matters more than quantity."</p>
+      <div class="review-footer">
+        <div class="review-avatar" style="background:rgba(0,164,255,0.12);color:#00A4FF;">JT</div>
+        <div class="review-info">
+          <div class="review-name">James T.</div>
+          <div class="review-handle">@jtscalper</div>
+        </div>
+        <div class="review-pnl">+$890</div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-quote">"Paid in SOL, had access in under an hour. First signal I took was +28 pips on silver. The setup is ridiculously smooth."</p>
+      <div class="review-footer">
+        <div class="review-avatar" style="background:rgba(153,69,255,0.12);color:#9945FF;">DN</div>
+        <div class="review-info">
+          <div class="review-name">David N.</div>
+          <div class="review-handle">@davidsilver_fx</div>
+        </div>
+        <div class="review-pnl">+$1,150</div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="review-quote">"Using on the US30. The cloud keeps me on the right side. I only take longs when it's green, shorts when it's red. Dead simple edge."</p>
+      <div class="review-footer">
+        <div class="review-avatar" style="background:rgba(255,165,0,0.12);color:orange;">KP</div>
+        <div class="review-info">
+          <div class="review-name">Karan P.</div>
+          <div class="review-handle">@karandow30</div>
+        </div>
+        <div class="review-pnl">+$3,380</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">One indicator.<br><span class="gold">Every market.</span></h2>
+
+    <!-- Pricing note -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:8px 20px;border-radius:100px;">ALL PLANS · ONE-TIME PAYMENT · LIFETIME ACCESS</span>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- BASIC -->
+      <div class="price-card" style="opacity:0.75;">
+        <div class="price-plan">BASIC</div>
+        <div class="price-amount"><span class="currency">$</span>99</div>
+        <div class="price-period">ONE-TIME · LIFETIME</div>
+        <div style="background:rgba(255,61,90,0.07);border:1px solid rgba(255,61,90,0.15);border-radius:6px;padding:10px 14px;margin-bottom:20px;">
+          <div style="font-size:11px;color:var(--red);font-family:'DM Mono',monospace;letter-spacing:1px;">⚠ LIMITED — Most traders outgrow this fast</div>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="feat-check">✓</span> BUY / SELL Signal Labels</li>
+          <li><span class="feat-check">✓</span> Basic Trend Cloud</li>
+          <li><span class="feat-check">✓</span> TradingView Alerts</li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">TP & SL Zones</span></li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">Multi-Timeframe Filter</span></li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">Live Win Rate Dashboard</span></li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">Signal Strength Score</span></li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">Discord Community Access</span></li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">Priority Support</span></li>
+        </ul>
+        <button class="btn-ghost" style="width:100%;text-align:center;opacity:0.6;" onclick="openModal('Basic','$99',99)">Start Basic</button>
+        <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:12px;font-family:'DM Mono',monospace;">Flying blind without TP/SL</div>
+      </div>
+
+      <!-- PREMIUM — HOT -->
+      <div class="price-card hot" style="transform:scale(1.03);">
+        <div class="price-plan">PREMIUM</div>
+        <div class="price-amount"><span class="currency">$</span>149</div>
+        <div class="price-period">ONE-TIME · LIFETIME</div>
+        <div style="background:rgba(0,232,122,0.07);border:1px solid rgba(0,232,122,0.2);border-radius:6px;padding:10px 14px;margin-bottom:20px;">
+          <div style="font-size:11px;color:var(--green);font-family:'DM Mono',monospace;letter-spacing:1px;">★ WHERE PROFITABLE TRADERS START</div>
+        </div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="feat-check">✓</span> BUY / SELL Signal Labels</li>
+          <li><span class="feat-check">✓</span> Full Trend Cloud</li>
+          <li><span class="feat-check">✓</span> TradingView Alerts</li>
+          <li><span class="feat-check">✓</span> TP & SL Zones</li>
+          <li><span class="feat-check">✓</span> Multi-Timeframe Filter</li>
+          <li><span class="feat-check">✓</span> Live Win Rate Dashboard</li>
+          <li><span class="feat-check">✓</span> Signal Strength Score</li>
+          <li><span class="feat-check">✓</span> Discord Community Access</li>
+          <li class="off"><span class="feat-x">×</span> <span style="text-decoration:line-through;opacity:0.5;">1-on-1 Strategy Sessions</span></li>
+        </ul>
+        <button class="btn-big" style="width:100%;text-align:center;" onclick="openModal('Premium','$149',149)">Get Premium</button>
+        <div style="text-align:center;font-size:11px;color:var(--green);margin-top:12px;font-family:'DM Mono',monospace;">Most popular · Best value</div>
+      </div>
+
+      <!-- ELITE -->
+      <div class="price-card" style="background:linear-gradient(160deg,#0E1016,#111820);border-color:rgba(245,200,66,0.25);">
+        <div class="price-plan" style="color:var(--gold);">ELITE</div>
+        <div class="price-amount" style="color:var(--gold);"><span class="currency" style="color:var(--gold);">$</span>499</div>
+        <div class="price-period">ONE-TIME · LIFETIME</div>
+        <div style="background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.2);border-radius:6px;padding:10px 14px;margin-bottom:20px;">
+          <div style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:1px;">👑 FOR SERIOUS FULL-TIME TRADERS</div>
+        </div>
+        <div class="price-divider" style="background:rgba(245,200,66,0.1);"></div>
+        <ul class="price-features">
+          <li><span class="feat-check">✓</span> Everything in Premium</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> 1-on-1 Strategy Sessions</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Private Elite Discord Channel</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Weekly Live Trade Reviews</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Custom Settings Per Instrument</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Early Access to Updates</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Direct Line to Developer</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Future Indicators Included</li>
+          <li><span style="color:var(--gold);font-size:12px;flex-shrink:0;">✓</span> Priority Support 24/7</li>
+        </ul>
+        <button class="btn-big" style="width:100%;text-align:center;background:linear-gradient(135deg,var(--gold),#E8A020);color:#000;box-shadow:0 0 40px rgba(245,200,66,0.2);" onclick="openModal('Elite','$499',499)">Go Elite</button>
+        <div style="text-align:center;font-size:11px;color:var(--gold);margin-top:12px;font-family:'DM Mono',monospace;opacity:0.7;">Treat trading like a business</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title" style="margin-bottom:0;">Questions<br><span class="gold">answered.</span></h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Does AlgoFlow repaint?<span class="faq-icon">+</span></button>
+      <div class="faq-a">No. Signals are confirmed on bar close and permanently locked to that candle. What you see historically is exactly what you would have seen in live trading.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Which markets does it work on?<span class="faq-icon">+</span></button>
+      <div class="faq-a">AlgoFlow works on any instrument in TradingView — Gold, Silver, Nasdaq, S&P 500, Dow, Forex pairs like EURUSD, GBPUSD, USDJPY, and even crypto. It adapts to any chart.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Which timeframe should I use?<span class="faq-icon">+</span></button>
+      <div class="faq-a">The indicator works well across 1M through Daily charts. For scalping, 5M and 15M are the sweet spot. For swing trading, 1H and 4H give cleaner setups with fewer signals.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How do I get access after paying?<span class="faq-icon">+</span></button>
+      <div class="faq-a">After sending SOL, After sending SOL, join our Discord and post your transaction ID + TradingView username in #payment-proof. You'll receive access within 1 hour.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is there a free trial?<span class="faq-icon">+</span></button>
+      <div class="faq-a">No free trial, but the Basic plan at $99 gives you entry-level access — more than enough time to verify the results yourself on live markets.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do I need coding knowledge?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Not at all. Once invited, you'll find the script in your TradingView library. Just add it to any chart from the indicators panel. We provide a simple setup guide too.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Algo<em>Flow</em></div>
+  <div class="footer-disclaimer">
+    Trading involves substantial risk of loss. AlgoFlow is an educational tool and does not constitute financial advice. Past performance does not guarantee future results.
+  </div>
+  <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;">© 2025 AlgoFlow</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <!-- STEP 1: Payment -->
+    <div id="modalStep1">
+      <div class="modal-eyebrow">◎ Step 1 of 2 — Pay with Solana</div>
+      <div class="modal-title">Complete Purchase</div>
+      <div class="modal-sub">Send the exact SOL amount below. Price auto-converts at live rate.</div>
+
+      <div class="modal-plan">
+        <div>
+          <div class="modal-plan-name" id="modalName">Pro — Lifetime</div>
+          <div style="font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:4px;" id="modalUsd">$69 USD</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="modal-plan-price" id="modalSolAmount">Loading...</div>
+          <div style="font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:2px;" id="modalRate"></div>
+        </div>
+      </div>
+
+      <div class="addr-box">
+        <div class="addr-label">Send exact SOL to this address</div>
+        <div class="addr-text" id="addrText">8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2</div>
+      </div>
+
+      <button class="copy-btn" id="copyBtn" onclick="copyAddr()">Copy Wallet Address</button>
+
+      <button class="btn-big" style="width:100%;text-align:center;margin-bottom:16px;" onclick="goStep2()">
+        I've Sent Payment →
+      </button>
+
+      <div class="modal-note">
+        SOL price fetched live. Amount updates every 60s.<br>
+        Do not close this window until payment is sent.
+      </div>
+    </div>
+
+    <!-- STEP 2: Discord -->
+    <div id="modalStep2" style="display:none;">
+      <div class="modal-eyebrow" style="color:var(--gold);">✓ Step 2 of 2 — Join Discord</div>
+      <div class="modal-title" style="font-size:40px;">Almost There</div>
+      <div class="modal-sub">Payment received? Now join our Discord and post your transaction ID to get access within 1 hour.</div>
+
+      <div style="background:rgba(88,101,242,0.08);border:1px solid rgba(88,101,242,0.25);border-radius:8px;padding:24px;margin-bottom:24px;text-align:center;">
+        <div style="font-size:36px;margin-bottom:12px;">💬</div>
+        <div style="font-size:16px;font-weight:500;margin-bottom:6px;color:var(--white);">AlgoFlow Community</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;">Post your TX ID in #payment-proof and our team will grant you access within 1 hour.</div>
+        <a href="https://discord.gg/ZBjP7yvcTb" target="_blank" class="btn-big" style="display:inline-block;text-decoration:none;background:#5865F2;box-shadow:0 0 30px rgba(88,101,242,0.3);">
+          Join Discord →
+        </a>
+      </div>
+
+      <div class="modal-note">
+        Already in Discord? Head to <span style="color:var(--gold);font-family:'DM Mono',monospace;">#payment-proof</span> and paste your TX ID.<br>
+        Access is granted within 1 hour of verification.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Counters
+function counter(id, target, suffix, prefix='', decimals=0) {
+  const el = document.getElementById(id);
+  const dur = 2200;
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 4);
+    const v = target * ease;
+    el.textContent = prefix + (decimals ? v.toFixed(decimals) : Math.floor(v).toLocaleString()) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+const statsIO = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    counter('s-wr', 84.2, '%', '', 1);
+    counter('s-users', 1247, '');
+    counter('s-sig', 94, 'K');
+    counter('s-pnl', 3200, '', '$');
+    statsIO.disconnect();
+  }
+}, { threshold: 0.3 });
+statsIO.observe(document.querySelector('.stats-section'));
+
+// Scroll reveal
+const revealIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.feat-card, .how-card, .review-card, .price-card, .stat-block').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = `opacity 0.6s ${i * 0.05}s ease, transform 0.6s ${i * 0.05}s ease`;
+  revealIO.observe(el);
+});
+
+// Modal
+// SOL price fetch
+let solPrice = null;
+let currentUsd = 69;
+
+async function fetchSolPrice() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd');
+    const data = await res.json();
+    solPrice = data.solana.usd;
+  } catch(e) {
+    solPrice = 145; // fallback
+  }
+  updateSolDisplay();
+}
+
+function updateSolDisplay() {
+  if (!solPrice) return;
+  const solAmt = (currentUsd / solPrice).toFixed(4);
+  document.getElementById('modalSolAmount').textContent = solAmt + ' SOL';
+  document.getElementById('modalRate').textContent = '1 SOL = $' + solPrice.toFixed(2);
+}
+
+function openModal(name, usdLabel, usdAmt) {
+  currentUsd = usdAmt;
+  document.getElementById('modalName').textContent = name;
+  document.getElementById('modalUsd').textContent = usdLabel + ' USD';
+  document.getElementById('modalSolAmount').textContent = 'Fetching...';
+  document.getElementById('modalRate').textContent = '';
+  document.getElementById('modalStep1').style.display = 'block';
+  document.getElementById('modalStep2').style.display = 'none';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  fetchSolPrice();
+}
+
+function goStep2() {
+  document.getElementById('modalStep1').style.display = 'none';
+  document.getElementById('modalStep2').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target.id === 'modalOverlay') closeModal();
+}
+
+// Copy
+function copyAddr() {
+  navigator.clipboard.writeText('8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2').then(() => {
+    const b = document.getElementById('copyBtn');
+    b.textContent = '✓ Copied!';
+    b.classList.add('done');
+    setTimeout(() => { b.textContent = 'Copy Wallet Address'; b.classList.remove('done'); }, 2000);
+  });
+}
+
+// Refresh SOL price every 60s while modal is open
+setInterval(() => {
+  if (document.getElementById('modalOverlay').classList.contains('open')) {
+    fetchSolPrice();
+  }
+}, 60000);
+
+// FAQ
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+</script>
+</body>
+</html>
