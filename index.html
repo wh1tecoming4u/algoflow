@@ -323,8 +323,83 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
   .modal{padding:36px 22px;}
 }
 
+
+/* ── PAYMENT MODAL REDESIGN ── */
+.pay-header{text-align:center;margin-bottom:28px;}
+.pay-plan-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.25);border-radius:100px;padding:6px 16px;font-family:'DM Mono',monospace;font-size:11px;color:var(--p3);letter-spacing:2px;margin-bottom:16px;}
+.pay-title{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:2px;line-height:1;margin-bottom:6px;}
+.pay-sub{font-size:13px;color:rgba(245,243,255,0.4);line-height:1.6;}
+
+/* Price display */
+.price-display{
+  background:rgba(0,0,0,0.3);border:1px solid rgba(139,92,246,0.15);
+  border-radius:14px;padding:24px 28px;margin-bottom:16px;
+  transition:all 0.5s;position:relative;overflow:hidden;
+}
+.price-display.discounted{border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.05);}
+.price-display::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(16,185,129,0.08),transparent);opacity:0;transition:opacity 0.5s;border-radius:14px;}
+.price-display.discounted::before{opacity:1;}
+
+.price-row{display:flex;align-items:center;justify-content:space-between;}
+.price-left{}
+.price-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
+.price-nums{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.price-strike{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--muted);text-decoration:line-through;letter-spacing:1px;opacity:0.5;}
+.price-current{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:2px;color:var(--white);transition:color 0.5s;}
+.price-display.discounted .price-current{color:var(--green);}
+.price-savings{display:none;font-family:'DM Mono',monospace;font-size:11px;color:var(--green);letter-spacing:1px;margin-top:4px;}
+.price-display.discounted .price-savings{display:block;}
+
+.sol-amount{text-align:right;}
+.sol-big{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:var(--p3);line-height:1;transition:all 0.5s;}
+.price-display.discounted .sol-big{color:var(--green);}
+.sol-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:4px;}
+
+/* DISCOUNT CELEBRATION */
+.discount-banner{
+  display:none;
+  background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05));
+  border:1px solid rgba(16,185,129,0.3);
+  border-radius:10px;padding:14px 18px;margin-bottom:16px;
+  align-items:center;gap:12px;
+  animation:discountPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.discount-banner.show{display:flex;}
+@keyframes discountPop{from{opacity:0;transform:scale(0.8) translateY(-10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.disc-icon{font-size:28px;animation:spin 0.5s ease;}
+@keyframes spin{from{transform:rotate(-20deg) scale(0.5);}to{transform:rotate(0deg) scale(1);}}
+.disc-text{}
+.disc-title{font-size:14px;font-weight:700;color:var(--green);}
+.disc-sub{font-size:12px;color:rgba(16,185,129,0.6);font-family:'DM Mono',monospace;}
+
+/* Address box */
+.addr-box{background:rgba(0,0,0,0.4);border:1px solid rgba(139,92,246,0.15);border-radius:12px;padding:20px 22px;margin-bottom:16px;}
+.addr-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.addr-lbl::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+.addr-txt{font-family:'DM Mono',monospace;font-size:12px;color:var(--p3);word-break:break-all;line-height:1.7;}
+
+/* Promo input */
+.promo-row{display:flex;gap:8px;margin-bottom:6px;}
+.promo-inp{flex:1;background:rgba(0,0,0,0.3);border:1px solid rgba(139,92,246,0.2);border-radius:8px;padding:13px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--p3);letter-spacing:3px;text-transform:uppercase;outline:none;transition:all 0.3s;}
+.promo-inp:focus{border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.05);}
+.promo-inp.valid{border-color:var(--green);color:var(--green);background:rgba(16,185,129,0.05);}
+.promo-inp.invalid{border-color:#ef4444;color:#ef4444;}
+.apply-btn{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:var(--p3);padding:13px 18px;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.apply-btn:hover{background:rgba(139,92,246,0.3);}
+.promo-hint{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:1px;min-height:16px;margin-bottom:14px;color:var(--muted);}
+.promo-hint.ok{color:var(--green);}
+.promo-hint.err{color:#ef4444;}
+
+/* Action buttons */
+.copy-btn2{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:14px;border-radius:10px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:all 0.2s;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.copy-btn2:hover{background:rgba(255,255,255,0.08);}
+.copy-btn2.done{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3);color:var(--green);}
+.sent-btn{width:100%;padding:16px;border-radius:10px;background:linear-gradient(135deg,var(--p),var(--pink));color:#fff;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.3s;box-shadow:0 0 30px rgba(139,92,246,0.3);}
+.sent-btn:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(139,92,246,0.5);}
+
 /* ── PROMO POPUP ── */
-.promo-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:800;display:flex;align-items:center;justify-content:center;padding:20px;animation:fI 0.4s ease;}
+.promo-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;}
+.promo-overlay.open{display:flex;animation:fI 0.4s ease;}
 @keyframes fI{from{opacity:0}to{opacity:1}}
 .promo-box{
   background:var(--bg1);border:1px solid rgba(139,92,246,0.3);border-radius:20px;
@@ -379,6 +454,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
 .promo-msg.err{color:#ef4444;}
 .price-original{font-size:14px;color:var(--muted);text-decoration:line-through;margin-right:8px;}
 
+
+@keyframes confettiFly {
+  0%{transform:translate(0,0) rotate(0deg);opacity:1;}
+  100%{transform:translate(calc(-50px + 100px*var(--r,0.5)),calc(-200px - 100px*var(--r2,0.5))) rotate(720deg);opacity:0;}
+}
 </style>
 </head>
 <body>
@@ -859,32 +939,37 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
     <div id="step1" style="display:none;">
       <div class="m-eyebrow">◎ Step 1 of 2 — Pay with Solana</div>
       <div class="m-title">Pay to Start</div>
-      <div class="m-sub">Send the exact SOL amount below. Live rate. Do not close until sent.</div>
+      <div class="m-sub">Send the exact SOL amount below. Do not close until sent.</div>
+
       <div class="m-plan">
         <div>
           <div class="mp-name" id="mp-name">Starter — $1K</div>
-          <div class="mp-usd" id="mp-usd">$49 USD</div>
+          <div class="mp-usd" id="mp-usd">$69 USD</div>
         </div>
         <div>
           <div class="mp-sol" id="mp-sol">Fetching...</div>
-          <div class="mp-rate" id="mp-rate"></div>
+          <div class="mp-rate" id="mp-rate" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;text-align:right;"></div>
         </div>
       </div>
+
       <div class="addr-box">
         <div class="addr-lbl">Send exact SOL to this address</div>
         <div class="addr-txt">8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2</div>
       </div>
-            <div class="promo-input-wrap">
-        <div class="promo-input-label">Promo Code (optional)</div>
-        <div class="promo-input-row">
-          <input class="promo-input" id="promoInput" type="text" placeholder="ALGO30" maxlength="10" oninput="this.value=this.value.toUpperCase()">
-          <button class="promo-apply-btn" onclick="applyPromo()">Apply</button>
-        </div>
-        <div class="promo-msg" id="promoMsg"></div>
+
+      <div style="margin-bottom:4px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">Promo Code (optional)</div>
+      <div style="display:flex;gap:8px;margin-bottom:6px;">
+        <input id="promoInput" type="text" placeholder="ALGO30" maxlength="10"
+          oninput="this.value=this.value.toUpperCase()"
+          style="flex:1;background:rgba(0,0,0,0.3);border:1px solid rgba(139,92,246,0.2);border-radius:8px;padding:12px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--p3);letter-spacing:3px;text-transform:uppercase;outline:none;">
+        <button onclick="applyPromo()"
+          style="background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:var(--p3);padding:12px 18px;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;cursor:pointer;">Apply</button>
       </div>
+      <div id="promoMsg" style="font-size:12px;font-family:'DM Mono',monospace;min-height:18px;margin-bottom:14px;"></div>
+
       <button class="copy-btn" id="copyBtn" onclick="doCopy()">Copy Wallet Address</button>
       <button class="proceed-btn" onclick="goStep2()">I've Sent Payment →</button>
-      <div class="m-note">SOL rate refreshes every 60s. Amount may shift slightly with market.</div>
+      <div class="m-note" style="margin-top:12px;">SOL rate refreshes every 60s. Amount may shift slightly.</div>
     </div>
 
     <!-- STEP 2: Discord -->
@@ -908,13 +993,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
 let promoShown = false;
 setTimeout(() => {
   if (!promoShown) {
-    document.getElementById('promoOverlay').style.display = 'flex';
+    document.getElementById('promoOverlay').classList.add('open');
     promoShown = true;
   }
 }, 2500);
 
 function closePromo() {
-  document.getElementById('promoOverlay').style.display = 'none';
+  document.getElementById('promoOverlay').classList.remove('open');
 }
 
 function closePromoAndScroll() {
@@ -943,26 +1028,35 @@ function applyPromo() {
   const msg = document.getElementById('promoMsg');
   const p = plans[currentPlan];
 
-  if (val === PROMO_CODE) {
+  if (val === 'ALGO30') {
     promoApplied = true;
-    input.classList.add('valid');
-    input.classList.remove('invalid');
-    msg.className = 'promo-msg ok';
-    msg.textContent = '✓ 30% discount applied!';
-    // update displayed SOL with real (discounted) price
-    const discFee = Math.round(p.realFee || p.fee * 0.7);
-    document.getElementById('mp-usd').innerHTML = '<span class="price-original">'+p.feeLabel+' USD</span> $'+discFee+' USD';
+    const realFee = p.realFee;
+    const saved = p.fee - realFee;
+    input.style.borderColor = 'var(--green)';
+    input.style.color = 'var(--green)';
+    msg.style.color = 'var(--green)';
+    msg.textContent = '✓ 30% off applied! You save $' + saved;
+    // update price display
+    document.getElementById('mp-usd').innerHTML =
+      '<span style="text-decoration:line-through;opacity:0.5;margin-right:6px;">' + p.feeLabel + '</span>'
+      + '<span style="color:var(--green);">$' + realFee + ' USD</span>';
     if (solPrice) {
-      document.getElementById('mp-sol').textContent = (discFee / solPrice).toFixed(4) + ' SOL';
+      document.getElementById('mp-sol').textContent = (realFee / solPrice).toFixed(4) + ' SOL';
     }
   } else {
     promoApplied = false;
-    input.classList.add('invalid');
-    input.classList.remove('valid');
-    msg.className = 'promo-msg err';
+    input.style.borderColor = '#ef4444';
+    input.style.color = '#ef4444';
+    msg.style.color = '#ef4444';
     msg.textContent = '✗ Invalid code. Try ALGO30';
+    // reset
+    document.getElementById('mp-usd').textContent = p.feeLabel + ' USD';
+    if (solPrice) {
+      document.getElementById('mp-sol').textContent = (p.fee / solPrice).toFixed(4) + ' SOL';
+    }
   }
 }
+
 
 // ── DATA ──
 
@@ -1098,7 +1192,12 @@ function goStep1() {
   document.getElementById('mp-name').textContent = p.eyebrow;
   document.getElementById('mp-usd').textContent = p.feeLabel + ' USD';
   document.getElementById('mp-sol').textContent = solPrice ? (p.fee / solPrice).toFixed(4) + ' SOL' : 'Fetching...';
-  document.getElementById('mp-rate').textContent = solPrice ? '1 SOL ≈ $' + solPrice.toFixed(2) : '';
+  document.getElementById('mp-rate').textContent = '';
+  // reset promo
+  const pi = document.getElementById('promoInput');
+  pi.value = ''; pi.style.borderColor = ''; pi.style.color = '';
+  document.getElementById('promoMsg').textContent = '';
+  promoApplied = false;
   document.getElementById('step0').style.display = 'none';
   document.getElementById('step1').style.display = 'block';
 }
@@ -1117,7 +1216,8 @@ function closeOut(e) { if (e.target.id === 'modalOverlay') closeModal(); }
 function doCopy() {
   navigator.clipboard.writeText('8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2').then(() => {
     const b = document.getElementById('copyBtn');
-    b.textContent = '✓ Copied!'; b.classList.add('done');
+    b.textContent = '✓ Copied!';
+    b.classList.add('done');
     setTimeout(() => { b.textContent = 'Copy Wallet Address'; b.classList.remove('done'); }, 2000);
   });
 }
