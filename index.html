@@ -28,7 +28,7 @@ body{background:var(--bg);color:var(--white);font-family:'Cabinet Grotesk',sans-
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:9999;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(7,5,15,0.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+nav{position:fixed;top:36px;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:18px 56px;background:rgba(7,5,15,0.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
 
 /* AF LOGO */
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
@@ -51,7 +51,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .nav-btn:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(139,92,246,0.55);}
 
 /* HERO */
-.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 40px 100px;overflow:hidden;}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 40px 100px;overflow:hidden;}
 .hero-tag{display:inline-flex;align-items:center;gap:10px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:100px;padding:8px 20px;font-family:'DM Mono',monospace;font-size:11px;color:var(--p3);letter-spacing:3px;margin-bottom:40px;animation:fU 0.6s ease both;}
 .pulse{width:6px;height:6px;border-radius:50%;background:var(--p3);animation:blink 1s ease infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -322,9 +322,81 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
   .m-detail-grid{grid-template-columns:1fr;}
   .modal{padding:36px 22px;}
 }
+
+/* ── PROMO POPUP ── */
+.promo-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:800;display:flex;align-items:center;justify-content:center;padding:20px;animation:fI 0.4s ease;}
+@keyframes fI{from{opacity:0}to{opacity:1}}
+.promo-box{
+  background:var(--bg1);border:1px solid rgba(139,92,246,0.3);border-radius:20px;
+  max-width:460px;width:100%;position:relative;overflow:hidden;
+  animation:mI 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow:0 40px 100px rgba(0,0,0,0.8),0 0 80px rgba(139,92,246,0.08);
+}
+.promo-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(139,92,246,0.2),transparent 70%);pointer-events:none;}
+.promo-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.07);border:none;color:rgba(245,243,255,0.5);width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:2;}
+.promo-close:hover{background:rgba(255,255,255,0.13);color:var(--white);}
+.promo-top{padding:40px 40px 28px;text-align:center;position:relative;}
+.promo-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--p3);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.promo-eyebrow::before,.promo-eyebrow::after{content:'';width:20px;height:1px;background:var(--p3);}
+.promo-pct{font-family:'Bebas Neue',sans-serif;font-size:110px;line-height:0.85;letter-spacing:3px;background:linear-gradient(135deg,#fff 0%,var(--p3) 50%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:-8px;}
+.promo-off{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:4px;color:var(--green);line-height:1;}
+.promo-tagline{font-size:13px;color:rgba(245,243,255,0.4);letter-spacing:2px;text-transform:uppercase;margin-top:8px;font-family:'DM Mono',monospace;}
+.promo-bottom{padding:0 40px 36px;}
+.promo-code-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;text-align:center;}
+.promo-code-box{
+  background:rgba(139,92,246,0.08);border:2px dashed rgba(139,92,246,0.4);
+  border-radius:12px;padding:18px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:all 0.3s;margin-bottom:20px;
+}
+.promo-code-box:hover{border-color:rgba(139,92,246,0.7);background:rgba(139,92,246,0.14);}
+.promo-code-text{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;color:var(--p3);}
+.promo-copy-hint{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;}
+.promo-copy-hint.copied{color:var(--green);}
+.promo-use-btn{width:100%;padding:16px;border-radius:10px;background:linear-gradient(135deg,var(--p),var(--pink));color:#fff;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;box-shadow:0 0 30px rgba(139,92,246,0.3);transition:all 0.3s;}
+.promo-use-btn:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(139,92,246,0.5);}
+.promo-skip{display:block;text-align:center;margin-top:14px;font-size:12px;color:var(--muted);cursor:pointer;transition:color 0.2s;background:none;border:none;width:100%;}
+.promo-skip:hover{color:var(--white);}
+
+/* Announcement bar */
+.announce-bar{position:fixed;top:0;left:0;right:0;z-index:600;background:linear-gradient(90deg,var(--p2),var(--p),var(--pink),var(--p),var(--p2));background-size:300% 100%;animation:barShift 4s linear infinite;padding:9px 0;overflow:hidden;}
+@keyframes barShift{0%{background-position:0%}100%{background-position:100%}}
+.announce-track{display:flex;white-space:nowrap;animation:tS 20s linear infinite;}
+.announce-item{display:inline-flex;align-items:center;gap:10px;padding:0 40px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:2px;color:#fff;text-transform:uppercase;}
+
+/* Promo input in modal */
+.promo-input-wrap{margin-bottom:14px;}
+.promo-input-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
+.promo-input-row{display:flex;gap:8px;}
+.promo-input{flex:1;background:rgba(0,0,0,0.3);border:1px solid rgba(139,92,246,0.2);border-radius:8px;padding:12px 16px;font-family:'DM Mono',monospace;font-size:13px;color:var(--p3);letter-spacing:2px;text-transform:uppercase;outline:none;transition:border-color 0.2s;}
+.promo-input:focus{border-color:rgba(139,92,246,0.5);}
+.promo-input.valid{border-color:var(--green);color:var(--green);}
+.promo-input.invalid{border-color:var(--red,#ef4444);color:#ef4444;}
+.promo-apply-btn{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:var(--p3);padding:12px 18px;border-radius:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.promo-apply-btn:hover{background:rgba(139,92,246,0.25);}
+.promo-msg{font-size:11px;margin-top:6px;font-family:'DM Mono',monospace;letter-spacing:1px;min-height:16px;}
+.promo-msg.ok{color:var(--green);}
+.promo-msg.err{color:#ef4444;}
+.price-original{font-size:14px;color:var(--muted);text-decoration:line-through;margin-right:8px;}
+
 </style>
 </head>
 <body>
+
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  <div class="announce-track">
+    <span class="announce-item">🔥 Limited Time — Use code <strong>ALGO30</strong> for 30% off all challenges</span>
+    <span class="announce-item">🚀 World's First Memecoin Prop Firm</span>
+    <span class="announce-item">💎 Get funded up to $100,000</span>
+    <span class="announce-item">⚡ Payouts within 24 hours in SOL</span>
+    <span class="announce-item">🔥 Limited Time — Use code <strong>ALGO30</strong> for 30% off all challenges</span>
+    <span class="announce-item">🚀 World's First Memecoin Prop Firm</span>
+    <span class="announce-item">💎 Get funded up to $100,000</span>
+    <span class="announce-item">⚡ Payouts within 24 hours in SOL</span>
+  </div>
+</div>
 
 <div class="bg-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 
@@ -453,7 +525,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
         </div>
         <div class="fee-row">
           <div class="fee-label">CHALLENGE FEE</div>
-          <div class="fee-val s">$49</div>
+          <div class="fee-val s">$69</div>
         </div>
         <button class="ch-btn s">View & Start →</button>
       </div>
@@ -476,7 +548,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
         </div>
         <div class="fee-row">
           <div class="fee-label">CHALLENGE FEE</div>
-          <div class="fee-val s">$99</div>
+          <div class="fee-val s">$149</div>
         </div>
         <button class="ch-btn s">View & Start →</button>
       </div>
@@ -500,7 +572,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
         </div>
         <div class="fee-row">
           <div class="fee-label">CHALLENGE FEE</div>
-          <div class="fee-val p">$199</div>
+          <div class="fee-val p">$279</div>
         </div>
         <button class="ch-btn p">View & Start →</button>
       </div>
@@ -523,7 +595,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
         </div>
         <div class="fee-row">
           <div class="fee-label">CHALLENGE FEE</div>
-          <div class="fee-val e">$999</div>
+          <div class="fee-val e">$1,399</div>
         </div>
         <button class="ch-btn e">View & Start →</button>
       </div>
@@ -777,7 +849,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
 
       <div class="m-fee-row">
         <div class="mf-label">One-Time Challenge Fee</div>
-        <div class="mf-usd" id="m0fee">$49</div>
+        <div class="mf-usd" id="m0fee">$69</div>
       </div>
 
       <button class="proceed-btn" onclick="goStep1()">Proceed to Payment →</button>
@@ -802,6 +874,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
         <div class="addr-lbl">Send exact SOL to this address</div>
         <div class="addr-txt">8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2</div>
       </div>
+            <div class="promo-input-wrap">
+        <div class="promo-input-label">Promo Code (optional)</div>
+        <div class="promo-input-row">
+          <input class="promo-input" id="promoInput" type="text" placeholder="ALGO30" maxlength="10" oninput="this.value=this.value.toUpperCase()">
+          <button class="promo-apply-btn" onclick="applyPromo()">Apply</button>
+        </div>
+        <div class="promo-msg" id="promoMsg"></div>
+      </div>
       <button class="copy-btn" id="copyBtn" onclick="doCopy()">Copy Wallet Address</button>
       <button class="proceed-btn" onclick="goStep2()">I've Sent Payment →</button>
       <div class="m-note">SOL rate refreshes every 60s. Amount may shift slightly with market.</div>
@@ -824,14 +904,75 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
 </div>
 
 <script>
+// ── PROMO POPUP ──
+let promoShown = false;
+setTimeout(() => {
+  if (!promoShown) {
+    document.getElementById('promoOverlay').style.display = 'flex';
+    promoShown = true;
+  }
+}, 2500);
+
+function closePromo() {
+  document.getElementById('promoOverlay').style.display = 'none';
+}
+
+function closePromoAndScroll() {
+  closePromo();
+  document.getElementById('challenges').scrollIntoView({behavior:'smooth'});
+}
+
+function copyPromoCode() {
+  navigator.clipboard.writeText('ALGO30').then(() => {
+    document.getElementById('copyHint').textContent = '✓ COPIED!';
+    document.getElementById('copyHint').classList.add('copied');
+    setTimeout(() => {
+      document.getElementById('copyHint').textContent = 'CLICK TO COPY';
+      document.getElementById('copyHint').classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// ── PROMO IN MODAL ──
+const PROMO_CODE = 'ALGO30';
+let promoApplied = false;
+
+function applyPromo() {
+  const val = document.getElementById('promoInput').value.trim().toUpperCase();
+  const input = document.getElementById('promoInput');
+  const msg = document.getElementById('promoMsg');
+  const p = plans[currentPlan];
+
+  if (val === PROMO_CODE) {
+    promoApplied = true;
+    input.classList.add('valid');
+    input.classList.remove('invalid');
+    msg.className = 'promo-msg ok';
+    msg.textContent = '✓ 30% discount applied!';
+    // update displayed SOL with real (discounted) price
+    const discFee = Math.round(p.realFee || p.fee * 0.7);
+    document.getElementById('mp-usd').innerHTML = '<span class="price-original">'+p.feeLabel+' USD</span> $'+discFee+' USD';
+    if (solPrice) {
+      document.getElementById('mp-sol').textContent = (discFee / solPrice).toFixed(4) + ' SOL';
+    }
+  } else {
+    promoApplied = false;
+    input.classList.add('invalid');
+    input.classList.remove('valid');
+    msg.className = 'promo-msg err';
+    msg.textContent = '✗ Invalid code. Try ALGO30';
+  }
+}
+
 // ── DATA ──
+
 const plans = {
   starter: {
     eyebrow: 'Starter — $1,000 Account',
     title: '$1,000',
     sub: 'Single-phase challenge. No Phase 2 required.',
-    fee: 49,
-    feeLabel: '$49',
+    fee: 69, realFee: 49,
+    feeLabel: '$69',
     details: [
       {l:'Account Size',v:'$1,000',c:'g'},
       {l:'Profit Target',v:'8% ($80)',c:'g'},
@@ -847,8 +988,8 @@ const plans = {
     eyebrow: 'Pro — $10,000 Account',
     title: '$10,000',
     sub: 'Two-phase challenge. Phase 1: 8% target. Phase 2: 5% target.',
-    fee: 199,
-    feeLabel: '$199',
+    fee: 279, realFee: 199,
+    feeLabel: '$279',
     details: [
       {l:'Account Size',v:'$10,000',c:'g'},
       {l:'Phase 1 Target',v:'8% ($800)',c:'g'},
@@ -864,8 +1005,8 @@ const plans = {
     eyebrow: 'Starter — $5,000 Account',
     title: '$5,000',
     sub: 'Two-phase challenge. Phase 1: 8% target. Phase 2: 5% target.',
-    fee: 99,
-    feeLabel: '$99',
+    fee: 149, realFee: 99,
+    feeLabel: '$149',
     details: [
       {l:'Account Size',v:'$5,000',c:'g'},
       {l:'Phase 1 Target',v:'8% ($400)',c:'g'},
@@ -881,8 +1022,8 @@ const plans = {
     eyebrow: 'Elite — $100,000 Account',
     title: '$100,000',
     sub: 'Two-phase challenge. Our highest funded account.',
-    fee: 999,
-    feeLabel: '$999',
+    fee: 1399, realFee: 999,
+    feeLabel: '$1,399',
     details: [
       {l:'Account Size',v:'$100,000',c:'gold'},
       {l:'Phase 1 Target',v:'8% ($8,000)',c:'g'},
@@ -943,6 +1084,9 @@ function openDetails(plan) {
   ).join('');
 
   document.getElementById('step0').style.display = 'block';
+  promoApplied = false;
+  const pi = document.getElementById('promoInput'); if(pi){pi.value='';pi.className='promo-input';}
+  const pm = document.getElementById('promoMsg'); if(pm){pm.textContent='';}
   document.getElementById('step1').style.display = 'none';
   document.getElementById('step2').style.display = 'none';
   document.getElementById('modalOverlay').classList.add('open');
@@ -1018,5 +1162,29 @@ const revIO = new IntersectionObserver(entries=>{
 },{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>revIO.observe(el));
 </script>
+
+<!-- PROMO POPUP -->
+<div class="promo-overlay" id="promoOverlay">
+  <div class="promo-box">
+    <div class="promo-glow"></div>
+    <button class="promo-close" onclick="closePromo()">×</button>
+    <div class="promo-top">
+      <div class="promo-eyebrow">Limited Time Offer</div>
+      <div class="promo-pct">30%</div>
+      <div class="promo-off">OFF</div>
+      <div class="promo-tagline">All challenge accounts — today only</div>
+    </div>
+    <div class="promo-bottom">
+      <div class="promo-code-label">Your discount code</div>
+      <div class="promo-code-box" onclick="copyPromoCode()">
+        <div class="promo-code-text">ALGO30</div>
+        <div class="promo-copy-hint" id="copyHint">CLICK TO COPY</div>
+      </div>
+      <button class="promo-use-btn" onclick="closePromoAndScroll()">Claim Discount →</button>
+      <button class="promo-skip" onclick="closePromo()">No thanks, I'll pay full price</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
