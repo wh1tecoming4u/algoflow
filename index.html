@@ -459,6 +459,244 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:44
   0%{transform:translate(0,0) rotate(0deg);opacity:1;}
   100%{transform:translate(calc(-50px + 100px*var(--r,0.5)),calc(-200px - 100px*var(--r2,0.5))) rotate(720deg);opacity:0;}
 }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--p3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(167,139,250,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.3s, height 0.3s, border-color 0.3s;
+}
+.cursor.expand { width: 20px; height: 20px; background: var(--pink); }
+.cursor-ring.expand { width: 56px; height: 56px; border-color: rgba(236,72,153,0.5); }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.left  { transform: translateX(-32px); }
+.reveal.right { transform: translateX(32px); }
+.reveal.scale { transform: scale(0.92); }
+.reveal.visible { opacity: 1 !important; transform: none !important; }
+
+/* Hero text shimmer */
+.h1-main {
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gradient border glow on cards hover */
+.ch-card {
+  position: relative;
+}
+.ch-card::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 21px;
+  background: linear-gradient(135deg, var(--p), var(--pink), var(--cyan), var(--p));
+  background-size: 300% 300%;
+  animation: gradBorder 4s ease infinite;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+.ch-card:hover::after { opacity: 1; }
+@keyframes gradBorder {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* Stat bar number glow */
+.sb-num {
+  text-shadow: 0 0 40px rgba(167,139,250,0.4);
+  animation: numPulse 3s ease-in-out infinite;
+}
+@keyframes numPulse {
+  0%,100% { filter: brightness(1); }
+  50%      { filter: brightness(1.2); }
+}
+
+/* How-step card slide-in stagger handled by JS */
+.how-card {
+  transition: transform 0.35s ease, border-color 0.35s, box-shadow 0.35s;
+  border: 1px solid transparent;
+}
+.how-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139,92,246,0.3);
+  box-shadow: 0 20px 50px rgba(139,92,246,0.1);
+}
+
+/* Platform card hover lift */
+.plat-card {
+  transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+}
+.plat-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(139,92,246,0.2);
+}
+
+/* Rule card left accent on hover */
+.rule-card {
+  position: relative;
+  overflow: hidden;
+}
+.rule-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--p), var(--pink));
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s ease;
+}
+.rule-card:hover::before { transform: scaleY(1); }
+
+/* Nav link underline slide */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; left: 0; bottom: -2px; right: 0;
+  height: 1px;
+  background: var(--p3);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* Ticker glow text */
+.up { text-shadow: 0 0 10px rgba(16,185,129,0.6); }
+.dn { text-shadow: 0 0 10px rgba(239,68,68,0.6); }
+
+/* Button shimmer sweep */
+.btn-p, .nav-btn, .proceed-btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn-p::after, .nav-btn::after, .proceed-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -75%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
+  transform: skewX(-20deg);
+  animation: btnSweep 3.5s ease infinite;
+}
+@keyframes btnSweep {
+  0%   { left: -75%; opacity: 0; }
+  20%  { opacity: 1; }
+  60%  { left: 125%; opacity: 0; }
+  100% { left: 125%; opacity: 0; }
+}
+
+/* Promo popup entrance */
+.promo-box {
+  animation: promoIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes promoIn {
+  from { opacity: 0; transform: scale(0.85) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Promo code bounce */
+.promo-code-box {
+  animation: codePulse 2.5s ease-in-out infinite;
+}
+@keyframes codePulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(139,92,246,0.3); }
+  50%      { box-shadow: 0 0 0 8px rgba(139,92,246,0); }
+}
+
+/* Discount success flash on mp-usd */
+@keyframes flashGreen {
+  0%  { background: rgba(16,185,129,0.25); }
+  100%{ background: transparent; }
+}
+.flash-green {
+  animation: flashGreen 0.6s ease forwards;
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+/* Orb mouse-follow is done in JS, but enhance the base */
+.orb1, .orb2 { transition: transform 0.8s ease; }
+
+/* Coin float speed-up on hover over hero */
+.hero:hover .fc { animation-play-state: running; }
+
+/* Announce bar hover pause */
+.announce-bar:hover .announce-track { animation-play-state: paused; }
+
+/* Section divider line animation */
+.sec-full {
+  position: relative;
+}
+.sec-full::before {
+  content: '';
+  position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--p), transparent);
+  animation: lineScan 3s ease-in-out infinite;
+}
+@keyframes lineScan {
+  0%,100% { opacity: 0.3; transform: scaleX(0.6); }
+  50%      { opacity: 0.8; transform: scaleX(1); }
+}
+
+/* Challenge card featured pulse ring */
+.ch-card.featured {
+  animation: featuredPulse 3s ease-in-out infinite;
+}
+@keyframes featuredPulse {
+  0%,100% { box-shadow: 0 0 50px rgba(139,92,246,0.08); }
+  50%      { box-shadow: 0 0 80px rgba(139,92,246,0.22), 0 0 120px rgba(236,72,153,0.08); }
+}
+
+/* Logo hover */
+.logo-mark {
+  transition: filter 0.3s;
+  display: inline-block;
+}
+.logo-mark:hover {
+  filter: drop-shadow(0 0 20px rgba(167,139,250,0.8));
+}
+
+/* Modal entrance */
+.modal {
+  animation: modalSlide 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes modalSlide {
+  from { opacity: 0; transform: scale(0.94) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 </style>
 </head>
 <body>
@@ -1254,13 +1492,7 @@ const statsIO = new IntersectionObserver(entries=>{
 },{threshold:0.3});
 statsIO.observe(document.querySelector('.stats-bar'));
 
-// ── REVEAL ──
-const revIO = new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),i*70);
-  });
-},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>revIO.observe(el));
+// reveal handled by animation script
 </script>
 
 <!-- PROMO POPUP -->
@@ -1285,6 +1517,136 @@ document.querySelectorAll('.reveal').forEach(el=>revIO.observe(el));
     </div>
   </div>
 </div>
+
+
+<script>
+// ── CURSOR ──
+(function() {
+  var cur = document.createElement('div');
+  cur.className = 'cursor';
+  var ring = document.createElement('div');
+  ring.className = 'cursor-ring';
+  document.body.appendChild(cur);
+  document.body.appendChild(ring);
+
+  var mx = -100, my = -100, rx = -100, ry = -100;
+
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top  = my + 'px';
+  });
+
+  // ring follows with lag
+  (function lerp() {
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerp);
+  })();
+
+  // expand on interactive elements
+  document.querySelectorAll('a,button,.ch-card,.plat-card,.rule-card').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      cur.classList.add('expand');
+      ring.classList.add('expand');
+    });
+    el.addEventListener('mouseleave', function() {
+      cur.classList.remove('expand');
+      ring.classList.remove('expand');
+    });
+  });
+
+  // hide on mobile
+  if ('ontouchstart' in window) {
+    cur.style.display = 'none';
+    ring.style.display = 'none';
+  }
+})();
+
+// ── SCROLL REVEAL ──
+(function() {
+  var items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
+      if (e.isIntersecting) {
+        setTimeout(function() {
+          e.target.classList.add('visible');
+        }, (e.target.dataset.delay || 0));
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  items.forEach(function(el, i) {
+    el.dataset.delay = (i % 4) * 80;
+    io.observe(el);
+  });
+})();
+
+// ── ORB MOUSE PARALLAX ──
+(function() {
+  var orb1 = document.querySelector('.orb1');
+  var orb2 = document.querySelector('.orb2');
+  if (!orb1 || !orb2) return;
+  var ox = 0, oy = 0;
+  document.addEventListener('mousemove', function(e) {
+    var dx = (e.clientX / window.innerWidth  - 0.5) * 30;
+    var dy = (e.clientY / window.innerHeight - 0.5) * 30;
+    ox += (dx - ox) * 0.05;
+    oy += (dy - oy) * 0.05;
+    orb1.style.transform = 'translate(' + ox + 'px,' + oy + 'px)';
+    orb2.style.transform = 'translate(' + (-ox * 0.7) + 'px,' + (-oy * 0.7) + 'px)';
+  });
+})();
+
+// ── COUNTER ANIMATE on scroll ──
+(function() {
+  var counters = document.querySelectorAll('.sb-num');
+  if (!counters.length) return;
+  var done = false;
+  var io = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !done) {
+      done = true;
+      var targets = [
+        { el: document.getElementById('sMax'),   end: 100,  suffix: 'K', prefix: '$' },
+        { el: document.getElementById('sSplit'),  end: 90,   suffix: '%', prefix: '' },
+        { el: document.getElementById('sCoins'),  end: 500,  suffix: '+', prefix: '' },
+        { el: document.getElementById('sPay'),    end: 24,   suffix: 'H', prefix: '' },
+      ];
+      targets.forEach(function(t) {
+        if (!t.el) return;
+        var start = performance.now();
+        var dur = 1800;
+        (function tick(now) {
+          var p = Math.min((now - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - p, 3);
+          t.el.textContent = t.prefix + Math.floor(t.end * ease) + t.suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(start);
+      });
+    }
+  }, { threshold: 0.3 });
+  var bar = document.querySelector('.stats-bar');
+  if (bar) io.observe(bar);
+})();
+
+// ── DISCOUNT FLASH ──
+// Override applyPromo to add flash effect
+var _origApply = window.applyPromo;
+window.applyPromo = function() {
+  _origApply && _origApply();
+  var usd = document.getElementById('mp-usd');
+  if (usd) {
+    usd.classList.remove('flash-green');
+    void usd.offsetWidth; // reflow
+    usd.classList.add('flash-green');
+  }
+};
+</script>
 
 </body>
 </html>
