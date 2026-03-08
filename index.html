@@ -13,6 +13,7 @@ html{scroll-behavior:smooth}
   --white:#fff;--off:#f7f9ff;--border:#e2e8f8;
   --text:#0a0d1a;--text2:#4a5175;--muted:#8890b0;
   --green:#0dab6b;--green-bg:#e6f9f1;
+  --gold:#c8860a;--gold-d:#a06a05;--gold-l:#fef9ee;--gold-m:#fdefc6;--gold-b:#f5c842;
   --shadow:0 2px 20px rgba(22,82,240,.08);--shadow-lg:0 12px 60px rgba(22,82,240,.15);
 }
 body{font-family:'Instrument Sans',sans-serif;background:var(--white);color:var(--text);cursor:none;overflow-x:hidden}
@@ -126,15 +127,29 @@ h1 .hl-green{color:var(--green)}
   border-bottom:1px solid var(--border);position:relative;overflow:hidden;
 }
 .buy-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:300px;background:radial-gradient(ellipse,rgba(22,82,240,.06),transparent 70%);pointer-events:none}
-.buy-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center}
+.buy-inner{max-width:980px;margin:0 auto}
+
+/* TIER TOGGLE */
+.tier-toggle{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:44px}
+.tier-btn{font-size:13px;font-weight:700;padding:9px 24px;border-radius:9px;border:1.5px solid var(--border);background:#fff;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s}
+.tier-btn.active-basic{background:var(--blue-l);border-color:rgba(22,82,240,.25);color:var(--blue)}
+.tier-btn.active-pro{background:var(--gold-l);border-color:rgba(200,134,10,.3);color:var(--gold)}
+
+.buy-cards-row{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:start}
+.buy-cards-row.pro-active{grid-template-columns:1fr 420px}
+
+/* LEFT CONTENT */
 .buy-left{}
 .buy-eyebrow{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:2px;text-transform:uppercase;background:var(--blue-l);padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:16px}
+.buy-eyebrow.pro{color:var(--gold);background:var(--gold-l)}
 .buy-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1.2px;line-height:1.1;margin-bottom:12px}
 .buy-title .hw{background:linear-gradient(135deg,var(--blue),#4a86ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.buy-title .hw-gold{background:linear-gradient(135deg,var(--gold),var(--gold-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .buy-sub{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:24px}
 .buy-feats{display:flex;flex-direction:column;gap:10px}
 .bf{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
 .bf-ic{width:22px;height:22px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);font-weight:900;flex-shrink:0}
+.bf-ic.gold{background:var(--gold-l);color:var(--gold)}
 
 /* BUY CARD */
 .buy-card{
@@ -142,23 +157,36 @@ h1 .hl-green{color:var(--green)}
   box-shadow:0 8px 48px rgba(22,82,240,.1);overflow:hidden;position:relative;
 }
 .buy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#4a86ff,var(--green))}
+
+/* PRO CARD */
+.buy-card.pro-card{
+  border-color:rgba(200,134,10,.25);
+  box-shadow:0 8px 48px rgba(200,134,10,.15),0 0 0 1px rgba(245,200,66,.12);
+}
+.buy-card.pro-card::before{background:linear-gradient(90deg,var(--gold-d),var(--gold-b),var(--gold))}
+.pro-glow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(ellipse,rgba(245,200,66,.12),transparent 70%);pointer-events:none}
+
 .buy-card-head{padding:24px 24px 20px;border-bottom:1px solid var(--border)}
 .bch-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
 .bch-name{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
 .bch-badge{background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
+.bch-badge.pro{background:linear-gradient(135deg,var(--gold),var(--gold-b));color:#fff;box-shadow:0 2px 10px rgba(200,134,10,.3)}
 .bch-price{font-size:48px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--text);line-height:1;letter-spacing:-2px}
 .bch-price sup{font-size:22px;color:var(--muted);vertical-align:super;letter-spacing:0}
+.bch-price.pro-price{color:var(--gold-d)}
 .bch-price-orig{font-size:14px;color:var(--muted);text-decoration:line-through;margin-left:6px;font-family:'JetBrains Mono',monospace}
 .bch-period{font-size:13px;color:var(--muted);margin-top:4px}
 .buy-card-body{padding:20px 24px 24px}
 .card-perks{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
 .cp{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--text2)}
 .cp-check{width:18px;height:18px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--green);font-weight:900;flex-shrink:0}
+.cp-check.gold{background:var(--gold-l);color:var(--gold)}
+.cp.highlight{color:var(--text);font-weight:700}
 
 /* COUPON */
 .coupon-row{display:flex;gap:8px;margin-bottom:18px}
 .coupon-input{
-  flex:1;font-family:'JetBrains Mono',monospace;font-size:13px;
+  flex:1;font-family:'Instrument Sans',sans-serif;font-size:13px;
   background:var(--off);border:1.5px solid var(--border);
   padding:11px 14px;border-radius:9px;outline:none;color:var(--text);
   transition:border-color .2s;text-transform:uppercase;
@@ -167,6 +195,10 @@ h1 .hl-green{color:var(--green)}
 .coupon-input::placeholder{color:var(--muted);text-transform:none}
 .coupon-btn{background:var(--blue-l);color:var(--blue);font-size:12px;font-weight:800;padding:11px 16px;border-radius:9px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s;white-space:nowrap}
 .coupon-btn:hover{background:var(--blue-m)}
+/* Pro coupon styling */
+.coupon-input.pro-input:focus{border-color:var(--gold)}
+.coupon-btn.pro-btn{background:var(--gold-l);color:var(--gold)}
+.coupon-btn.pro-btn:hover{background:var(--gold-m)}
 .coupon-msg{font-size:11px;color:var(--green);font-weight:700;margin-top:-10px;margin-bottom:12px;display:none}
 .coupon-msg.show{display:block}
 .coupon-err{font-size:11px;color:#e04040;font-weight:700;margin-top:-10px;margin-bottom:12px;display:none}
@@ -184,9 +216,42 @@ h1 .hl-green{color:var(--green)}
 .cb:hover{background:var(--blue-m)}
 .amr{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid var(--border)}
 .aml{font-size:11px;color:var(--muted)}.amv{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:800;color:var(--blue)}
+.amv.gold{color:var(--gold)}
 .vbtn{width:100%;background:var(--blue-l);color:var(--blue);font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:1.5px solid rgba(22,82,240,.15);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
 .vbtn:hover{background:var(--blue-m);border-color:rgba(22,82,240,.25)}
+.vbtn.pro-vbtn{background:var(--gold-l);color:var(--gold);border-color:rgba(200,134,10,.2)}
+.vbtn.pro-vbtn:hover{background:var(--gold-m)}
 .card-footer-note{font-size:10px;color:var(--muted);text-align:center;margin-top:12px;display:flex;justify-content:center;gap:14px}
+
+/* SOL BOX HIDDEN BY DEFAULT */
+.sol-box{background:var(--off);border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;display:none}
+.sol-box.visible{display:block;animation:solReveal .35s ease both}
+@keyframes solReveal{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* PRO SOL BOX */
+.sol-box.pro-sol{background:var(--gold-l);border-color:rgba(200,134,10,.2)}
+
+.buy-btn-main{
+  width:100%;background:var(--blue);color:#fff;font-size:15px;font-weight:800;
+  padding:16px;border-radius:11px;border:none;cursor:none;
+  font-family:'Instrument Sans',sans-serif;transition:all .25s;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  position:relative;overflow:hidden;margin-bottom:10px;
+}
+.buy-btn-main::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-100%);transition:.5s}
+.buy-btn-main:hover{background:var(--blue-d);box-shadow:0 6px 28px rgba(22,82,240,.35);transform:translateY(-1px)}
+.buy-btn-main:hover::after{transform:translateX(100%)}
+.buy-btn-main.pro-btn-main{background:linear-gradient(135deg,var(--gold-d),var(--gold))}
+.buy-btn-main.pro-btn-main:hover{background:linear-gradient(135deg,#8a5a03,var(--gold-d));box-shadow:0 6px 28px rgba(200,134,10,.4)}
+
+/* PRO CARD TIER COMPARISON */
+.pro-vs-basic{display:flex;gap:8px;margin-bottom:18px}
+.pvb-item{flex:1;background:var(--off);border:1px solid var(--border);border-radius:9px;padding:10px 12px;text-align:center}
+.pvb-item.active{background:var(--gold-l);border-color:rgba(200,134,10,.2)}
+.pvb-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
+.pvb-item.active .pvb-label{color:var(--gold)}
+.pvb-val{font-size:13px;font-weight:800;color:var(--text2)}
+.pvb-item.active .pvb-val{color:var(--gold-d)}
 
 /* SECTION SHARED */
 section{padding:88px 40px}
@@ -310,22 +375,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 .flink:hover{color:var(--blue)}
 .fn{font-size:11px;color:var(--muted)}
 
-/* SOL BOX HIDDEN BY DEFAULT */
-.sol-box{background:var(--off);border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px;display:none}
-.sol-box.visible{display:block;animation:solReveal .35s ease both}
-@keyframes solReveal{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.buy-btn-main{
-  width:100%;background:var(--blue);color:#fff;font-size:15px;font-weight:800;
-  padding:16px;border-radius:11px;border:none;cursor:none;
-  font-family:'Instrument Sans',sans-serif;transition:all .25s;
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  position:relative;overflow:hidden;margin-bottom:10px;
-}
-.buy-btn-main::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-100%);transition:.5s}
-.buy-btn-main:hover{background:var(--blue-d);box-shadow:0 6px 28px rgba(22,82,240,.35);transform:translateY(-1px)}
-.buy-btn-main:hover::after{transform:translateX(100%)}
-.buy-btn-main.expanded{background:var(--blue-d)}
-
 /* ======= POPUP OFFER ======= */
 .popup-overlay{position:fixed;inset:0;z-index:800;background:rgba(10,13,26,.55);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s;pointer-events:none}
 .popup-overlay.open{opacity:1;pointer-events:all}
@@ -347,7 +396,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 .popup-heading{font-size:19px;font-weight:800;color:var(--text);letter-spacing:-.5px;line-height:1.25;margin-bottom:5px}
 .popup-subtext{font-size:13px;color:var(--text2);margin-bottom:22px;line-height:1.5}
 
-/* CODE DISPLAY */
+/* CODE DISPLAY — fixed font */
 .popup-code-block{
   background:var(--blue-l);border:1.5px solid rgba(22,82,240,.2);
   border-radius:14px;padding:20px 20px 18px;margin-bottom:18px;
@@ -356,7 +405,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 .popup-code-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(22,82,240,.4),transparent)}
 .pcb-label{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .pcb-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.pcb-code{font-size:28px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--blue);letter-spacing:6px}
+/* KEY FIX: use Instrument Sans instead of JetBrains Mono */
+.pcb-code{font-size:30px;font-weight:900;font-family:'Instrument Sans',sans-serif;color:var(--blue);letter-spacing:4px}
 .pcb-copy{background:var(--blue);color:#fff;font-size:11px;font-weight:800;padding:7px 14px;border-radius:8px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s;flex-shrink:0}
 .pcb-copy:hover{background:var(--blue-d);transform:scale(1.04)}
 .pcb-copy.copied{background:var(--green)}
@@ -411,9 +461,45 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 /* COUNTER */
 .cnt{display:inline-block;font-family:'JetBrains Mono',monospace}
 
+/* PLAN PANELS */
+.plan-panel{display:none}
+.plan-panel.active{display:contents}
+
+/* TIER SWITCHER WRAPPER */
+.tier-switch-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:44px}
+.tier-switch{display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:12px;padding:4px;gap:4px}
+.tsw-btn{font-size:13px;font-weight:700;padding:9px 22px;border-radius:9px;border:none;background:transparent;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;gap:7px}
+.tsw-btn.active{background:#fff;color:var(--text);box-shadow:0 2px 10px rgba(22,82,240,.08);border:1px solid var(--border)}
+.tsw-btn.pro.active{color:var(--gold-d);border-color:rgba(200,134,10,.2);box-shadow:0 2px 12px rgba(200,134,10,.1)}
+/* PRO BUTTON IDLE GLOW — draws attention even when not selected */
+.tsw-btn.pro{
+  color:var(--gold-d);
+  background:linear-gradient(135deg,rgba(254,249,238,.7),rgba(253,239,198,.5));
+  border:1.5px solid rgba(200,134,10,.22);
+  box-shadow:0 0 0 0 rgba(245,200,66,.5);
+  animation:proGlowPulse 2.6s ease-in-out infinite;
+  position:relative;
+}
+.tsw-btn.pro::after{
+  content:'';position:absolute;inset:-1px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(245,200,66,.18),transparent 60%,rgba(200,134,10,.1));
+  pointer-events:none;
+}
+@keyframes proGlowPulse{
+  0%,100%{box-shadow:0 0 6px 1px rgba(245,200,66,.25),0 0 0 0 rgba(245,200,66,.0)}
+  50%{box-shadow:0 0 14px 3px rgba(245,200,66,.45),0 0 28px 6px rgba(200,134,10,.12)}
+}
+.tsw-btn.pro.active{
+  animation:none;
+  background:linear-gradient(135deg,var(--gold-l),var(--gold-m));
+  box-shadow:0 2px 16px rgba(200,134,10,.2),0 0 0 1px rgba(200,134,10,.18);
+  border-color:rgba(200,134,10,.3);
+}
+.tsw-crown{font-size:15px}
+
 @media(max-width:900px){
   nav{padding:0 20px}.hero{padding:120px 20px 60px}
-  h1{letter-spacing:-2px}.buy-inner{grid-template-columns:1fr}
+  h1{letter-spacing:-2px}.buy-cards-row{grid-template-columns:1fr}
   section{padding:60px 20px}.steps{grid-template-columns:1fr}
   .demo-grid{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr}
   .poly-proof{grid-template-columns:1fr}.footer{padding:28px 20px}
@@ -443,7 +529,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
           <div class="pcb-code">WHALE30</div>
           <button class="pcb-copy" id="popupCopyBtn" onclick="copyPopupCode(this)">Copy</button>
         </div>
-        <div class="pcb-hint">Applies 30% off at checkout · one-time use</div>
+        <div class="pcb-hint">Applies 30% off · works on Basic & Pro · one-time use</div>
       </div>
 
       <button class="popup-cta" onclick="closePopupAndScroll()">Get Access →</button>
@@ -465,7 +551,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <a class="nl" href="#faq">FAQ</a>
   </div>
   <div class="nav-r">
-    <button class="btn-s" onclick="scrollToBuy()">Get Access — $71</button>
+    <button class="btn-s" onclick="scrollToBuy()">Get Access — from $71</button>
   </div>
 </nav>
 
@@ -510,95 +596,199 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <!-- TICKER -->
 <div class="ticker"><div class="ticker-t" id="ttk"></div></div>
 
-<!-- ===== BUY SECTION (FIRST SCROLL) ===== -->
+<!-- ===== BUY SECTION ===== -->
 <div class="buy-section" id="buy">
   <div class="buy-glow"></div>
-  <div class="buy-inner">
-    <div class="buy-left reveal">
-      <div class="buy-eyebrow">Lifetime Access</div>
-      <h2 class="buy-title">One payment.<br><span class="hw">Infinite edge.</span></h2>
-      <p class="buy-sub">No subscription. No monthly nonsense. Pay once and receive every whale signal, forever — straight to Discord.</p>
-      <div class="buy-feats">
-        <div class="bf"><div class="bf-ic">✓</div>Real-time whale wallet detection</div>
-        <div class="bf"><div class="bf-ic">✓</div>Confidence score + Kelly position sizing</div>
-        <div class="bf"><div class="bf-ic">✓</div>Order flow & probability drift alerts</div>
-        <div class="bf"><div class="bf-ic">✓</div>Private Discord with 847 traders</div>
-        <div class="bf"><div class="bf-ic">✓</div>Full win/loss tracker & performance log</div>
-        <div class="bf"><div class="bf-ic">✓</div>Lifetime updates included</div>
+  <div style="max-width:980px;margin:0 auto">
+
+    <!-- TIER SWITCHER -->
+    <div class="tier-switch-wrap reveal">
+      <div class="tier-switch">
+        <button class="tsw-btn active" id="btnBasic" onclick="switchTier('basic')">
+          AlgoFlow Basic — $71
+        </button>
+        <button class="tsw-btn pro" id="btnPro" onclick="switchTier('pro')">
+          <span class="tsw-crown">👑</span> AlgoFlow Pro — $227
+        </button>
       </div>
     </div>
 
-    <!-- CARD -->
-    <div class="buy-card reveal" style="transition-delay:.1s">
-      <div class="buy-card-head">
-        <div class="bch-top">
-          <div class="bch-name">AlgoFlow Pro</div>
-          <div class="bch-badge">⚡ LIFETIME</div>
+    <!-- BASIC PANEL -->
+    <div id="panelBasic" class="buy-cards-row">
+      <div class="buy-left reveal">
+        <div class="buy-eyebrow">Lifetime Access</div>
+        <h2 class="buy-title">One payment.<br><span class="hw">Infinite edge.</span></h2>
+        <p class="buy-sub">No subscription. No monthly nonsense. Pay once and receive every whale signal, forever — straight to Discord.</p>
+        <div class="buy-feats">
+          <div class="bf"><div class="bf-ic">✓</div>Real-time whale wallet detection</div>
+          <div class="bf"><div class="bf-ic">✓</div>Confidence score + Kelly position sizing</div>
+          <div class="bf"><div class="bf-ic">✓</div>Order flow & probability drift alerts</div>
+          <div class="bf"><div class="bf-ic">✓</div>Private Discord with 847 traders</div>
+          <div class="bf"><div class="bf-ic">✓</div>Full win/loss tracker & performance log</div>
+          <div class="bf"><div class="bf-ic">✓</div>Lifetime updates included</div>
         </div>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-          <div class="bch-price" id="displayPrice"><sup>$</sup><span id="priceNum">71</span></div>
-          <div class="bch-price-orig" id="origLabel" style="display:none">$71</div>
-        </div>
-        <div class="bch-period" id="periodLabel">one-time · lifetime access</div>
       </div>
-      <div class="buy-card-body">
-        <div class="card-perks">
-          <div class="cp"><div class="cp-check">✓</div>Whale wallet tracking & alerts</div>
-          <div class="cp"><div class="cp-check">✓</div>0–100 AI confidence score</div>
-          <div class="cp"><div class="cp-check">✓</div>Kelly Criterion position sizing</div>
-          <div class="cp"><div class="cp-check">✓</div>Private Discord community</div>
-          <div class="cp"><div class="cp-check">✓</div>All future bot updates</div>
-          <div class="cp"><div class="cp-check">✓</div>Priority support</div>
+
+      <!-- BASIC CARD -->
+      <div class="buy-card reveal" style="transition-delay:.1s">
+        <div class="buy-card-head">
+          <div class="bch-top">
+            <div class="bch-name">AlgoFlow Basic</div>
+            <div class="bch-badge">⚡ LIFETIME</div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
+            <div class="bch-price" id="displayPriceBasic"><sup>$</sup><span id="priceNumBasic">71</span></div>
+            <div class="bch-price-orig" id="origLabelBasic" style="display:none">$71</div>
+          </div>
+          <div class="bch-period" id="periodLabelBasic">one-time · lifetime access</div>
         </div>
+        <div class="buy-card-body">
+          <div class="card-perks">
+            <div class="cp"><div class="cp-check">✓</div>Whale wallet tracking & alerts</div>
+            <div class="cp"><div class="cp-check">✓</div>0–100 AI confidence score</div>
+            <div class="cp"><div class="cp-check">✓</div>Kelly Criterion position sizing</div>
+            <div class="cp"><div class="cp-check">✓</div>Private Discord community</div>
+            <div class="cp"><div class="cp-check">✓</div>All future bot updates</div>
+            <div class="cp"><div class="cp-check">✓</div>Priority support</div>
+          </div>
 
-        <div class="coupon-row">
-          <input class="coupon-input" id="couponInput" placeholder="Have a discount code?" type="text">
-          <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
-        </div>
-        <div class="coupon-msg" id="couponMsg">✓ WHALE30 applied — 30% off!</div>
-        <div class="coupon-err" id="couponErr">✕ Invalid code. Try WHALE30</div>
+          <div class="coupon-row">
+            <input class="coupon-input" id="couponInputBasic" placeholder="Have a discount code?" type="text">
+            <button class="coupon-btn" onclick="applyCoupon('basic')">Apply</button>
+          </div>
+          <div class="coupon-msg" id="couponMsgBasic">✓ WHALE30 applied — 30% off!</div>
+          <div class="coupon-err" id="couponErrBasic">✕ Invalid code. Try WHALE30</div>
 
-        <!-- PRIMARY BUY BUTTON -->
-        <button class="buy-btn-main" id="buyMainBtn" onclick="toggleSolBox()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-          <span id="buyBtnLabel">Buy Now — $71</span>
-        </button>
+          <button class="buy-btn-main" id="buyMainBtnBasic" onclick="toggleSolBox('basic')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span id="buyBtnLabelBasic">Buy Now — $71</span>
+          </button>
 
-        <!-- SOL BOX — hidden until Buy clicked -->
-        <div class="sol-box" id="solBox">
-          <div class="sh">
-            <!-- Solana SVG logo -->
-            <div class="slogo">
-              <svg width="18" height="14" viewBox="0 0 646 499" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M108.53 390.97L64.06 436.5C62.37 438.24 60.35 439.62 58.12 440.55C55.89 441.49 53.49 441.97 51.07 441.97H9.35C7.69 441.97 6.07 441.49 4.67 440.59C3.27 439.69 2.16 438.41 1.45 436.91C0.74 435.41 0.48 433.73 0.69 432.08C0.9 430.43 1.58 428.88 2.65 427.61L47.13 382.07C48.82 380.33 50.84 378.95 53.07 378.01C55.3 377.08 57.7 376.6 60.12 376.6H101.84C103.5 376.6 105.12 377.08 106.52 377.98C107.92 378.88 109.03 380.16 109.74 381.66C110.45 383.16 110.71 384.84 110.5 386.49C110.29 388.14 109.61 389.69 108.53 390.97ZM64.06 253.29L108.53 207.75C109.61 206.48 110.29 204.93 110.5 203.28C110.71 201.63 110.45 199.95 109.74 198.45C109.03 196.95 107.92 195.67 106.52 194.77C105.12 193.87 103.5 193.39 101.84 193.39H60.12C57.7 193.39 55.3 193.87 53.07 194.8C50.84 195.74 48.82 197.12 47.13 198.86L2.65 244.39C1.58 245.66 0.9 247.21 0.69 248.86C0.48 250.51 0.74 252.19 1.45 253.69C2.16 255.19 3.27 256.47 4.67 257.37C6.07 258.27 7.69 258.75 9.35 258.75H51.07C53.49 258.75 55.89 258.27 58.12 257.33C60.35 256.4 62.37 255.02 64.06 253.29ZM643.35 245.5L598.87 290.04C597.18 291.78 595.16 293.16 592.93 294.09C590.7 295.03 588.3 295.51 585.88 295.51H9.35C7.69 295.51 6.07 295.03 4.67 294.13C3.27 293.23 2.16 291.95 1.45 290.45C0.74 288.95 0.48 287.27 0.69 285.62C0.9 283.97 1.58 282.42 2.65 281.15L47.13 236.61C48.82 234.87 50.84 233.49 53.07 232.56C55.3 231.62 57.7 231.14 60.12 231.14H636.65C638.31 231.14 639.93 231.62 641.33 232.52C642.73 233.42 643.84 234.7 644.55 236.2C645.26 237.7 645.52 239.38 645.31 241.03C645.1 242.68 644.42 244.23 643.35 245.5ZM643.35 62.29L598.87 107.83C597.18 109.57 595.16 110.95 592.93 111.88C590.7 112.82 588.3 113.3 585.88 113.3H9.35C7.69 113.3 6.07 112.82 4.67 111.92C3.27 111.02 2.16 109.74 1.45 108.24C0.74 106.74 0.48 105.06 0.69 103.41C0.9 101.76 1.58 100.21 2.65 98.94L47.13 53.4C48.82 51.66 50.84 50.28 53.07 49.34C55.3 48.41 57.7 47.93 60.12 47.93H636.65C638.31 47.93 639.93 48.41 641.33 49.31C642.73 50.21 643.84 51.49 644.55 52.99C645.26 54.49 645.52 56.17 645.31 57.82C645.1 59.47 644.42 61.02 643.35 62.29Z" fill="url(#solGrad)"/>
-                <defs>
-                  <linearGradient id="solGrad" x1="0" y1="0" x2="646" y2="499" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#9945FF"/>
-                    <stop offset="100%" stop-color="#14F195"/>
-                  </linearGradient>
-                </defs>
-              </svg>
+          <div class="sol-box" id="solBoxBasic">
+            <div class="sh">
+              <div class="slogo">
+                <svg width="18" height="14" viewBox="0 0 646 499" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M108.53 390.97L64.06 436.5C62.37 438.24 60.35 439.62 58.12 440.55C55.89 441.49 53.49 441.97 51.07 441.97H9.35C7.69 441.97 6.07 441.49 4.67 440.59C3.27 439.69 2.16 438.41 1.45 436.91C0.74 435.41 0.48 433.73 0.69 432.08C0.9 430.43 1.58 428.88 2.65 427.61L47.13 382.07C48.82 380.33 50.84 378.95 53.07 378.01C55.3 377.08 57.7 376.6 60.12 376.6H101.84C103.5 376.6 105.12 377.08 106.52 377.98C107.92 378.88 109.03 380.16 109.74 381.66C110.45 383.16 110.71 384.84 110.5 386.49C110.29 388.14 109.61 389.69 108.53 390.97ZM64.06 253.29L108.53 207.75C109.61 206.48 110.29 204.93 110.5 203.28C110.71 201.63 110.45 199.95 109.74 198.45C109.03 196.95 107.92 195.67 106.52 194.77C105.12 193.87 103.5 193.39 101.84 193.39H60.12C57.7 193.39 55.3 193.87 53.07 194.8C50.84 195.74 48.82 197.12 47.13 198.86L2.65 244.39C1.58 245.66 0.9 247.21 0.69 248.86C0.48 250.51 0.74 252.19 1.45 253.69C2.16 255.19 3.27 256.47 4.67 257.37C6.07 258.27 7.69 258.75 9.35 258.75H51.07C53.49 258.75 55.89 258.27 58.12 257.33C60.35 256.4 62.37 255.02 64.06 253.29ZM643.35 245.5L598.87 290.04C597.18 291.78 595.16 293.16 592.93 294.09C590.7 295.03 588.3 295.51 585.88 295.51H9.35C7.69 295.51 6.07 295.03 4.67 294.13C3.27 293.23 2.16 291.95 1.45 290.45C0.74 288.95 0.48 287.27 0.69 285.62C0.9 283.97 1.58 282.42 2.65 281.15L47.13 236.61C48.82 234.87 50.84 233.49 53.07 232.56C55.3 231.62 57.7 231.14 60.12 231.14H636.65C638.31 231.14 639.93 231.62 641.33 232.52C642.73 233.42 643.84 234.7 644.55 236.2C645.26 237.7 645.52 239.38 645.31 241.03C645.1 242.68 644.42 244.23 643.35 245.5ZM643.35 62.29L598.87 107.83C597.18 109.57 595.16 110.95 592.93 111.88C590.7 112.82 588.3 113.3 585.88 113.3H9.35C7.69 113.3 6.07 112.82 4.67 111.92C3.27 111.02 2.16 109.74 1.45 108.24C0.74 106.74 0.48 105.06 0.69 103.41C0.9 101.76 1.58 100.21 2.65 98.94L47.13 53.4C48.82 51.66 50.84 50.28 53.07 49.34C55.3 48.41 57.7 47.93 60.12 47.93H636.65C638.31 47.93 639.93 48.41 641.33 49.31C642.73 50.21 643.84 51.49 644.55 52.99C645.26 54.49 645.52 56.17 645.31 57.82C645.1 59.47 644.42 61.02 643.35 62.29Z" fill="url(#solGrad1)"/><defs><linearGradient id="solGrad1" x1="0" y1="0" x2="646" y2="499" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9945FF"/><stop offset="100%" stop-color="#14F195"/></linearGradient></defs></svg>
+              </div>
+              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount below</div></div>
+              <div class="snb">LIVE</div>
             </div>
-            <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount below</div></div>
-            <div class="snb">LIVE</div>
+            <div class="al">Wallet Address</div>
+            <div class="ar">
+              <div class="at">8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2</div>
+              <button class="cb" onclick="doCopy(this)">Copy</button>
+            </div>
+            <div class="amr">
+              <span class="aml">Send exactly:</span>
+              <span class="amv" id="solAmtBasic">0.4972 SOL ≈ $71</span>
+            </div>
           </div>
-          <div class="al">Wallet Address</div>
-          <div class="ar">
-            <div class="at">DNvgk1TCmT54mvFGtCZWBbLaVQQqTWXSoaaHXDnKL2iQ</div>
-            <button class="cb" onclick="doCopy(this)">Copy</button>
-          </div>
-          <div class="amr">
-            <span class="aml">Send exactly:</span>
-            <span class="amv" id="solAmt">0.4972 SOL ≈ $71</span>
-          </div>
-        </div>
 
-        <button class="vbtn" id="verifyBtn" style="display:none" onclick="startVerify()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          I've Sent — Verify Payment
-        </button>
+          <button class="vbtn" id="verifyBtnBasic" style="display:none" onclick="startVerify()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            I've Sent — Verify Payment
+          </button>
+        </div>
       </div>
     </div>
+
+    <!-- PRO PANEL -->
+    <div id="panelPro" class="buy-cards-row" style="display:none">
+      <div class="buy-left reveal">
+        <div class="buy-eyebrow pro">👑 Pro — Most Powerful</div>
+        <h2 class="buy-title">Everything Basic.<br>Plus <span class="hw-gold">maximum edge.</span></h2>
+        <p class="buy-sub">For serious Polymarket traders who want deeper data, exclusive alpha signals, and a dedicated edge over the market.</p>
+        <div class="buy-feats">
+          <div class="bf"><div class="bf-ic gold">✓</div>Everything in Basic, included</div>
+          <div class="bf"><div class="bf-ic gold">⚡</div><strong>Tier-1 whale alerts — $50K+ wallets only</strong></div>
+          <div class="bf"><div class="bf-ic gold">📊</div><strong>Advanced order book depth analysis</strong></div>
+          <div class="bf"><div class="bf-ic gold">🔔</div><strong>SMS + email push alerts (not just Discord)</strong></div>
+          <div class="bf"><div class="bf-ic gold">🤖</div><strong>Private AI market analysis channel</strong></div>
+          <div class="bf"><div class="bf-ic gold">📈</div><strong>Weekly Pro-only market reports</strong></div>
+          <div class="bf"><div class="bf-ic gold">🎯</div><strong>1-on-1 onboarding call with AlgoFlow team</strong></div>
+        </div>
+      </div>
+
+      <!-- PRO CARD -->
+      <div class="buy-card pro-card reveal" style="transition-delay:.1s">
+        <div class="pro-glow"></div>
+        <div class="buy-card-head">
+          <div class="bch-top">
+            <div class="bch-name" style="color:var(--gold)">AlgoFlow Pro</div>
+            <div class="bch-badge pro">👑 LIFETIME PRO</div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
+            <div class="bch-price pro-price" id="displayPricePro"><sup style="color:var(--gold-b)">$</sup><span id="priceNumPro">227</span></div>
+            <div class="bch-price-orig" id="origLabelPro" style="display:none">$227</div>
+          </div>
+          <div class="bch-period" id="periodLabelPro">one-time · lifetime pro access</div>
+        </div>
+        <div class="buy-card-body">
+          <!-- Pro vs Basic mini comparison -->
+          <div class="pro-vs-basic" style="margin-bottom:18px">
+            <div class="pvb-item">
+              <div class="pvb-label">Basic</div>
+              <div class="pvb-val">$10K+ whales</div>
+            </div>
+            <div class="pvb-item active">
+              <div class="pvb-label">Pro</div>
+              <div class="pvb-val">$50K+ tier-1</div>
+            </div>
+            <div class="pvb-item active">
+              <div class="pvb-label">Alerts</div>
+              <div class="pvb-val">Discord + SMS</div>
+            </div>
+          </div>
+
+          <div class="card-perks">
+            <div class="cp highlight"><div class="cp-check gold">✓</div>Everything in Basic</div>
+            <div class="cp highlight"><div class="cp-check gold">⚡</div>Tier-1 $50K+ whale alerts only</div>
+            <div class="cp"><div class="cp-check gold">✓</div>Order book depth analysis</div>
+            <div class="cp"><div class="cp-check gold">✓</div>SMS + email push alerts</div>
+            <div class="cp"><div class="cp-check gold">✓</div>Private AI analysis channel</div>
+            <div class="cp"><div class="cp-check gold">✓</div>Weekly Pro market reports</div>
+            <div class="cp"><div class="cp-check gold">✓</div>1-on-1 onboarding call</div>
+          </div>
+
+          <div class="coupon-row">
+            <input class="coupon-input pro-input" id="couponInputPro" placeholder="Have a discount code?" type="text">
+            <button class="coupon-btn pro-btn" onclick="applyCoupon('pro')">Apply</button>
+          </div>
+          <div class="coupon-msg" id="couponMsgPro">✓ WHALE30 applied — 30% off!</div>
+          <div class="coupon-err" id="couponErrPro">✕ Invalid code. Try WHALE30</div>
+
+          <button class="buy-btn-main pro-btn-main" id="buyMainBtnPro" onclick="toggleSolBox('pro')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span id="buyBtnLabelPro">Buy Pro — $227</span>
+          </button>
+
+          <div class="sol-box pro-sol" id="solBoxPro">
+            <div class="sh">
+              <div class="slogo">
+                <svg width="18" height="14" viewBox="0 0 646 499" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M108.53 390.97L64.06 436.5C62.37 438.24 60.35 439.62 58.12 440.55C55.89 441.49 53.49 441.97 51.07 441.97H9.35C7.69 441.97 6.07 441.49 4.67 440.59C3.27 439.69 2.16 438.41 1.45 436.91C0.74 435.41 0.48 433.73 0.69 432.08C0.9 430.43 1.58 428.88 2.65 427.61L47.13 382.07C48.82 380.33 50.84 378.95 53.07 378.01C55.3 377.08 57.7 376.6 60.12 376.6H101.84C103.5 376.6 105.12 377.08 106.52 377.98C107.92 378.88 109.03 380.16 109.74 381.66C110.45 383.16 110.71 384.84 110.5 386.49C110.29 388.14 109.61 389.69 108.53 390.97ZM64.06 253.29L108.53 207.75C109.61 206.48 110.29 204.93 110.5 203.28C110.71 201.63 110.45 199.95 109.74 198.45C109.03 196.95 107.92 195.67 106.52 194.77C105.12 193.87 103.5 193.39 101.84 193.39H60.12C57.7 193.39 55.3 193.87 53.07 194.8C50.84 195.74 48.82 197.12 47.13 198.86L2.65 244.39C1.58 245.66 0.9 247.21 0.69 248.86C0.48 250.51 0.74 252.19 1.45 253.69C2.16 255.19 3.27 256.47 4.67 257.37C6.07 258.27 7.69 258.75 9.35 258.75H51.07C53.49 258.75 55.89 258.27 58.12 257.33C60.35 256.4 62.37 255.02 64.06 253.29ZM643.35 245.5L598.87 290.04C597.18 291.78 595.16 293.16 592.93 294.09C590.7 295.03 588.3 295.51 585.88 295.51H9.35C7.69 295.51 6.07 295.03 4.67 294.13C3.27 293.23 2.16 291.95 1.45 290.45C0.74 288.95 0.48 287.27 0.69 285.62C0.9 283.97 1.58 282.42 2.65 281.15L47.13 236.61C48.82 234.87 50.84 233.49 53.07 232.56C55.3 231.62 57.7 231.14 60.12 231.14H636.65C638.31 231.14 639.93 231.62 641.33 232.52C642.73 233.42 643.84 234.7 644.55 236.2C645.26 237.7 645.52 239.38 645.31 241.03C645.1 242.68 644.42 244.23 643.35 245.5ZM643.35 62.29L598.87 107.83C597.18 109.57 595.16 110.95 592.93 111.88C590.7 112.82 588.3 113.3 585.88 113.3H9.35C7.69 113.3 6.07 112.82 4.67 111.92C3.27 111.02 2.16 109.74 1.45 108.24C0.74 106.74 0.48 105.06 0.69 103.41C0.9 101.76 1.58 100.21 2.65 98.94L47.13 53.4C48.82 51.66 50.84 50.28 53.07 49.34C55.3 48.41 57.7 47.93 60.12 47.93H636.65C638.31 47.93 639.93 48.41 641.33 49.31C642.73 50.21 643.84 51.49 644.55 52.99C645.26 54.49 645.52 56.17 645.31 57.82C645.1 59.47 644.42 61.02 643.35 62.29Z" fill="url(#solGrad2)"/><defs><linearGradient id="solGrad2" x1="0" y1="0" x2="646" y2="499" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9945FF"/><stop offset="100%" stop-color="#14F195"/></linearGradient></defs></svg>
+              </div>
+              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount below</div></div>
+              <div class="snb">LIVE</div>
+            </div>
+            <div class="al">Wallet Address</div>
+            <div class="ar">
+              <div class="at">8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2</div>
+              <button class="cb" onclick="doCopy(this)">Copy</button>
+            </div>
+            <div class="amr">
+              <span class="aml">Send exactly:</span>
+              <span class="amv gold" id="solAmtPro">1.5876 SOL ≈ $227</span>
+            </div>
+          </div>
+
+          <button class="vbtn pro-vbtn" id="verifyBtnPro" style="display:none" onclick="startVerify()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            I've Sent — Verify Payment
+          </button>
+          <div class="card-footer-note">🔒 Secure · Solana blockchain</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -706,7 +896,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       </div>
     </div>
 
-    <!-- POLYMARKET BET RESULTS -->
     <div style="margin-top:48px">
       <div class="slabel reveal" style="display:inline-block">Polymarket Call History</div>
       <h3 class="stitle reveal" style="font-size:clamp(22px,2.5vw,34px);margin-bottom:6px">Recent <span class="hw">verified calls.</span></h3>
@@ -731,10 +920,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <div class="faq-list reveal">
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">What exactly is AlgoFlow? <span class="arr">↓</span></div><div class="fa">AlgoFlow is a Polymarket intelligence bot that tracks large wallet activity, order flow imbalances, and probability drift — delivering high-confidence trading signals before the market reprices. All alerts go to a private Discord server in under 60 seconds of detection.</div></div>
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">How does the whale tracking work? <span class="arr">↓</span></div><div class="fa">We monitor all Polymarket on-chain transactions in real time. Any wallet moving $10,000+ is flagged and cross-referenced against historical win rates. When multiple high-performing wallets coordinate on the same market, AlgoFlow fires a signal with full context and confidence scoring.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What's the difference between Basic and Pro? <span class="arr">↓</span></div><div class="fa">Basic gives you full whale tracking ($10K+ wallets), AI confidence scores, Kelly sizing, and Discord access. Pro upgrades you to Tier-1 alerts ($50K+ wallets only — the sharpest money), adds SMS and email push alerts, a private AI analysis channel, weekly market reports, and a 1-on-1 onboarding call with the AlgoFlow team.</div></div>
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">What is the 73.4% win rate based on? <span class="arr">↓</span></div><div class="fa">Calculated across all signals fired over the trailing 90 days, with a "win" counted as the predicted direction resolving correctly. Full signal log with every call — including losses — is publicly visible in the Discord for complete transparency.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Is this really a one-time $49.99? <span class="arr">↓</span></div><div class="fa">Yes. Pay once, access forever. No subscription, no monthly fee, no hidden charges. You also get every future update to the AlgoFlow bot at no additional cost.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">How do I get access after paying? <span class="arr">↓</span></div><div class="fa">Send exactly 0.3482 SOL to the wallet address shown, then click "I've Sent — Verify Payment." Our system scans the Solana blockchain, confirms your transaction, and delivers the Discord invite link — typically within 30 seconds.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Do I need trading experience? <span class="arr">↓</span></div><div class="fa">No. Every signal includes the market, YES/NO direction, entry price, confidence score (0–100), and a Kelly Criterion-based position size recommendation. You just need a Polymarket account and funds to trade.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Is this really a one-time payment? <span class="arr">↓</span></div><div class="fa">Yes. Pay once, access forever. No subscription, no monthly fee, no hidden charges. You also get every future update to the AlgoFlow bot at no additional cost — whether you choose Basic or Pro.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">How do I get access after paying? <span class="arr">↓</span></div><div class="fa">Send the exact SOL amount to the wallet address shown, then click "I've Sent — Verify Payment." Our system scans the Solana blockchain, confirms your transaction, and delivers the Discord invite link — typically within 30 seconds.</div></div>
     </div>
   </div>
 </section>
@@ -743,7 +932,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <div class="cta-sec">
   <h2>Stop guessing.<br>Follow the whales.</h2>
   <p>847 traders are getting AlgoFlow signals right now. One payment. Lifetime edge.</p>
-  <button class="cta-w" onclick="scrollToBuy()">Get Access for $71 →</button>
+  <button class="cta-w" onclick="scrollToBuy()">Get Access →</button>
 </div>
 
 <!-- FOOTER -->
@@ -790,7 +979,7 @@ const cd=document.getElementById('cd'),cr=document.getElementById('cr');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('button,a,.step,.tc,.pp,.fq,.nl,.sig-card,.wrow').forEach(e=>{
+document.querySelectorAll('button,a,.step,.tc,.pp,.fq,.nl,.sig-card,.wrow,.tsw-btn').forEach(e=>{
   e.addEventListener('mouseenter',()=>document.body.classList.add('h'));
   e.addEventListener('mouseleave',()=>document.body.classList.remove('h'));
 });
@@ -834,7 +1023,8 @@ function closePopupAndScroll(){
   closePopup();
   setTimeout(()=>{
     scrollToBuy();
-    document.getElementById('couponInput').value='WHALE30';
+    document.getElementById('couponInputBasic').value='WHALE30';
+    document.getElementById('couponInputPro').value='WHALE30';
   },400);
 }
 function copyPopupCode(btn){
@@ -844,61 +1034,121 @@ function copyPopupCode(btn){
   });
 }
 
-// ======= SOL BOX TOGGLE =======
-let solBoxOpen=false;
-function toggleSolBox(){
-  const box=document.getElementById('solBox');
-  const label=document.getElementById('buyBtnLabel');
-  const verBtn=document.getElementById('verifyBtn');
-  const btn=document.getElementById('buyMainBtn');
-  if(!solBoxOpen){
-    solBoxOpen=true;
-    box.classList.add('visible');
-    verBtn.style.display='flex';
-    const price=couponApplied?'$49.99':'$71';
-    label.textContent='Payment Details ↑';
-    btn.style.background='var(--blue-d)';
+// ======= TIER SWITCH =======
+let activeTier='basic';
+function switchTier(tier){
+  activeTier=tier;
+  const basicPanel=document.getElementById('panelBasic');
+  const proPanel=document.getElementById('panelPro');
+  const btnBasic=document.getElementById('btnBasic');
+  const btnPro=document.getElementById('btnPro');
+  if(tier==='basic'){
+    basicPanel.style.display='grid';
+    proPanel.style.display='none';
+    btnBasic.classList.add('active');
+    btnBasic.classList.remove('pro');
+    btnPro.classList.remove('active');
   } else {
-    solBoxOpen=false;
-    box.classList.remove('visible');
-    verBtn.style.display='none';
-    const price=couponApplied?'$49.99':'$71';
-    label.textContent='Buy Now — '+price;
-    btn.style.background='';
+    basicPanel.style.display='none';
+    proPanel.style.display='grid';
+    btnPro.classList.add('active','pro');
+    btnBasic.classList.remove('active');
+  }
+  // close any open sol boxes on switch
+  solBoxOpenBasic=false;solBoxOpenPro=false;
+  document.getElementById('solBoxBasic').classList.remove('visible');
+  document.getElementById('solBoxPro').classList.remove('visible');
+  document.getElementById('verifyBtnBasic').style.display='none';
+  document.getElementById('verifyBtnPro').style.display='none';
+}
+
+// ======= SOL BOX TOGGLE =======
+let solBoxOpenBasic=false,solBoxOpenPro=false;
+function toggleSolBox(tier){
+  if(tier==='basic'){
+    const box=document.getElementById('solBoxBasic');
+    const label=document.getElementById('buyBtnLabelBasic');
+    const verBtn=document.getElementById('verifyBtnBasic');
+    if(!solBoxOpenBasic){
+      solBoxOpenBasic=true;box.classList.add('visible');verBtn.style.display='flex';
+      const p=couponAppliedBasic?'$49.99':'$71';
+      label.textContent='Payment Details ↑';
+      document.getElementById('buyMainBtnBasic').style.background='var(--blue-d)';
+    } else {
+      solBoxOpenBasic=false;box.classList.remove('visible');verBtn.style.display='none';
+      const p=couponAppliedBasic?'$49.99':'$71';
+      label.textContent='Buy Now — '+p;
+      document.getElementById('buyMainBtnBasic').style.background='';
+    }
+  } else {
+    const box=document.getElementById('solBoxPro');
+    const label=document.getElementById('buyBtnLabelPro');
+    const verBtn=document.getElementById('verifyBtnPro');
+    if(!solBoxOpenPro){
+      solBoxOpenPro=true;box.classList.add('visible');verBtn.style.display='flex';
+      const p=couponAppliedPro?'$159':'$227';
+      label.textContent='Payment Details ↑';
+    } else {
+      solBoxOpenPro=false;box.classList.remove('visible');verBtn.style.display='none';
+      const p=couponAppliedPro?'$159':'$227';
+      label.textContent='Buy Pro — '+p;
+    }
   }
 }
 
 // ======= COUPON =======
-let couponApplied=false;
-function applyCodeSilent(){
-  if(couponApplied)return;
-  couponApplied=true;
-  // Update price display: $71 → $49.99 with strikethrough
-  document.getElementById('displayPrice').innerHTML='<sup style="font-size:22px;color:var(--muted);vertical-align:super">$</sup><span id="priceNum" style="font-size:48px;font-weight:900;font-family:JetBrains Mono,monospace;letter-spacing:-2px">49</span><span style="font-size:30px">.99</span>';
-  document.getElementById('origLabel').style.display='inline';
-  document.getElementById('periodLabel').textContent='one-time · was $71 · 30% off ✓';
-  document.getElementById('solAmt').textContent='0.3482 SOL ≈ $49.99';
-  document.getElementById('couponMsg').classList.add('show');
-  document.getElementById('couponErr').classList.remove('show');
-  document.getElementById('couponInput').value='WHALE30';
-  // Update buy button if box is open
-  if(!solBoxOpen)document.getElementById('buyBtnLabel').textContent='Buy Now — $49.99';
-  // price flash
+let couponAppliedBasic=false,couponAppliedPro=false;
+
+function applyCodeBasicSilent(){
+  if(couponAppliedBasic)return;
+  couponAppliedBasic=true;
+  document.getElementById('displayPriceBasic').innerHTML='<sup style="font-size:22px;color:var(--muted);vertical-align:super">$</sup><span id="priceNumBasic" style="font-size:48px;font-weight:900;font-family:JetBrains Mono,monospace;letter-spacing:-2px">49</span><span style="font-size:30px">.99</span>';
+  document.getElementById('origLabelBasic').style.display='inline';
+  document.getElementById('periodLabelBasic').textContent='one-time · was $71 · 30% off ✓';
+  document.getElementById('solAmtBasic').textContent='0.3482 SOL ≈ $49.99';
+  document.getElementById('couponMsgBasic').classList.add('show');
+  document.getElementById('couponErrBasic').classList.remove('show');
+  document.getElementById('couponInputBasic').value='WHALE30';
+  if(!solBoxOpenBasic)document.getElementById('buyBtnLabelBasic').textContent='Buy Now — $49.99';
+  flashPrice('priceNumBasic');
+}
+
+function applyCodeProSilent(){
+  if(couponAppliedPro)return;
+  couponAppliedPro=true;
+  document.getElementById('displayPricePro').innerHTML='<sup style="font-size:22px;color:var(--gold-b);vertical-align:super">$</sup><span id="priceNumPro" style="font-size:48px;font-weight:900;font-family:JetBrains Mono,monospace;letter-spacing:-2px;color:var(--gold-d)">159</span>';
+  document.getElementById('origLabelPro').textContent='$227';
+  document.getElementById('origLabelPro').style.display='inline';
+  document.getElementById('periodLabelPro').textContent='one-time · was $227 · 30% off ✓';
+  document.getElementById('solAmtPro').textContent='1.1119 SOL ≈ $159';
+  document.getElementById('couponMsgPro').classList.add('show');
+  document.getElementById('couponErrPro').classList.remove('show');
+  document.getElementById('couponInputPro').value='WHALE30';
+  if(!solBoxOpenPro)document.getElementById('buyBtnLabelPro').textContent='Buy Pro — $159';
+  flashPrice('priceNumPro');
+}
+
+function flashPrice(id){
   setTimeout(()=>{
-    const pn=document.getElementById('priceNum');
-    if(pn){pn.style.transition='color .3s,transform .3s';pn.style.color='var(--green)';pn.style.transform='scale(1.1)';setTimeout(()=>{pn.style.color='var(--text)';pn.style.transform='scale(1)';},500);}
+    const pn=document.getElementById(id);
+    if(pn){pn.style.transition='color .3s,transform .3s';pn.style.color='var(--green)';pn.style.transform='scale(1.1)';setTimeout(()=>{pn.style.color='';pn.style.transform='scale(1)';},500);}
   },50);
 }
-function applyCoupon(){
-  const val=document.getElementById('couponInput').value.trim().toUpperCase();
-  document.getElementById('couponMsg').classList.remove('show');
-  document.getElementById('couponErr').classList.remove('show');
-  if(val==='WHALE30'){applyCodeSilent();}
-  else{document.getElementById('couponErr').classList.add('show');}
+
+function applyCoupon(tier){
+  const inputId='couponInput'+(tier==='basic'?'Basic':'Pro');
+  const val=document.getElementById(inputId).value.trim().toUpperCase();
+  document.getElementById('couponMsg'+(tier==='basic'?'Basic':'Pro')).classList.remove('show');
+  document.getElementById('couponErr'+(tier==='basic'?'Basic':'Pro')).classList.remove('show');
+  if(val==='WHALE30'){
+    tier==='basic'?applyCodeBasicSilent():applyCodeProSilent();
+  } else {
+    document.getElementById('couponErr'+(tier==='basic'?'Basic':'Pro')).classList.add('show');
+  }
 }
 
 // COPY
-function doCopy(btn){navigator.clipboard.writeText('DNvgk1TCmT54mvFGtCZWBbLaVQQqTWXSoaaHXDnKL2iQ').then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);});}
+function doCopy(btn){navigator.clipboard.writeText('8hNWQj55g6q8goqQwVjM74eNBNmeofwc2SbMnKwqvQp2').then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);});}
 
 // SCROLL
 function scrollToBuy(){document.getElementById('buy').scrollIntoView({behavior:'smooth',block:'center'});}
@@ -912,11 +1162,25 @@ function toggleFaq(btn){
   if(!isOpen){a.classList.add('open');btn.classList.add('open');}
 }
 
+// Popup auto-apply coupon to active tier
+document.getElementById('offerPopup').querySelector('.popup-cta').addEventListener('click',()=>{
+  if(activeTier==='basic')applyCodeBasicSilent();
+  else applyCodeProSilent();
+});
+
 // VERIFY
 function startVerify(){
   const vm=document.getElementById('verM');vm.classList.add('open');
   document.getElementById('vw2').classList.remove('gone');
   document.getElementById('sw2').classList.remove('show');
+  ['s1','s2','s3','s4'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.classList.remove('act','done');
+  });
+  document.getElementById('s1b').textContent='Pending';
+  document.getElementById('s2b').textContent='Waiting';
+  document.getElementById('s3b').textContent='Waiting';
+  document.getElementById('s4b').textContent='Waiting';
   const steps=[
     {id:'s1',bid:'s1b',d:900,act:'Scanning...',done:'✓ Found'},
     {id:'s2',bid:'s2b',d:2500,act:'Confirming...',done:'✓ Hash OK'},
