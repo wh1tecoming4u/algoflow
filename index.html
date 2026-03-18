@@ -174,7 +174,10 @@ h1 .hl-green{color:var(--green)}
 .buy-btn-main:hover{background:var(--blue-d);box-shadow:0 6px 28px rgba(22,82,240,.35);transform:translateY(-1px)}
 .buy-btn-main.pro-btn-main{background:linear-gradient(135deg,var(--gold-d),var(--gold))}
 .buy-btn-main.pro-btn-main:hover{background:linear-gradient(135deg,#8a5a03,var(--gold-d));box-shadow:0 6px 28px rgba(200,134,10,.4)}
-/* PURPLE (Alpha) */
+/* AUTO badge on tabs */
+.tsw-auto-label{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;background:linear-gradient(135deg,#7c3aed,#dc2626);color:#fff;padding:2px 7px;border-radius:10px;letter-spacing:.6px;text-transform:uppercase;margin-left:2px;vertical-align:middle;animation:autoPulse 2s ease-in-out infinite}
+@keyframes autoPulse{0%,100%{opacity:1}50%{opacity:.7}}
+.tier-switch-divider{width:1px;background:var(--border);margin:4px 2px;align-self:stretch}
 .buy-card.purple-card{border-color:rgba(124,58,237,.25);box-shadow:0 8px 48px rgba(124,58,237,.12)}
 .buy-card.purple-card::before{background:linear-gradient(90deg,var(--purple-d),var(--purple-b),var(--purple))}
 .bch-price.purple-price{color:var(--purple-d)}
@@ -488,8 +491,9 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       <div class="tier-switch">
         <button class="tsw-btn active" id="btn2" onclick="switchTier(2)">⚡ Signal — $71</button>
         <button class="tsw-btn pro" id="btn3" onclick="switchTier(3)"><span>👑</span> Edge — $159</button>
-        <button class="tsw-btn alpha" id="btn4" onclick="switchTier(4)"><span>🎯</span> Alpha — $399</button>
-        <button class="tsw-btn titan" id="btn5" onclick="switchTier(5)"><span>🏛️</span> Titan — $997</button>
+        <div class="tier-switch-divider"></div>
+        <button class="tsw-btn alpha" id="btn4" onclick="switchTier(4)"><span>🎯</span> Alpha — $399 <span class="tsw-auto-label">AUTO</span></button>
+        <button class="tsw-btn titan" id="btn5" onclick="switchTier(5)"><span>🏛️</span> Titan — $997 <span class="tsw-auto-label">AUTO</span></button>
       </div>
     </div>
 
@@ -635,35 +639,50 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <!-- PANEL 4: Alpha -->
     <div id="panel4" class="buy-cards-row" style="display:none">
       <div class="buy-left reveal">
-        <div class="buy-eyebrow purple">🎯 Alpha — Elite Tier</div>
-        <h2 class="buy-title">Everything Edge.<br>Plus <span style="background:linear-gradient(135deg,var(--purple),var(--purple-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent">elite intelligence.</span></h2>
-        <p class="buy-sub">Cross-market correlation, exclusive alpha calls, a private AI analyst, and monthly live strategy sessions with the PolyWhale team.</p>
+        <div class="buy-eyebrow purple">🤖 Fully Automated · Passive Income</div>
+        <h2 class="buy-title">Set it up once.<br><span style="background:linear-gradient(135deg,var(--purple),var(--purple-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Earn while you sleep.</span></h2>
+        <p class="buy-sub">Alpha is a <strong>fully automated betting bot</strong>. It detects whale moves, calculates optimal bet sizing, and <strong>places trades on Polymarket for you — 24/7, no clicks required.</strong></p>
         <div class="buy-feats">
-          <div class="bf"><div class="bf-ic purple">✓</div>Everything in Edge, included</div>
-          <div class="bf"><div class="bf-ic purple">🔬</div><strong>Cross-market correlation scanner</strong></div>
-          <div class="bf"><div class="bf-ic purple">📣</div><strong>Exclusive alpha calls channel</strong></div>
-          <div class="bf"><div class="bf-ic purple">🤖</div><strong>Private AI market analyst (GPT-powered)</strong></div>
-          <div class="bf"><div class="bf-ic purple">📞</div><strong>Monthly live Q&A with PolyWhale team</strong></div>
-          <div class="bf"><div class="bf-ic purple">⚡</div><strong>Priority &lt;15 sec alert latency</strong></div>
+          <div class="bf"><div class="bf-ic purple">🤖</div><strong>100% hands-free — bot bets automatically</strong></div>
+          <div class="bf"><div class="bf-ic purple">💸</div><strong>Passive income while you sleep or work</strong></div>
+          <div class="bf"><div class="bf-ic purple">⚙️</div><strong>Set your bankroll limit, bot handles the rest</strong></div>
+          <div class="bf"><div class="bf-ic purple">🔬</div>Cross-market correlation for smarter entries</div>
+          <div class="bf"><div class="bf-ic purple">📊</div>Live P&amp;L dashboard — watch profits stack up</div>
+          <div class="bf"><div class="bf-ic purple">🛡️</div>Built-in risk controls &amp; drawdown limits</div>
+        </div>
+        <div style="margin-top:20px;background:var(--purple-l);border:1.5px solid rgba(124,58,237,.2);border-radius:14px;padding:16px 18px">
+          <div style="font-size:11px;font-weight:800;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">⚡ How it works</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--purple);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">1</span>Connect your Polymarket wallet</div>
+            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--purple);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">2</span>Set your max bankroll &amp; risk level</div>
+            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--purple);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">3</span>Bot auto-bets every whale signal, 24/7</div>
+          </div>
         </div>
       </div>
       <div class="buy-card purple-card reveal" style="transition-delay:.1s">
         <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name" style="color:var(--purple)">PolyWhale Alpha</div><div class="bch-badge purple">🎯 LIFETIME ELITE</div></div>
+          <div class="bch-top"><div class="bch-name" style="color:var(--purple)">PolyWhale Alpha</div><div class="bch-badge purple">🤖 AUTO-BET BOT</div></div>
           <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
             <div class="bch-price purple-price" id="displayPrice4"><sup style="color:var(--purple-b)">$</sup><span id="priceNum4">399</span></div>
             <div class="bch-price-orig" id="origLabel4" style="display:none">$399</div>
           </div>
-          <div class="bch-period" id="periodLabel4">one-time · lifetime elite access</div>
+          <div class="bch-period" id="periodLabel4">one-time · lifetime auto-betting access</div>
         </div>
         <div class="buy-card-body">
+          <div style="background:linear-gradient(135deg,var(--purple-l),var(--purple-m));border:1.5px solid rgba(124,58,237,.2);border-radius:12px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:22px">💸</span>
+            <div>
+              <div style="font-size:12px;font-weight:800;color:var(--purple-d)">Avg member passive return</div>
+              <div style="font-size:20px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--purple-d)">+$1,840 <span style="font-size:13px;font-weight:600;color:var(--purple)">/month</span></div>
+            </div>
+          </div>
           <div class="card-perks">
-            <div class="cp highlight"><div class="cp-check purple">✓</div>Everything in Edge</div>
-            <div class="cp highlight"><div class="cp-check purple">🔬</div>Cross-market correlation scanner</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Exclusive alpha calls channel</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Private GPT-powered AI analyst</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Monthly live Q&A sessions</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Priority &lt;15 sec latency</div>
+            <div class="cp highlight"><div class="cp-check purple">🤖</div>Fully automated betting — zero effort</div>
+            <div class="cp highlight"><div class="cp-check purple">💸</div>Passive income 24/7, even while sleeping</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Bankroll limits &amp; auto risk controls</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Live P&amp;L dashboard</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Cross-market correlation engine</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Monthly live Q&amp;A + onboarding call</div>
           </div>
           <div class="coupon-row">
             <input class="coupon-input purple-input" id="couponInput4" placeholder="Have a discount code?" type="text">
@@ -673,7 +692,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
           <div class="coupon-err" id="couponErr4">✕ Invalid code. Try WHALE30</div>
           <button class="buy-btn-main purple-btn-main" id="buyMainBtn4" onclick="toggleSolBox(4)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabel4">Buy Alpha — $399</span>
+            <span id="buyBtnLabel4">Start Auto-Betting — $399</span>
           </button>
           <div class="sol-box" style="border-color:rgba(124,58,237,.2)" id="solBox4">
             <div class="sh">
@@ -701,35 +720,50 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <!-- PANEL 5: Titan -->
     <div id="panel5" class="buy-cards-row" style="display:none">
       <div class="buy-left reveal">
-        <div class="buy-eyebrow red">🏛️ Titan — Institutional</div>
-        <h2 class="buy-title">Everything Alpha.<br>Plus <span style="background:linear-gradient(135deg,var(--red-d),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent">institutional power.</span></h2>
-        <p class="buy-sub">Built for funds and power traders. Full webhook API, custom wallet watchlists, raw data feed, and a dedicated account manager.</p>
+        <div class="buy-eyebrow red">🤖 Fully Automated · Institutional</div>
+        <h2 class="buy-title">Your own auto-betting<br><span style="background:linear-gradient(135deg,var(--red-d),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent">money machine.</span></h2>
+        <p class="buy-sub">Titan is the most powerful automated Polymarket bot ever built. It <strong>trades your bankroll around the clock</strong> using institutional-grade whale data — API delivery, custom logic, and a dedicated manager optimising your returns.</p>
         <div class="buy-feats">
-          <div class="bf"><div class="bf-ic red">✓</div>Everything in Alpha, included</div>
-          <div class="bf"><div class="bf-ic red">🔌</div><strong>Full webhook / API signal delivery</strong></div>
-          <div class="bf"><div class="bf-ic red">🛡️</div><strong>Custom wallet watchlist (up to 500)</strong></div>
-          <div class="bf"><div class="bf-ic red">📊</div><strong>Raw data feed for your own analytics</strong></div>
-          <div class="bf"><div class="bf-ic red">🎖️</div><strong>Dedicated account manager</strong></div>
-          <div class="bf"><div class="bf-ic red">⚙️</div><strong>Custom alert logic + filters</strong></div>
+          <div class="bf"><div class="bf-ic red">🤖</div><strong>Fully automated — bot runs 24/7, no input needed</strong></div>
+          <div class="bf"><div class="bf-ic red">💰</div><strong>Institutional passive income at scale</strong></div>
+          <div class="bf"><div class="bf-ic red">🔌</div><strong>API + webhook — pipe into your own system</strong></div>
+          <div class="bf"><div class="bf-ic red">🛡️</div>Custom risk limits, drawdown stops, bankroll rules</div>
+          <div class="bf"><div class="bf-ic red">👁️</div>500-wallet watchlist — never miss a whale move</div>
+          <div class="bf"><div class="bf-ic red">🎖️</div>Dedicated account manager optimises strategy</div>
+        </div>
+        <div style="margin-top:20px;background:var(--red-l);border:1.5px solid rgba(220,38,38,.2);border-radius:14px;padding:16px 18px">
+          <div style="font-size:11px;font-weight:800;color:var(--red-d);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">⚡ How it works</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">1</span>Connect wallet &amp; set bankroll + risk profile</div>
+            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">2</span>Bot monitors 500 whale wallets in real time</div>
+            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">3</span>Auto-executes bets &amp; compounds profits, 24/7</div>
+          </div>
         </div>
       </div>
       <div class="buy-card red-card reveal" style="transition-delay:.1s">
         <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name" style="color:var(--red-d)">PolyWhale Titan</div><div class="bch-badge red">🏛️ INSTITUTIONAL</div></div>
+          <div class="bch-top"><div class="bch-name" style="color:var(--red-d)">PolyWhale Titan</div><div class="bch-badge red">🤖 AUTO-BET INSTITUTIONAL</div></div>
           <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
             <div class="bch-price red-price" id="displayPrice5"><sup style="color:var(--red-b)">$</sup><span id="priceNum5">997</span></div>
             <div class="bch-price-orig" id="origLabel5" style="display:none">$997</div>
           </div>
-          <div class="bch-period" id="periodLabel5">one-time · lifetime institutional</div>
+          <div class="bch-period" id="periodLabel5">one-time · lifetime institutional auto-betting</div>
         </div>
         <div class="buy-card-body">
+          <div style="background:linear-gradient(135deg,var(--red-l),var(--red-m));border:1.5px solid rgba(220,38,38,.2);border-radius:12px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:22px">💰</span>
+            <div>
+              <div style="font-size:12px;font-weight:800;color:var(--red-d)">Avg institutional passive return</div>
+              <div style="font-size:20px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--red-d)">+$6,200 <span style="font-size:13px;font-weight:600;color:var(--red)">/month</span></div>
+            </div>
+          </div>
           <div class="card-perks">
-            <div class="cp highlight"><div class="cp-check red">✓</div>Everything in Alpha</div>
-            <div class="cp highlight"><div class="cp-check red">🔌</div>Full webhook / API delivery</div>
-            <div class="cp"><div class="cp-check red">✓</div>Custom wallet watchlist (500 max)</div>
-            <div class="cp"><div class="cp-check red">✓</div>Raw on-chain data feed</div>
+            <div class="cp highlight"><div class="cp-check red">🤖</div>Fully automated — zero manual trading</div>
+            <div class="cp highlight"><div class="cp-check red">💰</div>Institutional passive income, 24/7</div>
+            <div class="cp"><div class="cp-check red">✓</div>Full API + webhook signal delivery</div>
+            <div class="cp"><div class="cp-check red">✓</div>500-wallet custom watchlist</div>
             <div class="cp"><div class="cp-check red">✓</div>Dedicated account manager</div>
-            <div class="cp"><div class="cp-check red">✓</div>Custom alert logic &amp; filters</div>
+            <div class="cp"><div class="cp-check red">✓</div>Custom risk logic &amp; drawdown controls</div>
           </div>
           <div class="coupon-row">
             <input class="coupon-input red-input" id="couponInput5" placeholder="Have a discount code?" type="text">
@@ -739,7 +773,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
           <div class="coupon-err" id="couponErr5">✕ Invalid code. Try WHALE30</div>
           <button class="buy-btn-main red-btn-main" id="buyMainBtn5" onclick="toggleSolBox(5)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabel5">Buy Titan — $997</span>
+            <span id="buyBtnLabel5">Start Auto-Betting — $997</span>
           </button>
           <div class="sol-box" style="border-color:rgba(220,38,38,.2)" id="solBox5">
             <div class="sh">
@@ -993,8 +1027,8 @@ const BOTS=[
   null, // 1 removed
   {name:'Signal',  price:71,  solFull:0.4972, discPrice:49,  solDisc:0.3427, label:'Buy Now — $71',    color:''},
   {name:'Edge',    price:159, solFull:1.1119, discPrice:109, solDisc:0.7626, label:'Buy Edge — $159',  color:'gold'},
-  {name:'Alpha',   price:399, solFull:2.7902, discPrice:279, solDisc:1.9513, label:'Buy Alpha — $399', color:'purple'},
-  {name:'Titan',   price:997, solFull:6.9734, discPrice:699, solDisc:4.8896, label:'Buy Titan — $997', color:'red'},
+  {name:'Alpha',   price:399, solFull:2.7902, discPrice:279, solDisc:1.9513, label:'Start Auto-Betting — $399', color:'purple'},
+  {name:'Titan',   price:997, solFull:6.9734, discPrice:699, solDisc:4.8896, label:'Start Auto-Betting — $997', color:'red'},
 ];
 
 const BTN_CLASS={2:'',3:'pro',4:'alpha',5:'titan'};
