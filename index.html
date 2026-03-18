@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlgoFlow — Polymarket Whale Intelligence</title>
+<title>PolyWhale — Polymarket Whale Intelligence</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,6 +14,8 @@ html{scroll-behavior:smooth}
   --text:#0a0d1a;--text2:#4a5175;--muted:#8890b0;
   --green:#0dab6b;--green-bg:#e6f9f1;
   --gold:#c8860a;--gold-d:#a06a05;--gold-l:#fef9ee;--gold-m:#fdefc6;--gold-b:#f5c842;
+  --purple:#7c3aed;--purple-d:#5b21b6;--purple-l:#f5f3ff;--purple-m:#ede9fe;--purple-b:#a78bfa;
+  --red:#dc2626;--red-d:#991b1b;--red-l:#fef2f2;--red-m:#fecaca;--red-b:#f87171;
   --shadow:0 2px 20px rgba(22,82,240,.08);--shadow-lg:0 12px 60px rgba(22,82,240,.15);
 }
 body{font-family:'Instrument Sans',sans-serif;background:var(--white);color:var(--text);cursor:none;overflow-x:hidden}
@@ -27,8 +29,7 @@ body.h #cr{width:52px;height:52px;border-color:rgba(13,171,107,.4)}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;height:58px;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
 .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.4px}
-.logo-ic{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center}
-.logo-ic svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.logo-ic{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1}
 .nav-links{display:flex;gap:28px}
 .nl{font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;cursor:none;transition:color .15s}
 .nl:hover{color:var(--blue)}
@@ -79,17 +80,28 @@ h1 .hl-green{color:var(--green)}
 .tm{color:rgba(255,255,255,.55)}.tv{color:#fff;font-weight:600}.tup{color:#7fffd4}.tdn{color:#ffb3b3}.tsep{color:rgba(255,255,255,.18)}
 @keyframes ts{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* BUY SECTION */
+/* BUY / BOTS SECTION */
 .buy-section{padding:80px 40px;background:linear-gradient(180deg,var(--off) 0%,#fff 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
 .buy-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:300px;background:radial-gradient(ellipse,rgba(22,82,240,.06),transparent 70%);pointer-events:none}
-.tier-switch-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:44px}
-.tier-switch{display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:12px;padding:4px;gap:4px}
-.tsw-btn{font-size:13px;font-weight:700;padding:9px 22px;border-radius:9px;border:none;background:transparent;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;gap:7px}
+
+/* Bot selector tabs */
+.tier-switch-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:44px;flex-wrap:wrap;gap:8px}
+.tier-switch{display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap}
+.tsw-btn{font-size:13px;font-weight:700;padding:9px 18px;border-radius:9px;border:none;background:transparent;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;gap:7px}
 .tsw-btn.active{background:#fff;color:var(--text);box-shadow:0 2px 10px rgba(22,82,240,.08);border:1px solid var(--border)}
 .tsw-btn.pro.active{color:var(--gold-d);border-color:rgba(200,134,10,.2);box-shadow:0 2px 12px rgba(200,134,10,.1)}
 .tsw-btn.pro{color:var(--gold-d);background:linear-gradient(135deg,rgba(254,249,238,.7),rgba(253,239,198,.5));border:1.5px solid rgba(200,134,10,.22);box-shadow:0 0 0 0 rgba(245,200,66,.5);animation:proGlowPulse 2.6s ease-in-out infinite;position:relative;}
 @keyframes proGlowPulse{0%,100%{box-shadow:0 0 6px 1px rgba(245,200,66,.25)}50%{box-shadow:0 0 14px 3px rgba(245,200,66,.45),0 0 28px 6px rgba(200,134,10,.12)}}
 .tsw-btn.pro.active{animation:none;background:linear-gradient(135deg,var(--gold-l),var(--gold-m));box-shadow:0 2px 16px rgba(200,134,10,.2);border-color:rgba(200,134,10,.3);}
+/* Alpha tab — purple */
+.tsw-btn.alpha{color:#5b21b6;background:linear-gradient(135deg,rgba(245,243,255,.7),rgba(237,233,254,.5));border:1.5px solid rgba(124,58,237,.22);animation:alphaGlowPulse 2.6s ease-in-out infinite}
+@keyframes alphaGlowPulse{0%,100%{box-shadow:0 0 6px 1px rgba(124,58,237,.2)}50%{box-shadow:0 0 14px 3px rgba(124,58,237,.38),0 0 28px 6px rgba(124,58,237,.1)}}
+.tsw-btn.alpha.active{animation:none;background:linear-gradient(135deg,var(--purple-l),var(--purple-m));box-shadow:0 2px 16px rgba(124,58,237,.2);border-color:rgba(124,58,237,.3);color:var(--purple-d)}
+/* Titan tab — red */
+.tsw-btn.titan{color:#991b1b;background:linear-gradient(135deg,rgba(254,242,242,.7),rgba(254,202,202,.5));border:1.5px solid rgba(220,38,38,.22);animation:titanGlowPulse 2.6s ease-in-out infinite}
+@keyframes titanGlowPulse{0%,100%{box-shadow:0 0 6px 1px rgba(220,38,38,.2)}50%{box-shadow:0 0 14px 3px rgba(220,38,38,.38),0 0 28px 6px rgba(220,38,38,.1)}}
+.tsw-btn.titan.active{animation:none;background:linear-gradient(135deg,var(--red-l),var(--red-m));box-shadow:0 2px 16px rgba(220,38,38,.2);border-color:rgba(220,38,38,.3);color:var(--red-d)}
+
 .buy-cards-row{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:start;max-width:980px;margin:0 auto}
 .buy-left{}
 .buy-eyebrow{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:2px;text-transform:uppercase;background:var(--blue-l);padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:16px}
@@ -139,29 +151,21 @@ h1 .hl-green{color:var(--green)}
 .sol-box.visible{display:block;animation:solReveal .35s ease both}
 @keyframes solReveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .sol-box.pro-sol{border-color:rgba(200,134,10,.2)}
-
-/* Sol header row */
 .sh{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--off)}
 .slogo{width:38px;height:38px;border-radius:10px;background:#0d0d12;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:9px 8px}
 .sn{font-size:14px;font-weight:800;color:var(--text)}.ss{font-size:11px;color:var(--muted);margin-top:1px}
 .snb{margin-left:auto;background:var(--green-bg);color:var(--green);font-size:9px;font-weight:800;padding:4px 9px;border-radius:6px;letter-spacing:.5px;display:flex;align-items:center;gap:4px}
 .snb::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite;flex-shrink:0}
-
-/* Address section */
 .sol-addr{padding:14px 16px;border-bottom:1px solid var(--border)}
 .al{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
 .ar{display:flex;align-items:stretch;gap:0;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
 .at{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text2);background:#fff;padding:10px 12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:none;outline:none;cursor:text}
 .cb{background:var(--blue-l);color:var(--blue);font-size:11px;font-weight:800;padding:10px 14px;border:none;border-left:1.5px solid var(--border);cursor:none;white-space:nowrap;font-family:'Instrument Sans',sans-serif;transition:all .2s;flex-shrink:0}
 .cb:hover{background:var(--blue-m)}
-
-/* Amount row */
 .amr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
 .aml{font-size:12px;color:var(--muted);font-weight:600}
 .amv{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--blue)}
 .amv.gold{color:var(--gold)}
-
-/* Verify button */
 .vbtn{width:100%;background:var(--blue-l);color:var(--blue);font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:1.5px solid rgba(22,82,240,.15);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
 .vbtn:hover{background:var(--blue-m);border-color:rgba(22,82,240,.3)}
 .vbtn.pro-vbtn{background:var(--gold-l);color:var(--gold);border-color:rgba(200,134,10,.2)}
@@ -170,6 +174,38 @@ h1 .hl-green{color:var(--green)}
 .buy-btn-main:hover{background:var(--blue-d);box-shadow:0 6px 28px rgba(22,82,240,.35);transform:translateY(-1px)}
 .buy-btn-main.pro-btn-main{background:linear-gradient(135deg,var(--gold-d),var(--gold))}
 .buy-btn-main.pro-btn-main:hover{background:linear-gradient(135deg,#8a5a03,var(--gold-d));box-shadow:0 6px 28px rgba(200,134,10,.4)}
+/* PURPLE (Alpha) */
+.buy-card.purple-card{border-color:rgba(124,58,237,.25);box-shadow:0 8px 48px rgba(124,58,237,.12)}
+.buy-card.purple-card::before{background:linear-gradient(90deg,var(--purple-d),var(--purple-b),var(--purple))}
+.bch-price.purple-price{color:var(--purple-d)}
+.buy-btn-main.purple-btn-main{background:linear-gradient(135deg,var(--purple-d),var(--purple))}
+.buy-btn-main.purple-btn-main:hover{background:linear-gradient(135deg,#4c1d95,var(--purple-d));box-shadow:0 6px 28px rgba(124,58,237,.4)}
+.coupon-input.purple-input:focus{border-color:var(--purple)}
+.coupon-btn.purple-btn{background:var(--purple-l);color:var(--purple)}
+.coupon-btn.purple-btn:hover{background:var(--purple-m)}
+.vbtn.purple-vbtn{background:var(--purple-l);color:var(--purple);border-color:rgba(124,58,237,.2)}
+.vbtn.purple-vbtn:hover{background:var(--purple-m)}
+.amv.purple{color:var(--purple)}
+.buy-eyebrow.purple{color:var(--purple);background:var(--purple-l)}
+.cp-check.purple{background:var(--purple-l);color:var(--purple)}
+.bf-ic.purple{background:var(--purple-l);color:var(--purple)}
+.bch-badge.purple{background:linear-gradient(135deg,var(--purple),var(--purple-b));color:#fff}
+/* RED (Titan) */
+.buy-card.red-card{border-color:rgba(220,38,38,.25);box-shadow:0 8px 48px rgba(220,38,38,.12)}
+.buy-card.red-card::before{background:linear-gradient(90deg,var(--red-d),var(--red-b),var(--red))}
+.bch-price.red-price{color:var(--red-d)}
+.buy-btn-main.red-btn-main{background:linear-gradient(135deg,var(--red-d),var(--red))}
+.buy-btn-main.red-btn-main:hover{background:linear-gradient(135deg,#7f1d1d,var(--red-d));box-shadow:0 6px 28px rgba(220,38,38,.4)}
+.coupon-input.red-input:focus{border-color:var(--red)}
+.coupon-btn.red-btn{background:var(--red-l);color:var(--red)}
+.coupon-btn.red-btn:hover{background:var(--red-m)}
+.vbtn.red-vbtn{background:var(--red-l);color:var(--red);border-color:rgba(220,38,38,.2)}
+.vbtn.red-vbtn:hover{background:var(--red-m)}
+.amv.red{color:var(--red)}
+.buy-eyebrow.red{color:var(--red);background:var(--red-l)}
+.cp-check.red{background:var(--red-l);color:var(--red)}
+.bf-ic.red{background:var(--red-l);color:var(--red)}
+.bch-badge.red{background:linear-gradient(135deg,var(--red-d),var(--red));color:#fff}
 .pro-vs-basic{display:flex;gap:8px;margin-bottom:18px}
 .pvb-item{flex:1;background:var(--off);border:1px solid var(--border);border-radius:9px;padding:10px 12px;text-align:center}
 .pvb-item.active{background:var(--gold-l);border-color:rgba(200,134,10,.2)}
@@ -228,7 +264,6 @@ section{padding:88px 40px}
 .sg:hover{border-color:rgba(22,82,240,.2);box-shadow:var(--shadow);transform:translateY(-2px)}
 .sg-n{font-size:24px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--text)}
 .sg-n.g{color:var(--green)}.sg-n.b{color:var(--blue)}
-.sg-l{font-size:11px;color:var(--muted);margin-top:3px;font-weight:600}
 .testi-section{background:var(--off);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
 .tc{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
@@ -270,122 +305,46 @@ section{padding:88px 40px}
 .cta-w:hover{transform:translateY(-2px);box-shadow:0 8px 44px rgba(0,0,0,.2)}
 footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;display:flex;align-items:center;justify-content:space-between}
 .fl{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
-.flic{width:27px;height:27px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center}
-.flic svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.flic{width:27px;height:27px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .flinks{display:flex;gap:18px}
 .flink{font-size:12px;color:var(--muted);text-decoration:none;cursor:none;transition:color .15s}
 .flink:hover{color:var(--blue)}
 .fn{font-size:11px;color:var(--muted)}
 
-/* ======= POPUP ======= */
+/* POPUP */
 .popup-overlay{position:fixed;inset:0;z-index:800;background:rgba(10,13,26,.4);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;pointer-events:none}
 .popup-overlay.open{opacity:1;pointer-events:all}
-.popup{
-  background:#fff;border-radius:22px;max-width:360px;width:92%;
-  border:1px solid var(--border);
-  box-shadow:0 32px 80px rgba(22,82,240,.13),0 4px 20px rgba(0,0,0,.07);
-  transform:translateY(20px) scale(.96);
-  transition:all .5s cubic-bezier(.34,1.56,.64,1);
-  overflow:hidden;
-}
+.popup{background:#fff;border-radius:22px;max-width:360px;width:92%;border:1px solid var(--border);box-shadow:0 32px 80px rgba(22,82,240,.13),0 4px 20px rgba(0,0,0,.07);transform:translateY(20px) scale(.96);transition:all .5s cubic-bezier(.34,1.56,.64,1);overflow:hidden;}
 .popup-overlay.open .popup{transform:translateY(0) scale(1)}
-
-/* top accent stripe */
 .popup-stripe{height:4px;background:linear-gradient(90deg,var(--blue) 0%,#4a86ff 50%,var(--green) 100%)}
-
 .popup-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 0}
 .popup-tag{font-size:11px;font-weight:700;color:var(--text2);display:flex;align-items:center;gap:6px}
 .popup-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite}
 .popup-x{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:14px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .18s}
 .popup-x:hover{background:var(--off);color:var(--text)}
-
 .popup-body{padding:16px 18px 22px}
 .popup-headline{font-size:22px;font-weight:800;letter-spacing:-.6px;line-height:1.2;margin-bottom:4px}
 .popup-headline em{font-style:normal;color:var(--blue)}
 .popup-desc{font-size:13px;color:var(--muted);margin-bottom:20px}
-
-/* THE CODE BLOCK — the whole point */
-.pcb-wrap{
-  border:1.5px solid var(--border);
-  border-radius:14px;
-  overflow:hidden;
-  margin-bottom:14px;
-}
-/* top bar with label + whale */
-.pcb-topbar{
-  background:var(--off);
-  border-bottom:1px solid var(--border);
-  padding:8px 14px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+.pcb-wrap{border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px;}
+.pcb-topbar{background:var(--off);border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
 .pcb-topbar-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
 .pcb-whale{font-size:14px;animation:wBob 2.4s ease-in-out infinite}
 @keyframes wBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-
-/* code + button row */
-.pcb-main{
-  padding:18px 16px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:#fff;
-}
-.pcb-code{
-  font-family:'Instrument Sans',sans-serif;
-  font-size:34px;
-  font-weight:800;
-  letter-spacing:-.5px;
-  color:var(--text);
-  line-height:1;
-}
-/* the 30 in a different color */
+.pcb-main{padding:18px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;}
+.pcb-code{font-family:'Instrument Sans',sans-serif;font-size:34px;font-weight:800;letter-spacing:-.5px;color:var(--text);line-height:1;}
 .pcb-code .pcb-num{color:var(--blue)}
-
-.pcb-copy{
-  flex-shrink:0;
-  background:var(--blue-l);
-  color:var(--blue);
-  border:1.5px solid rgba(22,82,240,.15);
-  border-radius:10px;
-  padding:10px 16px;
-  font-size:13px;font-weight:800;
-  font-family:'Instrument Sans',sans-serif;
-  cursor:none;
-  transition:all .2s;
-  display:flex;align-items:center;gap:6px;
-}
+.pcb-copy{flex-shrink:0;background:var(--blue-l);color:var(--blue);border:1.5px solid rgba(22,82,240,.15);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:800;font-family:'Instrument Sans',sans-serif;cursor:none;transition:all .2s;display:flex;align-items:center;gap:6px;}
 .pcb-copy:hover{background:var(--blue-m);border-color:rgba(22,82,240,.3);transform:translateY(-1px)}
 .pcb-copy.ok{background:var(--green-bg);color:var(--green);border-color:rgba(13,171,107,.2)}
 .pcb-copy svg{width:13px;height:13px;transition:transform .3s}
 .pcb-copy.ok svg{transform:scale(1.2)}
-
-/* bottom bar */
-.pcb-footer{
-  background:var(--off);
-  border-top:1px solid var(--border);
-  padding:8px 14px;
-  font-size:11px;color:var(--muted);
-  display:flex;align-items:center;gap:6px;
-}
+.pcb-footer{background:var(--off);border-top:1px solid var(--border);padding:8px 14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;}
 .pcb-footer-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0}
-
-/* copied confirmation — replaces footer */
-.pcb-confirmed{
-  background:var(--green-bg);
-  border-top:1px solid rgba(13,171,107,.15);
-  padding:10px 14px;
-  display:none;align-items:center;gap:8px;
-  font-size:12px;font-weight:700;color:var(--green);
-}
+.pcb-confirmed{background:var(--green-bg);border-top:1px solid rgba(13,171,107,.15);padding:10px 14px;display:none;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--green);}
 .pcb-confirmed.show{display:flex;animation:confirmIn .4s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes confirmIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-
-.popup-cta{
-  width:100%;background:var(--blue);color:#fff;
-  font-size:14px;font-weight:800;padding:14px;
-  border-radius:11px;border:none;cursor:none;
-  font-family:'Instrument Sans',sans-serif;
-  transition:all .22s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
+.popup-cta{width:100%;background:var(--blue);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:11px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .popup-cta:hover{background:var(--blue-d);box-shadow:0 6px 22px rgba(22,82,240,.28);transform:translateY(-1px)}
 .popup-dismiss{display:block;text-align:center;margin-top:10px;font-size:12px;color:var(--muted);cursor:none;transition:color .18s}
 .popup-dismiss:hover{color:var(--text2)}
@@ -430,7 +389,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
   .demo-grid{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr}
   .poly-proof{grid-template-columns:1fr}.footer{padding:28px 20px}
   .cta-sec{padding:72px 20px}
-  .popup-tier-row{grid-template-columns:1fr 1fr}
+  .tier-switch{flex-direction:column;width:100%;max-width:400px}
 }
 </style>
 </head>
@@ -449,8 +408,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     </div>
     <div class="popup-body">
       <div class="popup-headline">Here's <em>30% off</em>.<br>You're welcome.</div>
-      <div class="popup-desc">Use the code below at checkout — works on both plans.</div>
-
+      <div class="popup-desc">Use the code below at checkout — works on all bots.</div>
       <div class="pcb-wrap">
         <div class="pcb-topbar">
           <span class="pcb-topbar-label">Discount code</span>
@@ -465,13 +423,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
         </div>
         <div class="pcb-footer" id="pcbFooter">
           <span class="pcb-footer-dot"></span>
-          30% off · Basic &amp; Pro · one-time use
+          30% off · all bots · one-time use
         </div>
-        <div class="pcb-confirmed" id="pcbConfirmed">
-          ✓ Copied — paste it at checkout
-        </div>
+        <div class="pcb-confirmed" id="pcbConfirmed">✓ Copied — paste it at checkout</div>
       </div>
-
       <button class="popup-cta" onclick="closePopupAndScroll()">
         Claim discount
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -484,8 +439,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <!-- NAV -->
 <nav>
   <div class="logo">
-    <div class="logo-ic"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-    AlgoFlow
+    <img src="https://res.cloudinary.com/dpaitnbhr/image/upload/v1773828942/Screenshot_2026-03-18_141458_nyvmbr.png" style="height:32px;width:auto;display:block" alt="PolyWhale">
   </div>
   <div class="nav-links">
     <a class="nl" href="#buy">Pricing</a>
@@ -504,21 +458,21 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
   <div class="hero-glow1"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-badge"><span class="bdot"></span>847 traders live · 73.4% signal win rate</div>
+    <div class="hero-badge"><span class="bdot"></span>1,200+ traders live · 73.4% signal win rate</div>
     <h1>Trade Polymarket<br>Like a <span class="hl-blue">Whale.</span></h1>
-    <p class="hero-sub">AlgoFlow tracks <span class="hw">large wallet activity</span>, order flow imbalances, and probability drift — delivering signals <span class="hw">before the market moves.</span></p>
+    <p class="hero-sub">PolyWhale tracks <span class="hw">large wallet activity</span>, order flow imbalances, and probability drift — delivering signals <span class="hw">before the market moves.</span></p>
     <div class="hero-ctas">
       <button class="cta-p" onclick="scrollToBuy()">Get Signals Now<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
       <button class="cta-s" onclick="document.getElementById('signals').scrollIntoView({behavior:'smooth'})">See Live Signals ↓</button>
     </div>
     <div class="proof-strip">
       <div class="proof-avatars"><div class="pav">🧑</div><div class="pav">👩</div><div class="pav">🧔</div><div class="pav">👨</div><div class="pav">🙋</div></div>
-      <div class="proof-text"><span class="stars-inline">★★★★★</span>&nbsp;<strong>847 traders</strong> earning with AlgoFlow</div>
+      <div class="proof-text"><span class="stars-inline">★★★★★</span>&nbsp;<strong>1,200 traders</strong> earning with PolyWhale</div>
     </div>
     <div class="hstats">
       <div class="hs"><div class="hs-n g cnt" data-t="73.4" data-s="%" data-d="1">0%</div><div class="hs-l">Win Rate</div></div>
-      <div class="hs"><div class="hs-n b cnt" data-t="847" data-s="">0</div><div class="hs-l">Active Traders</div></div>
-      <div class="hs"><div class="hs-n g">$2.8M</div><div class="hs-l">Member Profits</div></div>
+      <div class="hs"><div class="hs-n b cnt" data-t="1200" data-s="">0</div><div class="hs-l">Active Traders</div></div>
+      <div class="hs"><div class="hs-n g">$4.1M</div><div class="hs-l">Member Profits</div></div>
     </div>
   </div>
 </section>
@@ -532,55 +486,58 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
   <div style="max-width:980px;margin:0 auto">
     <div class="tier-switch-wrap reveal">
       <div class="tier-switch">
-        <button class="tsw-btn active" id="btnBasic" onclick="switchTier('basic')">AlgoFlow Basic — $71</button>
-        <button class="tsw-btn pro" id="btnPro" onclick="switchTier('pro')"><span>👑</span> AlgoFlow Pro — $227</button>
+        <button class="tsw-btn active" id="btn2" onclick="switchTier(2)">⚡ Signal — $71</button>
+        <button class="tsw-btn pro" id="btn3" onclick="switchTier(3)"><span>👑</span> Edge — $159</button>
+        <button class="tsw-btn alpha" id="btn4" onclick="switchTier(4)"><span>🎯</span> Alpha — $399</button>
+        <button class="tsw-btn titan" id="btn5" onclick="switchTier(5)"><span>🏛️</span> Titan — $997</button>
       </div>
     </div>
 
-    <!-- BASIC PANEL -->
-    <div id="panelBasic" class="buy-cards-row">
+
+    <!-- PANEL 2: Signal (original Basic) -->
+    <div id="panel2" class="buy-cards-row">
       <div class="buy-left reveal">
-        <div class="buy-eyebrow">Lifetime Access</div>
+        <div class="buy-eyebrow">Lifetime Access · Most Popular</div>
         <h2 class="buy-title">One payment.<br><span class="hw">Infinite edge.</span></h2>
         <p class="buy-sub">No subscription. No monthly nonsense. Pay once and receive every whale signal, forever — straight to Discord.</p>
         <div class="buy-feats">
           <div class="bf"><div class="bf-ic">✓</div>Real-time whale wallet detection</div>
           <div class="bf"><div class="bf-ic">✓</div>Confidence score + Kelly position sizing</div>
           <div class="bf"><div class="bf-ic">✓</div>Order flow & probability drift alerts</div>
-          <div class="bf"><div class="bf-ic">✓</div>Private Discord with 847 traders</div>
+          <div class="bf"><div class="bf-ic">✓</div>Private Discord with 1,200+ traders</div>
           <div class="bf"><div class="bf-ic">✓</div>Full win/loss tracker & performance log</div>
           <div class="bf"><div class="bf-ic">✓</div>Lifetime updates included</div>
         </div>
       </div>
       <div class="buy-card reveal" style="transition-delay:.1s">
         <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name">AlgoFlow Basic</div><div class="bch-badge">⚡ LIFETIME</div></div>
+          <div class="bch-top"><div class="bch-name">PolyWhale Signal</div><div class="bch-badge">⚡ LIFETIME</div></div>
           <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-            <div class="bch-price" id="displayPriceBasic"><sup>$</sup><span id="priceNumBasic">71</span></div>
-            <div class="bch-price-orig" id="origLabelBasic" style="display:none">$71</div>
+            <div class="bch-price" id="displayPrice2"><sup>$</sup><span id="priceNum2">71</span></div>
+            <div class="bch-price-orig" id="origLabel2" style="display:none">$71</div>
           </div>
-          <div class="bch-period" id="periodLabelBasic">one-time · lifetime access</div>
+          <div class="bch-period" id="periodLabel2">one-time · lifetime access</div>
         </div>
         <div class="buy-card-body">
           <div class="card-perks">
             <div class="cp"><div class="cp-check">✓</div>Whale wallet tracking & alerts</div>
             <div class="cp"><div class="cp-check">✓</div>0–100 AI confidence score</div>
             <div class="cp"><div class="cp-check">✓</div>Kelly Criterion position sizing</div>
+            <div class="cp"><div class="cp-check">✓</div>Order flow & drift alerts</div>
             <div class="cp"><div class="cp-check">✓</div>Private Discord community</div>
             <div class="cp"><div class="cp-check">✓</div>All future bot updates</div>
-            <div class="cp"><div class="cp-check">✓</div>Priority support</div>
           </div>
           <div class="coupon-row">
-            <input class="coupon-input" id="couponInputBasic" placeholder="Have a discount code?" type="text">
-            <button class="coupon-btn" onclick="applyCoupon('basic')">Apply</button>
+            <input class="coupon-input" id="couponInput2" placeholder="Have a discount code?" type="text">
+            <button class="coupon-btn" onclick="applyCoupon(2)">Apply</button>
           </div>
-          <div class="coupon-msg" id="couponMsgBasic">✓ WHALE30 applied — 30% off!</div>
-          <div class="coupon-err" id="couponErrBasic">✕ Invalid code. Try WHALE30</div>
-          <button class="buy-btn-main" id="buyMainBtnBasic" onclick="toggleSolBox('basic')">
+          <div class="coupon-msg" id="couponMsg2">✓ WHALE30 applied — 30% off!</div>
+          <div class="coupon-err" id="couponErr2">✕ Invalid code. Try WHALE30</div>
+          <button class="buy-btn-main" id="buyMainBtn2" onclick="toggleSolBox(2)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabelBasic">Buy Now — $71</span>
+            <span id="buyBtnLabel2">Buy Now — $71</span>
           </button>
-          <div class="sol-box" id="solBoxBasic">
+          <div class="sol-box" id="solBox2">
             <div class="sh">
               <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
               <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
@@ -593,10 +550,9 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
                 <button class="cb" onclick="doCopy(this)">Copy</button>
               </div>
             </div>
-            <div class="amr"><span class="aml">Send exactly:</span><span class="amv" id="solAmtBasic">0.4972 SOL ≈ $71</span></div>
+            <div class="amr"><span class="aml">Send exactly:</span><span class="amv" id="solAmt2">0.4972 SOL ≈ $71</span></div>
           </div>
-          </div>
-          <button class="vbtn" id="verifyBtnBasic" style="display:none" onclick="startVerify()">
+          <button class="vbtn" id="verifyBtn2" style="display:none" onclick="startVerify(2)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
             I've Sent — Verify Payment
           </button>
@@ -604,57 +560,56 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       </div>
     </div>
 
-    <!-- PRO PANEL -->
-    <div id="panelPro" class="buy-cards-row" style="display:none">
+    <!-- PANEL 3: Edge (original Pro) -->
+    <div id="panel3" class="buy-cards-row" style="display:none">
       <div class="buy-left reveal">
-        <div class="buy-eyebrow pro">👑 Pro — Most Powerful</div>
-        <h2 class="buy-title">Everything Basic.<br>Plus <span class="hw-gold">maximum edge.</span></h2>
-        <p class="buy-sub">For serious Polymarket traders who want deeper data, exclusive alpha signals, and a dedicated edge over the market.</p>
+        <div class="buy-eyebrow pro">👑 Edge — Pro Tier</div>
+        <h2 class="buy-title">Everything Signal.<br>Plus <span class="hw-gold">maximum edge.</span></h2>
+        <p class="buy-sub">For serious Polymarket traders who want deeper data, tier-1 whale alerts, and a dedicated edge over the market.</p>
         <div class="buy-feats">
-          <div class="bf"><div class="bf-ic gold">✓</div>Everything in Basic, included</div>
+          <div class="bf"><div class="bf-ic gold">✓</div>Everything in Signal, included</div>
           <div class="bf"><div class="bf-ic gold">⚡</div><strong>Tier-1 whale alerts — $50K+ wallets only</strong></div>
           <div class="bf"><div class="bf-ic gold">📊</div><strong>Advanced order book depth analysis</strong></div>
           <div class="bf"><div class="bf-ic gold">🔔</div><strong>SMS + email push alerts (not just Discord)</strong></div>
           <div class="bf"><div class="bf-ic gold">🤖</div><strong>Private AI market analysis channel</strong></div>
           <div class="bf"><div class="bf-ic gold">📈</div><strong>Weekly Pro-only market reports</strong></div>
-          <div class="bf"><div class="bf-ic gold">🎯</div><strong>1-on-1 onboarding call with AlgoFlow team</strong></div>
+          <div class="bf"><div class="bf-ic gold">🎯</div><strong>1-on-1 onboarding call with PolyWhale team</strong></div>
         </div>
       </div>
       <div class="buy-card pro-card reveal" style="transition-delay:.1s">
         <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name" style="color:var(--gold)">AlgoFlow Pro</div><div class="bch-badge pro">👑 LIFETIME PRO</div></div>
+          <div class="bch-top"><div class="bch-name" style="color:var(--gold)">PolyWhale Edge</div><div class="bch-badge pro">👑 LIFETIME PRO</div></div>
           <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-            <div class="bch-price pro-price" id="displayPricePro"><sup style="color:var(--gold-b)">$</sup><span id="priceNumPro">227</span></div>
-            <div class="bch-price-orig" id="origLabelPro" style="display:none">$227</div>
+            <div class="bch-price pro-price" id="displayPrice3"><sup style="color:var(--gold-b)">$</sup><span id="priceNum3">159</span></div>
+            <div class="bch-price-orig" id="origLabel3" style="display:none">$159</div>
           </div>
-          <div class="bch-period" id="periodLabelPro">one-time · lifetime pro access</div>
+          <div class="bch-period" id="periodLabel3">one-time · lifetime pro access</div>
         </div>
         <div class="buy-card-body">
           <div class="pro-vs-basic">
-            <div class="pvb-item"><div class="pvb-label">Basic</div><div class="pvb-val">$10K+ whales</div></div>
-            <div class="pvb-item active"><div class="pvb-label">Pro</div><div class="pvb-val">$50K+ tier-1</div></div>
+            <div class="pvb-item"><div class="pvb-label">Signal</div><div class="pvb-val">$10K+ whales</div></div>
+            <div class="pvb-item active"><div class="pvb-label">Edge</div><div class="pvb-val">$50K+ tier-1</div></div>
             <div class="pvb-item active"><div class="pvb-label">Alerts</div><div class="pvb-val">Discord + SMS</div></div>
           </div>
           <div class="card-perks">
-            <div class="cp highlight"><div class="cp-check gold">✓</div>Everything in Basic</div>
+            <div class="cp highlight"><div class="cp-check gold">✓</div>Everything in Signal</div>
             <div class="cp highlight"><div class="cp-check gold">⚡</div>Tier-1 $50K+ whale alerts only</div>
             <div class="cp"><div class="cp-check gold">✓</div>Order book depth analysis</div>
             <div class="cp"><div class="cp-check gold">✓</div>SMS + email push alerts</div>
             <div class="cp"><div class="cp-check gold">✓</div>Private AI analysis channel</div>
-            <div class="cp"><div class="cp-check gold">✓</div>Weekly Pro market reports</div>
             <div class="cp"><div class="cp-check gold">✓</div>1-on-1 onboarding call</div>
           </div>
           <div class="coupon-row">
-            <input class="coupon-input pro-input" id="couponInputPro" placeholder="Have a discount code?" type="text">
-            <button class="coupon-btn pro-btn" onclick="applyCoupon('pro')">Apply</button>
+            <input class="coupon-input pro-input" id="couponInput3" placeholder="Have a discount code?" type="text">
+            <button class="coupon-btn pro-btn" onclick="applyCoupon(3)">Apply</button>
           </div>
-          <div class="coupon-msg" id="couponMsgPro">✓ WHALE30 applied — 30% off!</div>
-          <div class="coupon-err" id="couponErrPro">✕ Invalid code. Try WHALE30</div>
-          <button class="buy-btn-main pro-btn-main" id="buyMainBtnPro" onclick="toggleSolBox('pro')">
+          <div class="coupon-msg" id="couponMsg3">✓ WHALE30 applied — 30% off!</div>
+          <div class="coupon-err" id="couponErr3">✕ Invalid code. Try WHALE30</div>
+          <button class="buy-btn-main pro-btn-main" id="buyMainBtn3" onclick="toggleSolBox(3)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabelPro">Buy Pro — $227</span>
+            <span id="buyBtnLabel3">Buy Edge — $159</span>
           </button>
-          <div class="sol-box pro-sol" id="solBoxPro">
+          <div class="sol-box pro-sol" id="solBox3">
             <div class="sh">
               <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
               <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
@@ -667,17 +622,148 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
                 <button class="cb" onclick="doCopy(this)">Copy</button>
               </div>
             </div>
-            <div class="amr"><span class="aml">Send exactly:</span><span class="amv gold" id="solAmtPro">1.5876 SOL ≈ $227</span></div>
+            <div class="amr"><span class="aml">Send exactly:</span><span class="amv gold" id="solAmt3">1.1119 SOL ≈ $159</span></div>
           </div>
-          </div>
-          <button class="vbtn pro-vbtn" id="verifyBtnPro" style="display:none" onclick="startVerify()">
+          <button class="vbtn pro-vbtn" id="verifyBtn3" style="display:none" onclick="startVerify(3)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
             I've Sent — Verify Payment
           </button>
-          <div class="card-footer-note">🔒 Secure · Solana blockchain</div>
         </div>
       </div>
     </div>
+
+    <!-- PANEL 4: Alpha -->
+    <div id="panel4" class="buy-cards-row" style="display:none">
+      <div class="buy-left reveal">
+        <div class="buy-eyebrow purple">🎯 Alpha — Elite Tier</div>
+        <h2 class="buy-title">Everything Edge.<br>Plus <span style="background:linear-gradient(135deg,var(--purple),var(--purple-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent">elite intelligence.</span></h2>
+        <p class="buy-sub">Cross-market correlation, exclusive alpha calls, a private AI analyst, and monthly live strategy sessions with the PolyWhale team.</p>
+        <div class="buy-feats">
+          <div class="bf"><div class="bf-ic purple">✓</div>Everything in Edge, included</div>
+          <div class="bf"><div class="bf-ic purple">🔬</div><strong>Cross-market correlation scanner</strong></div>
+          <div class="bf"><div class="bf-ic purple">📣</div><strong>Exclusive alpha calls channel</strong></div>
+          <div class="bf"><div class="bf-ic purple">🤖</div><strong>Private AI market analyst (GPT-powered)</strong></div>
+          <div class="bf"><div class="bf-ic purple">📞</div><strong>Monthly live Q&A with PolyWhale team</strong></div>
+          <div class="bf"><div class="bf-ic purple">⚡</div><strong>Priority &lt;15 sec alert latency</strong></div>
+        </div>
+      </div>
+      <div class="buy-card purple-card reveal" style="transition-delay:.1s">
+        <div class="buy-card-head">
+          <div class="bch-top"><div class="bch-name" style="color:var(--purple)">PolyWhale Alpha</div><div class="bch-badge purple">🎯 LIFETIME ELITE</div></div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
+            <div class="bch-price purple-price" id="displayPrice4"><sup style="color:var(--purple-b)">$</sup><span id="priceNum4">399</span></div>
+            <div class="bch-price-orig" id="origLabel4" style="display:none">$399</div>
+          </div>
+          <div class="bch-period" id="periodLabel4">one-time · lifetime elite access</div>
+        </div>
+        <div class="buy-card-body">
+          <div class="card-perks">
+            <div class="cp highlight"><div class="cp-check purple">✓</div>Everything in Edge</div>
+            <div class="cp highlight"><div class="cp-check purple">🔬</div>Cross-market correlation scanner</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Exclusive alpha calls channel</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Private GPT-powered AI analyst</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Monthly live Q&A sessions</div>
+            <div class="cp"><div class="cp-check purple">✓</div>Priority &lt;15 sec latency</div>
+          </div>
+          <div class="coupon-row">
+            <input class="coupon-input purple-input" id="couponInput4" placeholder="Have a discount code?" type="text">
+            <button class="coupon-btn purple-btn" onclick="applyCoupon(4)">Apply</button>
+          </div>
+          <div class="coupon-msg" id="couponMsg4">✓ WHALE30 applied — 30% off!</div>
+          <div class="coupon-err" id="couponErr4">✕ Invalid code. Try WHALE30</div>
+          <button class="buy-btn-main purple-btn-main" id="buyMainBtn4" onclick="toggleSolBox(4)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span id="buyBtnLabel4">Buy Alpha — $399</span>
+          </button>
+          <div class="sol-box" style="border-color:rgba(124,58,237,.2)" id="solBox4">
+            <div class="sh">
+              <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
+              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
+              <div class="snb">LIVE</div>
+            </div>
+            <div class="sol-addr">
+              <div class="al">Wallet Address</div>
+              <div class="ar">
+                <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
+                <button class="cb" onclick="doCopy(this)">Copy</button>
+              </div>
+            </div>
+            <div class="amr"><span class="aml">Send exactly:</span><span class="amv purple" id="solAmt4">2.7902 SOL ≈ $399</span></div>
+          </div>
+          <button class="vbtn purple-vbtn" id="verifyBtn4" style="display:none" onclick="startVerify(4)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            I've Sent — Verify Payment
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 5: Titan -->
+    <div id="panel5" class="buy-cards-row" style="display:none">
+      <div class="buy-left reveal">
+        <div class="buy-eyebrow red">🏛️ Titan — Institutional</div>
+        <h2 class="buy-title">Everything Alpha.<br>Plus <span style="background:linear-gradient(135deg,var(--red-d),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent">institutional power.</span></h2>
+        <p class="buy-sub">Built for funds and power traders. Full webhook API, custom wallet watchlists, raw data feed, and a dedicated account manager.</p>
+        <div class="buy-feats">
+          <div class="bf"><div class="bf-ic red">✓</div>Everything in Alpha, included</div>
+          <div class="bf"><div class="bf-ic red">🔌</div><strong>Full webhook / API signal delivery</strong></div>
+          <div class="bf"><div class="bf-ic red">🛡️</div><strong>Custom wallet watchlist (up to 500)</strong></div>
+          <div class="bf"><div class="bf-ic red">📊</div><strong>Raw data feed for your own analytics</strong></div>
+          <div class="bf"><div class="bf-ic red">🎖️</div><strong>Dedicated account manager</strong></div>
+          <div class="bf"><div class="bf-ic red">⚙️</div><strong>Custom alert logic + filters</strong></div>
+        </div>
+      </div>
+      <div class="buy-card red-card reveal" style="transition-delay:.1s">
+        <div class="buy-card-head">
+          <div class="bch-top"><div class="bch-name" style="color:var(--red-d)">PolyWhale Titan</div><div class="bch-badge red">🏛️ INSTITUTIONAL</div></div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
+            <div class="bch-price red-price" id="displayPrice5"><sup style="color:var(--red-b)">$</sup><span id="priceNum5">997</span></div>
+            <div class="bch-price-orig" id="origLabel5" style="display:none">$997</div>
+          </div>
+          <div class="bch-period" id="periodLabel5">one-time · lifetime institutional</div>
+        </div>
+        <div class="buy-card-body">
+          <div class="card-perks">
+            <div class="cp highlight"><div class="cp-check red">✓</div>Everything in Alpha</div>
+            <div class="cp highlight"><div class="cp-check red">🔌</div>Full webhook / API delivery</div>
+            <div class="cp"><div class="cp-check red">✓</div>Custom wallet watchlist (500 max)</div>
+            <div class="cp"><div class="cp-check red">✓</div>Raw on-chain data feed</div>
+            <div class="cp"><div class="cp-check red">✓</div>Dedicated account manager</div>
+            <div class="cp"><div class="cp-check red">✓</div>Custom alert logic &amp; filters</div>
+          </div>
+          <div class="coupon-row">
+            <input class="coupon-input red-input" id="couponInput5" placeholder="Have a discount code?" type="text">
+            <button class="coupon-btn red-btn" onclick="applyCoupon(5)">Apply</button>
+          </div>
+          <div class="coupon-msg" id="couponMsg5">✓ WHALE30 applied — 30% off!</div>
+          <div class="coupon-err" id="couponErr5">✕ Invalid code. Try WHALE30</div>
+          <button class="buy-btn-main red-btn-main" id="buyMainBtn5" onclick="toggleSolBox(5)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span id="buyBtnLabel5">Buy Titan — $997</span>
+          </button>
+          <div class="sol-box" style="border-color:rgba(220,38,38,.2)" id="solBox5">
+            <div class="sh">
+              <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
+              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
+              <div class="snb">LIVE</div>
+            </div>
+            <div class="sol-addr">
+              <div class="al">Wallet Address</div>
+              <div class="ar">
+                <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
+                <button class="cb" onclick="doCopy(this)">Copy</button>
+              </div>
+            </div>
+            <div class="amr"><span class="aml">Send exactly:</span><span class="amv red" id="solAmt5">6.9734 SOL ≈ $997</span></div>
+          </div>
+          <button class="vbtn red-vbtn" id="verifyBtn5" style="display:none" onclick="startVerify(5)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            I've Sent — Verify Payment
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -687,7 +773,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <div style="max-width:600px">
       <div class="slabel reveal">How It Works</div>
       <h2 class="stitle reveal">From whale wallet<br>to <span class="hw">winning trade</span> in seconds.</h2>
-      <p class="ssub reveal">AlgoFlow's engine runs 24/7, scanning every Polymarket transaction to surface the signals that matter.</p>
+      <p class="ssub reveal">PolyWhale's engine runs 24/7, scanning every Polymarket transaction to surface the signals that matter.</p>
     </div>
     <div class="steps">
       <div class="step reveal"><div class="step-n">01 —</div><div class="step-ic">🐋</div><div class="step-t">Whale Detection</div><div class="step-d">We monitor every wallet moving <span class="kw">$10k+</span> on Polymarket in real time, flagging coordinated large buys that signal informed money moving.</div></div>
@@ -753,10 +839,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <h2 class="stitle reveal">Traders are <span class="hg">winning.</span></h2>
     <div class="tgrid">
       <div class="tc reveal"><div class="tc-stars">★★★★★</div><div class="tc-text">"Made back my $49 in the <span class="hw">first two signals</span>. Bitcoin whale alert came in at 61¢, I was in before it hit 74¢. Literally unreal."</div><div class="tc-author"><div class="tc-av">🧑</div><div><div class="tc-name">cryptobro.eth</div><div class="tc-handle">Polymarket Power Trader</div></div><div class="tc-badge">+$840 profit</div></div></div>
-      <div class="tc reveal" style="transition-delay:.08s"><div class="tc-stars">★★★★★</div><div class="tc-text">"I've tried 4 other signal services. AlgoFlow is the only one that <span class="hw">explains the whale logic behind every call</span>. Actual edge, not vibes."</div><div class="tc-author"><div class="tc-av">👩</div><div><div class="tc-name">markets.sol</div><div class="tc-handle">DeFi Prediction Trader</div></div><div class="tc-badge">+$2.1K profit</div></div></div>
+      <div class="tc reveal" style="transition-delay:.08s"><div class="tc-stars">★★★★★</div><div class="tc-text">"I've tried 4 other signal services. PolyWhale is the only one that <span class="hw">explains the whale logic behind every call</span>. Actual edge, not vibes."</div><div class="tc-author"><div class="tc-av">👩</div><div><div class="tc-name">markets.sol</div><div class="tc-handle">DeFi Prediction Trader</div></div><div class="tc-badge">+$2.1K profit</div></div></div>
       <div class="tc reveal" style="transition-delay:.16s"><div class="tc-stars">★★★★★</div><div class="tc-text">"73% win rate over 6 weeks personally tracked. The confidence score + Kelly sizing guide is <span class="hw">what separates this from everything else</span>."</div><div class="tc-author"><div class="tc-av">🧔</div><div><div class="tc-name">0xAlpha</div><div class="tc-handle">Whale Watcher</div></div><div class="tc-badge">+$4.7K profit</div></div></div>
       <div class="tc reveal" style="transition-delay:.06s"><div class="tc-stars">★★★★★</div><div class="tc-text">"Got in on the ETH ETF call at 88¢ — <span class="hw">whale alert fired 18 minutes</span> before the probability jumped. The latency on this bot is insane."</div><div class="tc-author"><div class="tc-av">🙋</div><div><div class="tc-name">defi_degen</div><div class="tc-handle">Crypto Trader, 3yr</div></div><div class="tc-badge">+$1.3K profit</div></div></div>
-      <div class="tc reveal" style="transition-delay:.12s"><div class="tc-stars">★★★★★</div><div class="tc-text">"Been using AlgoFlow for 2 months. The Discord community is super active and the bot calls are transparent — <span class="hw">every win AND loss tracked</span>."</div><div class="tc-author"><div class="tc-av">👨</div><div><div class="tc-name">prediction.eth</div><div class="tc-handle">Full-time PM Trader</div></div><div class="tc-badge">+$980 profit</div></div></div>
+      <div class="tc reveal" style="transition-delay:.12s"><div class="tc-stars">★★★★★</div><div class="tc-text">"Been using PolyWhale for 2 months. The Discord community is super active and the bot calls are transparent — <span class="hw">every win AND loss tracked</span>."</div><div class="tc-author"><div class="tc-av">👨</div><div><div class="tc-name">prediction.eth</div><div class="tc-handle">Full-time PM Trader</div></div><div class="tc-badge">+$980 profit</div></div></div>
       <div class="tc reveal" style="transition-delay:.18s"><div class="tc-stars">★★★★★</div><div class="tc-text">"First week: 5 signals, 4 winners. The Fed rate cut NO call saved me from a losing position I was about to enter. <span class="hw">Literally paid for itself day 1.</span>"</div><div class="tc-author"><div class="tc-av">🧑</div><div><div class="tc-name">whalewatch99</div><div class="tc-handle">Polymarket Trader</div></div><div class="tc-badge">+$660 profit</div></div></div>
     </div>
     <div style="margin-top:48px">
@@ -781,11 +867,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <div class="slabel reveal" style="display:inline-block">FAQ</div>
     <h2 class="stitle reveal" style="text-align:center">Common questions</h2>
     <div class="faq-list reveal">
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What exactly is AlgoFlow? <span class="arr">↓</span></div><div class="fa">AlgoFlow is a Polymarket intelligence bot that tracks large wallet activity, order flow imbalances, and probability drift — delivering high-confidence trading signals before the market reprices. All alerts go to a private Discord server in under 60 seconds of detection.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">How does the whale tracking work? <span class="arr">↓</span></div><div class="fa">We monitor all Polymarket on-chain transactions in real time. Any wallet moving $10,000+ is flagged and cross-referenced against historical win rates. When multiple high-performing wallets coordinate on the same market, AlgoFlow fires a signal with full context and confidence scoring.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What's the difference between Basic and Pro? <span class="arr">↓</span></div><div class="fa">Basic gives you full whale tracking ($10K+ wallets), AI confidence scores, Kelly sizing, and Discord access. Pro upgrades you to Tier-1 alerts ($50K+ wallets only — the sharpest money), adds SMS and email push alerts, a private AI analysis channel, weekly market reports, and a 1-on-1 onboarding call.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What is the 73.4% win rate based on? <span class="arr">↓</span></div><div class="fa">Calculated across all signals fired over the trailing 90 days, with a "win" counted as the predicted direction resolving correctly. Full signal log with every call — including losses — is publicly visible in the Discord for complete transparency.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Is this really a one-time payment? <span class="arr">↓</span></div><div class="fa">Yes. Pay once, access forever. No subscription, no monthly fee, no hidden charges. You also get every future update to the AlgoFlow bot at no additional cost.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What exactly is PolyWhale? <span class="arr">↓</span></div><div class="fa">PolyWhale is a suite of Polymarket intelligence bots that track large wallet activity, order flow imbalances, and probability drift — delivering high-confidence trading signals before the market reprices. All alerts go to a private Discord server in under 60 seconds of detection.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What's the difference between all 6 bots? <span class="arr">↓</span></div><div class="fa">Scout ($19) gives daily top-3 signals — great for beginners. Tracker ($49) upgrades to real-time alerts + Kelly sizing. Signal ($71) is the full original bot with order flow alerts. Edge ($159) adds tier-1 $50K+ whale alerts + SMS. Alpha ($399) adds cross-market correlation, private AI analyst, and monthly live Q&As. Titan ($997) is institutional-grade with full API access, custom watchlists, and a dedicated account manager.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">How does the whale tracking work? <span class="arr">↓</span></div><div class="fa">We monitor all Polymarket on-chain transactions in real time. Any wallet moving $10,000+ is flagged and cross-referenced against historical win rates. When multiple high-performing wallets coordinate on the same market, PolyWhale fires a signal with full context and confidence scoring.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">What is the 73.4% win rate based on? <span class="arr">↓</span></div><div class="fa">Calculated across all signals fired over the trailing 90 days, with a "win" counted as the predicted direction resolving correctly. Full signal log with every call — including losses — is publicly visible in Discord for complete transparency.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Is this really a one-time payment? <span class="arr">↓</span></div><div class="fa">Yes. Pay once, access forever. No subscription, no monthly fee, no hidden charges. You also get every future update to your PolyWhale bot at no additional cost.</div></div>
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">How do I get access after paying? <span class="arr">↓</span></div><div class="fa">Send the exact SOL amount to the wallet address shown, then click "I've Sent — Verify Payment." Our system scans the Solana blockchain, confirms your transaction, and delivers the Discord invite link — typically within 30 seconds.</div></div>
     </div>
   </div>
@@ -794,15 +880,15 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <!-- CTA -->
 <div class="cta-sec">
   <h2>Stop guessing.<br>Follow the whales.</h2>
-  <p>847 traders are getting AlgoFlow signals right now. One payment. Lifetime edge.</p>
+  <p>1,200 traders are getting PolyWhale signals right now. Six bots. One payment. Lifetime edge.</p>
   <button class="cta-w" onclick="scrollToBuy()">Get Access →</button>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="fl"><div class="flic"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>AlgoFlow</div>
+  <div class="fl"><img src="https://res.cloudinary.com/dpaitnbhr/image/upload/v1773828942/Screenshot_2026-03-18_141458_nyvmbr.png" style="height:26px;width:auto;display:block" alt="PolyWhale"></div>
   <div class="flinks"><a class="flink" href="#buy">Pricing</a><a class="flink" href="#signals">Signals</a><a class="flink" href="#faq">FAQ</a></div>
-  <div class="fn">© 2025 AlgoFlow. Not financial advice.</div>
+  <div class="fn">© 2025 PolyWhale. Not financial advice.</div>
 </footer>
 
 <!-- VERIFY MODAL -->
@@ -823,12 +909,12 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <div class="sw2" id="sw2">
       <div class="sico">✓</div>
       <div class="stit">Payment Confirmed!</div>
-      <div class="ssub2">Your AlgoFlow access is now active. Join the Discord to start receiving whale signals immediately.</div>
+      <div class="ssub2">Your PolyWhale access is now active. Join the Discord to start receiving whale signals immediately.</div>
       <a href="https://discord.gg/efZeJSp2Y8" target="_blank" class="dbtn">
         <svg width="20" height="20" viewBox="0 0 127.14 96.36" fill="white"><path d="M107.7 8.07A105.15 105.15 0 0081.47 0a72.06 72.06 0 00-3.36 6.83 97.68 97.68 0 00-29.11 0A72.37 72.37 0 0045.64 0a105.89 105.89 0 00-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0032.17 16.15 77.7 77.7 0 006.89-11.11 68.42 68.42 0 01-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0064.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 01-10.87 5.19 77 77 0 006.89 11.1 105.25 105.25 0 0032.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15zM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69z"/></svg>
-        Join AlgoFlow Discord
+        Join PolyWhale Discord
       </a>
-      <div class="txn">Tx confirmed · Solana Mainnet · Block #284,917,334</div>
+      <div class="txn" id="txnDisplay">Tx confirmed · Solana Mainnet · Block #284,917,334</div>
     </div>
   </div>
 </div>
@@ -839,7 +925,7 @@ const cd=document.getElementById('cd'),cr=document.getElementById('cr');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('button,a,.step,.tc,.pp,.fq,.nl,.sig-card,.wrow,.tsw-btn,.popup-tier-card,.popup-dismiss').forEach(e=>{
+document.querySelectorAll('button,a,.step,.tc,.pp,.fq,.nl,.sig-card,.wrow,.tsw-btn,.popup-dismiss').forEach(e=>{
   e.addEventListener('mouseenter',()=>document.body.classList.add('h'));
   e.addEventListener('mouseleave',()=>document.body.classList.remove('h'));
 });
@@ -865,26 +951,25 @@ document.querySelectorAll('.cnt').forEach(c=>co.observe(c));
 
 // REVEAL
 const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08});
-document.querySelectorAll('.reveal,.reveal2').forEach(r=>ro.observe(r));
+document.querySelectorAll('.reveal').forEach(r=>ro.observe(r));
 
 // SIGNAL PULSE
 let si=0;
 setInterval(()=>{
   document.querySelectorAll('.sig-card').forEach(c=>{c.style.boxShadow='';c.style.borderColor='';});
   const cards=document.querySelectorAll('.sig-card');
-  if(cards[si%cards.length]){cards[si%cards.length].style.boxShadow='0 0 0 2px rgba(22,82,240,.15),0 4px 20px rgba(22,82,240,.08)';cards[si%cards.length].style.borderColor='rgba(22,82,240,.2)';}
+  if(cards[si%cards.length]){cards[si%cards.length].style.boxShadow='0 0 0 2px rgba(22,82,240,.15),0 4px 20px rgba(22,82,240,.08)';}
   si++;
 },2800);
 
-// ======= POPUP =======
+// POPUP
 setTimeout(()=>document.getElementById('offerPopup').classList.add('open'), 2000);
 function closePopup(){document.getElementById('offerPopup').classList.remove('open')}
 function closePopupAndScroll(){
   closePopup();
   setTimeout(()=>{
     scrollToBuy();
-    document.getElementById('couponInputBasic').value='WHALE30';
-    document.getElementById('couponInputPro').value='WHALE30';
+    for(let i=2;i<=5;i++) document.getElementById('couponInput'+i).value='WHALE30';
   },400);
 }
 function popCopy(btn){
@@ -902,238 +987,185 @@ function popCopy(btn){
   });
 }
 
-// TIER SWITCH
-let activeTier='basic';
-function switchTier(tier){
-  activeTier=tier;
-  const basicPanel=document.getElementById('panelBasic');
-  const proPanel=document.getElementById('panelPro');
-  const btnBasic=document.getElementById('btnBasic');
-  const btnPro=document.getElementById('btnPro');
-  if(tier==='basic'){
-    basicPanel.style.display='grid'; proPanel.style.display='none';
-    btnBasic.classList.add('active'); btnPro.classList.remove('active');
+// BOT DATA — discPrice = discounted price ending in 9, solDisc = SOL for that price
+const BOTS=[
+  null, // 0 removed
+  null, // 1 removed
+  {name:'Signal',  price:71,  solFull:0.4972, discPrice:49,  solDisc:0.3427, label:'Buy Now — $71',    color:''},
+  {name:'Edge',    price:159, solFull:1.1119, discPrice:109, solDisc:0.7626, label:'Buy Edge — $159',  color:'gold'},
+  {name:'Alpha',   price:399, solFull:2.7902, discPrice:279, solDisc:1.9513, label:'Buy Alpha — $399', color:'purple'},
+  {name:'Titan',   price:997, solFull:6.9734, discPrice:699, solDisc:4.8896, label:'Buy Titan — $997', color:'red'},
+];
+
+const BTN_CLASS={2:'',3:'pro',4:'alpha',5:'titan'};
+let activeTier=2;
+function switchTier(t){
+  [2,3,4,5].forEach(i=>{
+    document.getElementById('panel'+i).style.display='none';
+    const b=document.getElementById('btn'+i);
+    b.classList.remove('active');
+  });
+  activeTier=t;
+  document.getElementById('panel'+t).style.display='grid';
+  document.getElementById('btn'+t).classList.add('active');
+  // close all sol boxes
+  [2,3,4,5].forEach(i=>{
+    document.getElementById('solBox'+i).classList.remove('visible');
+    document.getElementById('verifyBtn'+i).style.display='none';
+    solBoxOpen[i]=false;
+    const b=BOTS[i];
+    const p=couponApplied[i]?b.discPrice:b.price;
+    document.getElementById('buyBtnLabel'+i).textContent=b.label.replace('$'+b.price,'$'+p);
+    document.getElementById('buyMainBtn'+i).style.background='';
+  });
+}
+// init: show Signal (panel2)
+document.getElementById('panel2').style.display='grid';
+document.getElementById('btn2').classList.add('active');
+[3,4,5].forEach(i=>document.getElementById('panel'+i).style.display='none');
+
+// SOL BOXES
+const solBoxOpen={2:false,3:false,4:false,5:false};
+function toggleSolBox(i){
+  const box=document.getElementById('solBox'+i);
+  const label=document.getElementById('buyBtnLabel'+i);
+  const verBtn=document.getElementById('verifyBtn'+i);
+  if(!solBoxOpen[i]){
+    solBoxOpen[i]=true;box.classList.add('visible');verBtn.style.display='flex';
+    label.textContent='Payment Details ↑';
+    document.getElementById('buyMainBtn'+i).style.background='var(--blue-d)';
   } else {
-    basicPanel.style.display='none'; proPanel.style.display='grid';
-    btnPro.classList.add('active','pro'); btnBasic.classList.remove('active');
+    solBoxOpen[i]=false;box.classList.remove('visible');verBtn.style.display='none';
+    const b=BOTS[i];
+    const p=couponApplied[i]?b.discPrice:b.price;
+    label.textContent=b.label.replace('$'+b.price,'$'+p);
+    document.getElementById('buyMainBtn'+i).style.background='';
   }
-  solBoxOpenBasic=false;solBoxOpenPro=false;
-  document.getElementById('solBoxBasic').classList.remove('visible');
-  document.getElementById('solBoxPro').classList.remove('visible');
-  document.getElementById('verifyBtnBasic').style.display='none';
-  document.getElementById('verifyBtnPro').style.display='none';
 }
 
-// SOL BOX
-let solBoxOpenBasic=false,solBoxOpenPro=false;
-function toggleSolBox(tier){
-  if(tier==='basic'){
-    const box=document.getElementById('solBoxBasic');
-    const label=document.getElementById('buyBtnLabelBasic');
-    const verBtn=document.getElementById('verifyBtnBasic');
-    if(!solBoxOpenBasic){
-      solBoxOpenBasic=true;box.classList.add('visible');verBtn.style.display='flex';
-      label.textContent='Payment Details ↑';
-      document.getElementById('buyMainBtnBasic').style.background='var(--blue-d)';
-    } else {
-      solBoxOpenBasic=false;box.classList.remove('visible');verBtn.style.display='none';
-      const p=couponAppliedBasic?'$49.99':'$71';
-      label.textContent='Buy Now — '+p;
-      document.getElementById('buyMainBtnBasic').style.background='';
-    }
+// COUPONS
+const couponApplied={2:false,3:false,4:false,5:false};
+function applyCoupon(i){
+  const val=document.getElementById('couponInput'+i).value.trim().toUpperCase();
+  document.getElementById('couponMsg'+i).classList.remove('show');
+  document.getElementById('couponErr'+i).classList.remove('show');
+  if(val==='WHALE30'){
+    if(couponApplied[i])return;
+    applyDiscount(i);
   } else {
-    const box=document.getElementById('solBoxPro');
-    const label=document.getElementById('buyBtnLabelPro');
-    const verBtn=document.getElementById('verifyBtnPro');
-    if(!solBoxOpenPro){
-      solBoxOpenPro=true;box.classList.add('visible');verBtn.style.display='flex';
-      label.textContent='Payment Details ↑';
-    } else {
-      solBoxOpenPro=false;box.classList.remove('visible');verBtn.style.display='none';
-      const p=couponAppliedPro?'$159':'$227';
-      label.textContent='Buy Pro — '+p;
-    }
+    document.getElementById('couponErr'+i).classList.add('show');
   }
 }
-
-// COUPON
-let couponAppliedBasic=false,couponAppliedPro=false;
-
-function applyCodeBasicSilent(){
-  if(couponAppliedBasic)return;
-  couponAppliedBasic=true;
-  document.getElementById('displayPriceBasic').innerHTML='<sup style="font-size:22px;color:var(--muted);vertical-align:super">$</sup><span id="priceNumBasic" style="font-size:48px;font-weight:900;font-family:JetBrains Mono,monospace;letter-spacing:-2px">49</span><span style="font-size:30px">.99</span>';
-  document.getElementById('origLabelBasic').style.display='inline';
-  document.getElementById('periodLabelBasic').textContent='one-time · was $71 · 30% off ✓';
-  document.getElementById('solAmtBasic').textContent='0.3482 SOL ≈ $49.99';
-  document.getElementById('couponMsgBasic').classList.add('show');
-  document.getElementById('couponErrBasic').classList.remove('show');
-  document.getElementById('couponInputBasic').value='WHALE30';
-  if(!solBoxOpenBasic)document.getElementById('buyBtnLabelBasic').textContent='Buy Now — $49.99';
-  flashPrice('priceNumBasic');
-}
-
-function applyCodeProSilent(){
-  if(couponAppliedPro)return;
-  couponAppliedPro=true;
-  document.getElementById('displayPricePro').innerHTML='<sup style="font-size:22px;color:var(--gold-b);vertical-align:super">$</sup><span id="priceNumPro" style="font-size:48px;font-weight:900;font-family:JetBrains Mono,monospace;letter-spacing:-2px;color:var(--gold-d)">159</span>';
-  document.getElementById('origLabelPro').textContent='$227';
-  document.getElementById('origLabelPro').style.display='inline';
-  document.getElementById('periodLabelPro').textContent='one-time · was $227 · 30% off ✓';
-  document.getElementById('solAmtPro').textContent='1.1119 SOL ≈ $159';
-  document.getElementById('couponMsgPro').classList.add('show');
-  document.getElementById('couponErrPro').classList.remove('show');
-  document.getElementById('couponInputPro').value='WHALE30';
-  if(!solBoxOpenPro)document.getElementById('buyBtnLabelPro').textContent='Buy Pro — $159';
-  flashPrice('priceNumPro');
-}
-
-function flashPrice(id){
+function applyDiscount(i){
+  couponApplied[i]=true;
+  const b=BOTS[i];
+  const disc=b.discPrice;
+  const sol=b.solDisc.toFixed(4);
+  const priceEl=document.getElementById('displayPrice'+i);
+  // color theming per tier
+  const colorMap={
+    2:{sup:'<sup>$</sup>',numStyle:'',numColor:''},
+    3:{sup:`<sup style="font-size:22px;color:var(--gold-b);vertical-align:super">$</sup>`,numStyle:'color:var(--gold-d)',numColor:'var(--gold-d)'},
+    4:{sup:`<sup style="font-size:22px;color:var(--purple-b);vertical-align:super">$</sup>`,numStyle:'color:var(--purple-d)',numColor:'var(--purple-d)'},
+    5:{sup:`<sup style="font-size:22px;color:var(--red-b);vertical-align:super">$</sup>`,numStyle:'color:var(--red-d)',numColor:'var(--red-d)'},
+  };
+  const cm=colorMap[i];
+  priceEl.innerHTML=`${cm.sup}<span id="priceNum${i}" style="font-size:48px;font-weight:900;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;${cm.numStyle}">${disc}</span>`;
+  document.getElementById('origLabel'+i).textContent='$'+b.price;
+  document.getElementById('origLabel'+i).style.display='inline';
+  document.getElementById('periodLabel'+i).textContent=`one-time · was $${b.price} · 30% off ✓`;
+  document.getElementById('solAmt'+i).textContent=`${sol} SOL ≈ $${disc}`;
+  document.getElementById('couponMsg'+i).classList.add('show');
+  document.getElementById('couponInput'+i).value='WHALE30';
+  if(!solBoxOpen[i]){
+    const lbl=document.getElementById('buyBtnLabel'+i);
+    lbl.textContent=lbl.textContent.replace(/\$[\d,]+/,'$'+disc);
+  }
+  // flash green then back to tier color
   setTimeout(()=>{
-    const pn=document.getElementById(id);
-    if(pn){pn.style.transition='color .3s,transform .3s';pn.style.color='var(--green)';pn.style.transform='scale(1.1)';setTimeout(()=>{pn.style.color='';pn.style.transform='scale(1)';},500);}
+    const pn=document.getElementById('priceNum'+i);
+    if(pn){
+      pn.style.transition='color .3s,transform .3s';
+      pn.style.color='var(--green)';pn.style.transform='scale(1.1)';
+      setTimeout(()=>{pn.style.color=cm.numColor||'';pn.style.transform='scale(1)';},500);
+    }
   },50);
-}
-
-function applyCoupon(tier){
-  const inputId='couponInput'+(tier==='basic'?'Basic':'Pro');
-  const val=document.getElementById(inputId).value.trim().toUpperCase();
-  document.getElementById('couponMsg'+(tier==='basic'?'Basic':'Pro')).classList.remove('show');
-  document.getElementById('couponErr'+(tier==='basic'?'Basic':'Pro')).classList.remove('show');
-  if(val==='WHALE30'){tier==='basic'?applyCodeBasicSilent():applyCodeProSilent();}
-  else{document.getElementById('couponErr'+(tier==='basic'?'Basic':'Pro')).classList.add('show');}
 }
 
 function doCopy(btn){navigator.clipboard.writeText('6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e').then(()=>{btn.textContent='✓ Copied';btn.style.background='var(--green-bg)';btn.style.color='var(--green)';setTimeout(()=>{btn.textContent='Copy';btn.style.background='';btn.style.color='';},2000);});}
 function scrollToBuy(){document.getElementById('buy').scrollIntoView({behavior:'smooth',block:'center'});}
-
 function toggleFaq(btn){
-  const a=btn.nextElementSibling;
-  const isOpen=a.classList.contains('open');
+  const a=btn.nextElementSibling;const isOpen=a.classList.contains('open');
   document.querySelectorAll('.fa').forEach(x=>x.classList.remove('open'));
   document.querySelectorAll('.fq').forEach(x=>x.classList.remove('open'));
   if(!isOpen){a.classList.add('open');btn.classList.add('open');}
 }
 
-// ── Real Solana payment verification ──────────────────────────
-const WALLET_ADDR = '6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e';
-const SOL_RPC     = 'https://api.mainnet-beta.solana.com';
-const LAMPORTS    = 1e9;
-// tolerance window: any inbound tx in the last 10 minutes counts
-const WINDOW_MS   = 10 * 60 * 1000;
-
-function setStep(id, state, label){
-  const el=document.getElementById(id);
-  const bd=document.getElementById(id+'b');
-  el.classList.remove('act','done');
-  if(state) el.classList.add(state);
-  if(bd) bd.textContent=label;
+// VERIFY
+const WALLET_ADDR='6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e';
+const SOL_RPC='https://api.mainnet-beta.solana.com';
+const LAMPORTS=1e9;
+const WINDOW_MS=10*60*1000;
+function setStep(id,state,label){
+  const el=document.getElementById(id),bd=document.getElementById(id+'b');
+  el.classList.remove('act','done');if(state)el.classList.add(state);if(bd)bd.textContent=label;
 }
-
-async function rpc(method, params){
-  const res = await fetch(SOL_RPC,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})
-  });
-  const j = await res.json();
-  if(j.error) throw new Error(j.error.message);
-  return j.result;
+async function rpc(method,params){
+  const res=await fetch(SOL_RPC,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})});
+  const j=await res.json();if(j.error)throw new Error(j.error.message);return j.result;
 }
-
 async function verifyOnChain(expectedLamports){
-  // Step 1 — fetch recent signatures for the wallet
   setStep('s1','act','Scanning...');
-  const sigs = await rpc('getSignaturesForAddress',[
-    WALLET_ADDR,
-    {limit:10, commitment:'confirmed'}
-  ]);
+  const sigs=await rpc('getSignaturesForAddress',[WALLET_ADDR,{limit:10,commitment:'confirmed'}]);
   setStep('s1','done','✓ Found');
-
-  // Step 2 — look for a tx that arrived recently
   setStep('s2','act','Checking txs...');
-  const now = Date.now();
-  const recent = sigs.filter(s => s.blockTime && (now - s.blockTime*1000) < WINDOW_MS && !s.err);
-  if(!recent.length) throw new Error('No recent transaction found to this wallet in the last 10 minutes.');
+  const now=Date.now();
+  const recent=sigs.filter(s=>s.blockTime&&(now-s.blockTime*1000)<WINDOW_MS&&!s.err);
+  if(!recent.length)throw new Error('No recent transaction found to this wallet in the last 10 minutes.');
   setStep('s2','done','✓ Tx found');
-
-  // Step 3 — parse each recent tx, look for matching SOL transfer
   setStep('s3','act','Validating amount...');
-  let matched = null;
+  let matched=null;
   for(const sig of recent){
-    const tx = await rpc('getTransaction',[sig.signature,{encoding:'json',commitment:'confirmed',maxSupportedTransactionVersion:0}]);
-    if(!tx) continue;
-    const meta = tx.meta;
-    if(!meta) continue;
-    // find our wallet index in accountKeys
-    const keys = tx.transaction?.message?.accountKeys || tx.transaction?.message?.staticAccountKeys || [];
-    const idx = keys.findIndex(k => (typeof k === 'string' ? k : k.pubkey) === WALLET_ADDR);
-    if(idx === -1) continue;
-    // postBalance - preBalance = net lamports received
-    const received = meta.postBalances[idx] - meta.preBalances[idx];
-    // allow ±5% tolerance (covers small price drift)
-    if(received > 0 && Math.abs(received - expectedLamports) / expectedLamports < 0.05){
-      matched = {sig: sig.signature, received};
-      break;
-    }
+    const tx=await rpc('getTransaction',[sig.signature,{encoding:'json',commitment:'confirmed',maxSupportedTransactionVersion:0}]);
+    if(!tx)continue;const meta=tx.meta;if(!meta)continue;
+    const keys=tx.transaction?.message?.accountKeys||tx.transaction?.message?.staticAccountKeys||[];
+    const idx=keys.findIndex(k=>(typeof k==='string'?k:k.pubkey)===WALLET_ADDR);
+    if(idx===-1)continue;
+    const received=meta.postBalances[idx]-meta.preBalances[idx];
+    if(received>0&&Math.abs(received-expectedLamports)/expectedLamports<0.05){matched={sig:sig.signature,received};break;}
   }
-  if(!matched) throw new Error(`Payment amount didn't match. Expected ~${(expectedLamports/LAMPORTS).toFixed(4)} SOL. Please check the amount and try again.`);
+  if(!matched)throw new Error(`Payment amount didn't match. Expected ~${(expectedLamports/LAMPORTS).toFixed(4)} SOL. Please check the amount and try again.`);
   setStep('s3','done','✓ Amount verified');
-
-  // Step 4 — grant access
   setStep('s4','act','Granting access...');
   await new Promise(r=>setTimeout(r,800));
   setStep('s4','done','✓ Access granted');
-
   return matched;
 }
-
-function startVerify(){
-  // figure out expected amount from currently displayed SOL amount
-  const tier = activeTier;
-  const amtEl = document.getElementById(tier==='basic'?'solAmtBasic':'solAmtPro');
-  const amtText = amtEl ? amtEl.textContent : '';
-  const solMatch = amtText.match(/([\d.]+)\s*SOL/);
-  const expectedSol = solMatch ? parseFloat(solMatch[1]) : 0;
-  const expectedLamports = Math.round(expectedSol * LAMPORTS);
-
+function startVerify(i){
+  const amtText=document.getElementById('solAmt'+i).textContent;
+  const solMatch=amtText.match(/([\d.]+)\s*SOL/);
+  const expectedSol=solMatch?parseFloat(solMatch[1]):0;
+  const expectedLamports=Math.round(expectedSol*LAMPORTS);
   const vm=document.getElementById('verM');
   vm.classList.add('open');
   document.getElementById('vw2').classList.remove('gone');
   document.getElementById('sw2').classList.remove('show');
-  document.getElementById('verErrBox') && (document.getElementById('verErrBox').style.display='none');
+  const errBox=document.getElementById('verErrBox');if(errBox)errBox.style.display='none';
   ['s1','s2','s3','s4'].forEach(id=>setStep(id,null,'Waiting'));
   setStep('s1','act','Starting...');
-
-  verifyOnChain(expectedLamports)
-    .then(match=>{
-      // update block number display
-      const txn = document.querySelector('.txn');
-      if(txn) txn.textContent = 'Tx: ' + match.sig.slice(0,20)+'... · Solana Mainnet';
-      setTimeout(()=>{
-        document.getElementById('vw2').classList.add('gone');
-        document.getElementById('sw2').classList.add('show');
-      },500);
-    })
-    .catch(err=>{
-      ['s1','s2','s3','s4'].forEach(id=>{
-        const el=document.getElementById(id);
-        if(el.classList.contains('act')){
-          el.classList.remove('act');
-          el.style.background='#fdecea';el.style.borderColor='rgba(224,64,64,.2)';el.style.color='#e04040';
-          document.getElementById(id+'b').textContent='✕ Failed';
-        }
-      });
-      let errBox = document.getElementById('verErrBox');
-      if(!errBox){
-        errBox = document.createElement('div');
-        errBox.id='verErrBox';
-        errBox.style.cssText='margin-top:16px;background:#fdecea;border:1.5px solid rgba(224,64,64,.2);border-radius:10px;padding:12px 14px;font-size:12px;color:#c0392b;font-weight:600;line-height:1.5';
-        document.getElementById('vw2').appendChild(errBox);
-      }
-      errBox.style.display='block';
-      errBox.textContent='⚠ ' + err.message;
+  verifyOnChain(expectedLamports).then(match=>{
+    const txn=document.getElementById('txnDisplay');
+    if(txn)txn.textContent='Tx: '+match.sig.slice(0,20)+'... · Solana Mainnet';
+    setTimeout(()=>{document.getElementById('vw2').classList.add('gone');document.getElementById('sw2').classList.add('show');},500);
+  }).catch(err=>{
+    ['s1','s2','s3','s4'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el.classList.contains('act')){el.classList.remove('act');el.style.background='#fdecea';el.style.borderColor='rgba(224,64,64,.2)';el.style.color='#e04040';document.getElementById(id+'b').textContent='✕ Failed';}
     });
+    let errBox=document.getElementById('verErrBox');
+    if(!errBox){errBox=document.createElement('div');errBox.id='verErrBox';errBox.style.cssText='margin-top:16px;background:#fdecea;border:1.5px solid rgba(224,64,64,.2);border-radius:10px;padding:12px 14px;font-size:12px;color:#c0392b;font-weight:600;line-height:1.5';document.getElementById('vw2').appendChild(errBox);}
+    errBox.style.display='block';errBox.textContent='⚠ '+err.message;
+  });
 }
 </script>
 </body>
