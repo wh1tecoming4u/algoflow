@@ -18,7 +18,7 @@ html{scroll-behavior:smooth}
   --red:#dc2626;--red-d:#991b1b;--red-l:#fef2f2;--red-m:#fecaca;--red-b:#f87171;
   --shadow:0 2px 20px rgba(22,82,240,.08);--shadow-lg:0 12px 60px rgba(22,82,240,.15);
 }
-body{font-family:'Instrument Sans',sans-serif;background:var(--white);color:var(--text);cursor:none;overflow-x:hidden}
+body{font-family:'Instrument Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
 
 /* CURSOR */
 #cd{width:10px;height:10px;background:var(--blue);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s,opacity .2s}
@@ -31,10 +31,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:58px;background:rgba(
 .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.4px}
 .logo-ic{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1}
 .nav-links{display:flex;gap:28px}
-.nl{font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;cursor:none;transition:color .15s}
+.nl{font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;cursor:pointer;transition:color .15s}
 .nl:hover{color:var(--blue)}
 .nav-r{display:flex;gap:8px;align-items:center}
-.btn-s{font-size:13px;font-weight:700;color:#fff;background:var(--blue);border:none;padding:8px 20px;border-radius:8px;cursor:none;transition:all .25s;font-family:'Instrument Sans',sans-serif;position:relative;overflow:hidden}
+.btn-s{font-size:13px;font-weight:700;color:#fff;background:var(--blue);border:none;padding:8px 20px;border-radius:8px;cursor:pointer;transition:all .25s;font-family:'Instrument Sans',sans-serif;position:relative;overflow:hidden}
 .btn-s:hover{background:var(--blue-d);box-shadow:0 4px 20px rgba(22,82,240,.3);transform:translateY(-1px)}
 
 /* HERO */
@@ -55,9 +55,9 @@ h1 .hl-green{color:var(--green)}
 .hero-sub{font-size:18px;color:var(--text2);line-height:1.68;max-width:580px;margin:0 auto 40px;animation:fadeUp .8s ease .2s both}
 .hero-sub .hw{font-weight:700;color:var(--text);background:linear-gradient(90deg,rgba(22,82,240,.08),rgba(22,82,240,.04));padding:1px 6px;border-radius:4px;border-bottom:2px solid rgba(22,82,240,.3)}
 .hero-ctas{display:flex;align-items:center;justify-content:center;gap:12px;animation:fadeUp .8s ease .3s both}
-.cta-p{font-size:15px;font-weight:800;color:#fff;background:var(--blue);border:none;padding:16px 38px;border-radius:10px;cursor:none;transition:all .3s;font-family:'Instrument Sans',sans-serif;box-shadow:0 4px 28px rgba(22,82,240,.3);position:relative;overflow:hidden;display:flex;align-items:center;gap:9px;}
+.cta-p{font-size:15px;font-weight:800;color:#fff;background:var(--blue);border:none;padding:16px 38px;border-radius:10px;cursor:pointer;transition:all .3s;font-family:'Instrument Sans',sans-serif;box-shadow:0 4px 28px rgba(22,82,240,.3);position:relative;overflow:hidden;display:flex;align-items:center;gap:9px;}
 .cta-p:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 10px 44px rgba(22,82,240,.4)}
-.cta-s{font-size:14px;font-weight:600;color:var(--text2);background:#fff;border:1.5px solid var(--border);padding:16px 26px;border-radius:10px;cursor:none;transition:all .25s;font-family:'Instrument Sans',sans-serif}
+.cta-s{font-size:14px;font-weight:600;color:var(--text2);background:#fff;border:1.5px solid var(--border);padding:16px 26px;border-radius:10px;cursor:pointer;transition:all .25s;font-family:'Instrument Sans',sans-serif}
 .cta-s:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-l)}
 .proof-strip{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:32px;animation:fadeUp .8s ease .45s both}
 .proof-avatars{display:flex}
@@ -90,7 +90,7 @@ h1 .hl-green{color:var(--green)}
 /* Billing toggle */
 .billing-toggle-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px 0 44px}
 .billing-toggle{display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:3px;gap:3px}
-.bt-btn{font-size:12px;font-weight:700;padding:7px 18px;border-radius:7px;border:none;background:transparent;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s}
+.bt-btn{font-size:12px;font-weight:700;padding:7px 18px;border-radius:7px;border:none;background:transparent;color:var(--text2);cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all .2s}
 .bt-btn.active{background:#fff;color:var(--text);box-shadow:0 2px 8px rgba(22,82,240,.08);border:1px solid var(--border)}
 .annual-save{background:var(--green-bg);color:var(--green);font-size:10px;font-weight:800;padding:4px 10px;border-radius:10px;letter-spacing:.3px}
 
@@ -111,7 +111,7 @@ h1 .hl-green{color:var(--green)}
 .pc-price.purple-p{color:var(--purple-d)}
 .pc-billed{font-size:12px;color:var(--muted);margin-bottom:6px}
 .pc-desc{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:20px}
-.pc-btn{width:100%;font-size:14px;font-weight:800;padding:14px;border-radius:11px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.pc-btn{width:100%;font-size:14px;font-weight:800;padding:14px;border-radius:11px;border:none;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px}
 .pc-btn.outline{background:#fff;color:var(--blue);border:1.5px solid var(--border)}
 .pc-btn.outline:hover{border-color:var(--blue);background:var(--blue-l)}
 .pc-btn.solid-blue{background:var(--blue);color:#fff}
@@ -123,8 +123,8 @@ h1 .hl-green{color:var(--green)}
 .pf{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--text2)}
 .pf-ic{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;flex-shrink:0}
 .pf-ic.yes{background:var(--green-bg);color:var(--green)}
-.pf-ic.yes.blue-ic{background:var(--blue-l);color:var(--blue)}
-.pf-ic.yes.purple-ic{background:var(--purple-l);color:var(--purple)}
+.pf-ic.yes.blue-ic{background:var(--green-bg);color:var(--green)}
+.pf-ic.yes.purple-ic{background:var(--green-bg);color:var(--green)}
 .pf-ic.no{background:var(--border);color:var(--muted);opacity:.5}
 .pf.locked{opacity:.45}
 .pf.locked .pf-ic{background:var(--border);color:var(--muted)}
@@ -147,8 +147,8 @@ h1 .hl-green{color:var(--green)}
 .ft tr:hover td{background:var(--off)}
 .ft-check{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
 .ft-check.y{background:var(--green-bg);color:var(--green)}
-.ft-check.yb{background:var(--blue-l);color:var(--blue)}
-.ft-check.yp{background:var(--purple-l);color:var(--purple)}
+.ft-check.yb{background:var(--green-bg);color:var(--green)}
+.ft-check.yp{background:var(--green-bg);color:var(--green)}
 .ft-check.n{background:var(--border);color:var(--muted);opacity:.5;font-size:9px}
 .ft-group{background:var(--off) !important}
 .ft-group td{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;padding:10px 18px}
@@ -166,13 +166,13 @@ h1 .hl-green{color:var(--green)}
 .al{font-size:9px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
 .ar{display:flex;align-items:stretch;gap:0;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
 .at{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text2);background:#fff;padding:10px 12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:none;outline:none;cursor:text}
-.cb{background:var(--blue-l);color:var(--blue);font-size:11px;font-weight:800;padding:10px 14px;border:none;border-left:1.5px solid var(--border);cursor:none;white-space:nowrap;font-family:'Instrument Sans',sans-serif;transition:all .2s;flex-shrink:0}
+.cb{background:var(--blue-l);color:var(--blue);font-size:11px;font-weight:800;padding:10px 14px;border:none;border-left:1.5px solid var(--border);cursor:pointer;white-space:nowrap;font-family:'Instrument Sans',sans-serif;transition:all .2s;flex-shrink:0}
 .cb:hover{background:var(--blue-m)}
 .amr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
 .aml{font-size:12px;color:var(--muted);font-weight:600}
 .amv{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--blue)}
 .amv.gold{color:var(--gold)}.amv.purple{color:var(--purple)}
-.vbtn{width:100%;background:var(--blue-l);color:var(--blue);font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:1.5px solid rgba(22,82,240,.15);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
+.vbtn{width:100%;background:var(--blue-l);color:var(--blue);font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:1.5px solid rgba(22,82,240,.15);cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
 .vbtn:hover{background:var(--blue-m)}
 .vbtn.purple-vbtn{background:var(--purple-l);color:var(--purple);border-color:rgba(124,58,237,.2)}
 .vbtn.purple-vbtn:hover{background:var(--purple-m)}
@@ -181,7 +181,7 @@ h1 .hl-green{color:var(--green)}
 .coupon-input:focus{border-color:var(--blue);background:#fff}
 .coupon-input::placeholder{color:var(--muted);text-transform:none}
 .coupon-input.purple-input:focus{border-color:var(--purple)}
-.coupon-btn{background:var(--blue-l);color:var(--blue);font-size:12px;font-weight:800;padding:11px 16px;border-radius:9px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s;white-space:nowrap}
+.coupon-btn{background:var(--blue-l);color:var(--blue);font-size:12px;font-weight:800;padding:11px 16px;border-radius:9px;border:none;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all .2s;white-space:nowrap}
 .coupon-btn:hover{background:var(--blue-m)}
 .coupon-btn.purple-btn{background:var(--purple-l);color:var(--purple)}
 .coupon-btn.purple-btn:hover{background:var(--purple-m)}
@@ -190,14 +190,14 @@ h1 .hl-green{color:var(--green)}
 .coupon-err{font-size:11px;color:#e04040;font-weight:700;margin-bottom:8px;display:none}
 .coupon-err.show{display:block}
 /* payment modal overlay */
-.pay-modal-overlay{position:fixed;inset:0;z-index:600;background:rgba(10,13,26,.4);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.pay-modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(10,13,26,.4);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .pay-modal-overlay.open{opacity:1;pointer-events:all}
 .pay-modal{background:#fff;border-radius:20px;max-width:420px;width:93%;border:1px solid var(--border);box-shadow:0 32px 80px rgba(22,82,240,.13);transform:translateY(16px) scale(.97);transition:all .4s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
 .pay-modal-overlay.open .pay-modal{transform:translateY(0) scale(1)}
 .pm-accent{height:3px}
 .pm-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0}
 .pm-title{font-size:16px;font-weight:800;letter-spacing:-.2px}
-.pm-x{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:14px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.pm-x{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s}
 .pm-x:hover{background:var(--off);color:var(--text)}
 .pm-body{padding:16px 20px 22px}
 .pm-plan-row{display:flex;align-items:center;gap:10px;background:var(--off);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:16px}
@@ -226,7 +226,7 @@ section{padding:88px 40px}
 .step-d{font-size:13px;color:var(--text2);line-height:1.65}
 .step-d .kw{color:var(--blue);font-weight:700}
 .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:52px}
-.sig-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;position:relative;transition:all .3s;cursor:none}
+.sig-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;position:relative;transition:all .3s;cursor:pointer}
 .sig-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
 .sig-card.bull::before{background:var(--green)}.sig-card.bear::before{background:#e04040}
 .sig-card:hover{box-shadow:0 6px 28px rgba(22,82,240,.09);transform:translateX(3px)}
@@ -282,7 +282,7 @@ section{padding:88px 40px}
 .pp-row{display:flex;align-items:center;justify-content:space-between}
 .faq-list{max-width:700px;margin:48px auto 0;border:1px solid var(--border);border-radius:16px;overflow:hidden}
 .fi{border-bottom:1px solid var(--border)}.fi:last-child{border-bottom:none}
-.fq{font-size:14px;font-weight:700;padding:18px 22px;cursor:none;display:flex;align-items:center;justify-content:space-between;transition:background .2s;color:var(--text)}
+.fq{font-size:14px;font-weight:700;padding:18px 22px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s;color:var(--text)}
 .fq:hover{background:var(--off)}
 .fq .arr{font-size:16px;color:var(--muted);transition:transform .3s;flex-shrink:0}
 .fq.open .arr{transform:rotate(180deg);color:var(--blue)}
@@ -293,13 +293,13 @@ section{padding:88px 40px}
 .cta-sec::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(255,255,255,.08),transparent 60%);pointer-events:none}
 .cta-sec h2{font-size:clamp(34px,4.5vw,58px);font-weight:800;color:#fff;letter-spacing:-2px;margin-bottom:14px;position:relative;z-index:1}
 .cta-sec p{font-size:17px;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto 36px;line-height:1.65;position:relative;z-index:1}
-.cta-w{font-size:15px;font-weight:800;color:var(--blue);background:#fff;border:none;padding:16px 44px;border-radius:10px;cursor:none;transition:all .25s;font-family:'Instrument Sans',sans-serif;position:relative;z-index:1}
+.cta-w{font-size:15px;font-weight:800;color:var(--blue);background:#fff;border:none;padding:16px 44px;border-radius:10px;cursor:pointer;transition:all .25s;font-family:'Instrument Sans',sans-serif;position:relative;z-index:1}
 .cta-w:hover{transform:translateY(-2px);box-shadow:0 8px 44px rgba(0,0,0,.2)}
 footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;display:flex;align-items:center;justify-content:space-between}
 .fl{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
 .flic{width:27px;height:27px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px}
 .flinks{display:flex;gap:18px}
-.flink{font-size:12px;color:var(--muted);text-decoration:none;cursor:none;transition:color .15s}
+.flink{font-size:12px;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .15s}
 .flink:hover{color:var(--blue)}
 .fn{font-size:11px;color:var(--muted)}
 
@@ -420,7 +420,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
   </div>
 
   <!-- 3 cards -->
-  <div class="pricing-cards reveal">
+  <div class="pricing-cards">
 
     <!-- SIGNAL -->
     <div class="pc">
@@ -479,8 +479,8 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       <div class="pc-divider"></div>
       <div class="pc-feats">
         <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Everything in Edge</div>
-        <div class="pf"><div class="pf-ic yes purple-ic">🤖</div>100% automated betting — zero effort</div>
-        <div class="pf"><div class="pf-ic yes purple-ic">💸</div>Passive income 24/7</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>100% automated betting — zero effort</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Passive income 24/7</div>
         <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Set bankroll limit & risk level</div>
         <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Live P&L dashboard</div>
         <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Cross-market correlation engine</div>
@@ -500,9 +500,9 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       <thead>
         <tr>
           <th style="width:40%">PolyWhale Features</th>
-          <th class="plan-col" style="width:20%">⚡ Signal</th>
-          <th class="plan-col blue-col" style="width:20%">👑 Edge</th>
-          <th class="plan-col purple-col" style="width:20%">🎯 Alpha</th>
+          <th class="plan-col" style="width:20%">Signal</th>
+          <th class="plan-col blue-col" style="width:20%">Edge</th>
+          <th class="plan-col purple-col" style="width:20%">Alpha</th>
         </tr>
       </thead>
       <tbody>
@@ -621,12 +621,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
           <div class="pm-plan-price" id="pmPriceLine">$9.99/mo · cancel anytime</div>
         </div>
       </div>
-      <div class="coupon-row">
-        <input class="coupon-input" id="modalCouponInput" placeholder="Discount code?" type="text">
-        <button class="coupon-btn" id="modalCouponBtn" onclick="applyModalCoupon()">Apply</button>
-      </div>
-      <div class="coupon-msg" id="modalCouponMsg">✓ WHALE30 applied — 30% off!</div>
-      <div class="coupon-err" id="modalCouponErr">✕ Invalid code. Try WHALE30</div>
       <div class="sol-box visible" id="modalSolBox" style="border-color:rgba(22,82,240,.2)">
         <div class="sh">
           <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
@@ -789,7 +783,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
         <div class="vstep" id="s3"><span class="vi">🔐</span><span class="vtt">Validating wallet signature</span><span class="vbadge" id="s3b">Waiting</span></div>
         <div class="vstep" id="s4"><span class="vi">🚀</span><span class="vtt">Granting Discord access</span><span class="vbadge" id="s4b">Waiting</span></div>
       </div>
-      <button onclick="document.getElementById('verM').classList.remove('open')" style="margin-top:16px;width:100%;background:var(--off);border:1px solid var(--border);color:var(--text2);font-size:13px;font-weight:700;padding:11px;border-radius:9px;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s">Close</button>
+      <button onclick="document.getElementById('verM').classList.remove('open')" style="margin-top:16px;width:100%;background:var(--off);border:1px solid var(--border);color:var(--text2);font-size:13px;font-weight:700;padding:11px;border-radius:9px;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all .2s">Close</button>
     </div>
     <div class="sw2" id="sw2">
       <div class="sico">✓</div>
@@ -858,7 +852,7 @@ const BILLING={
   annual:{
     2:{price:'7.99', sol:0.0559, billed:'$95.88 billed annually · save 20%'},
     3:{price:'39.99',sol:0.2797, billed:'$479.88 billed annually · save 20%'},
-    4:{price:'399.99',sol:2.7993,billed:'$4,799.88 billed annually · save 20%'},
+    4:{price:'199.00',sol:1.3923,billed:'$2,388/yr · save 60% vs monthly'},
   }
 };
 
@@ -903,14 +897,8 @@ function openPayModal(planId){
   document.getElementById('pmPriceLine').textContent='$'+billing.price+suffix;
   document.getElementById('modalSolAmt').textContent=billing.sol.toFixed(4)+' SOL ≈ $'+billing.price;
   document.getElementById('modalSolBox').style.borderColor=planId===4?'rgba(124,58,237,.2)':'rgba(22,82,240,.2)';
-  document.getElementById('amv') && (document.getElementById('amv').className='amv '+(planId===4?'purple':''));
   const amv=document.getElementById('modalSolAmt');
   amv.style.color=planId===4?'var(--purple)':'var(--blue)';
-  document.getElementById('modalCouponInput').value='';
-  document.getElementById('modalCouponMsg').classList.remove('show');
-  document.getElementById('modalCouponErr').classList.remove('show');
-  document.getElementById('modalCouponInput').className='coupon-input'+(planId===4?' purple-input':'');
-  document.getElementById('modalCouponBtn').className='coupon-btn'+(planId===4?' purple-btn':'');
   const payBtn=document.getElementById('modalPayBtn');
   payBtn.className='pc-btn '+(planId===4?'solid-purple':'solid-blue');
   payBtn.style.width='100%';payBtn.style.marginBottom='10px';
@@ -918,22 +906,6 @@ function openPayModal(planId){
 }
 function closePayModal(){document.getElementById('payModal').classList.remove('open');}
 
-function applyModalCoupon(){
-  const val=document.getElementById('modalCouponInput').value.trim().toUpperCase();
-  document.getElementById('modalCouponMsg').classList.remove('show');
-  document.getElementById('modalCouponErr').classList.remove('show');
-  if(val==='WHALE30'){
-    modalCouponApplied=true;
-    const b=BILLING[currentBilling][activeModalPlan];
-    const disc=Math.round(parseFloat(b.price)*0.7*100)/100;
-    const solDisc=(b.sol*0.7).toFixed(4);
-    document.getElementById('pmPriceLine').textContent='$'+disc.toFixed(2)+'/mo · 30% off! (was $'+b.price+')';
-    document.getElementById('modalSolAmt').textContent=solDisc+' SOL ≈ $'+disc.toFixed(2);
-    document.getElementById('modalCouponMsg').classList.add('show');
-  } else {
-    document.getElementById('modalCouponErr').classList.add('show');
-  }
-}
 
 function doCopy(btn){navigator.clipboard.writeText('6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e').then(()=>{btn.textContent='✓ Copied';btn.style.background='var(--green-bg)';btn.style.color='var(--green)';setTimeout(()=>{btn.textContent='Copy';btn.style.background='';btn.style.color='';},2000);});}
 function scrollToBuy(){document.getElementById('buy').scrollIntoView({behavior:'smooth',block:'start'});}
