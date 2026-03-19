@@ -433,12 +433,11 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       </div>
       <div class="pc-divider"></div>
       <div class="pc-feats">
-        <div class="pf"><div class="pf-ic yes">✓</div>Up to 3 whale signals/day</div>
+        <div class="pf"><div class="pf-ic yes">✓</div>Up to 5 whale signals/day</div>
         <div class="pf"><div class="pf-ic yes">✓</div>AI confidence score (0–100)</div>
         <div class="pf"><div class="pf-ic yes">✓</div>Discord signal feed</div>
         <div class="pf"><div class="pf-ic yes">✓</div>Win/loss tracker</div>
         <div class="pf locked"><div class="pf-ic no">✕</div>Order flow alerts</div>
-        <div class="pf locked"><div class="pf-ic no">✕</div>Kelly position sizing</div>
         <div class="pf locked"><div class="pf-ic no">✕</div>SMS + email alerts</div>
         <div class="pf locked"><div class="pf-ic no">✕</div>Auto-betting</div>
       </div>
@@ -451,19 +450,18 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
         <div class="pc-name" style="color:var(--blue)">👑 Edge</div>
         <div class="pc-price blue" id="pc-price-3"><sup>$</sup><span id="pc-num-3">49.99</span><span class="mo">/mo</span></div>
         <div class="pc-billed" id="pc-billed-3">Billed monthly</div>
-        <div class="pc-desc">Full whale intelligence — unlimited real-time alerts, order flow, Kelly sizing, SMS push, and tier-1 $50K+ whales.</div>
+        <div class="pc-desc">Full whale intelligence + limited auto-betting. Real-time alerts, order flow, SMS push, and tier-1 $50K+ whales.</div>
         <button class="pc-btn solid-blue" onclick="openPayModal(3)">Get Edge →</button>
       </div>
       <div class="pc-divider"></div>
       <div class="pc-feats">
-        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Unlimited real-time whale alerts</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Up to 25 whale signals/day</div>
         <div class="pf"><div class="pf-ic yes blue-ic">✓</div>AI confidence score (0–100)</div>
         <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Discord + SMS + email alerts</div>
         <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Order flow & drift alerts</div>
-        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Kelly position sizing</div>
         <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Tier-1 $50K+ whale alerts</div>
         <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Win/loss tracker</div>
-        <div class="pf locked"><div class="pf-ic no">✕</div>Auto-betting</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Auto-betting <span style="font-size:11px;font-weight:700;background:var(--blue-l);color:var(--blue);padding:2px 7px;border-radius:5px;margin-left:4px">5 trades/day</span></div>
       </div>
     </div>
 
@@ -508,64 +506,81 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
       <tbody>
         <tr class="ft-group"><td colspan="4">Signals</td></tr>
         <tr>
-          <td>Whale wallet alerts</td>
-          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--muted)">3/day</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
+          <td>Whale signals per day</td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">5/day</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">25/day</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">50+/day</span></td>
         </tr>
         <tr>
           <td>AI confidence score (0–100)</td>
           <td class="val-col"><span class="ft-check y">✓</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
         </tr>
         <tr>
           <td>Order flow & probability drift</td>
           <td class="val-col"><span class="ft-check n">✕</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
         </tr>
         <tr>
           <td>Tier-1 $50K+ whale alerts</td>
           <td class="val-col"><span class="ft-check n">✕</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
-        </tr>
-        <tr class="ft-group"><td colspan="4">Position Sizing</td></tr>
-        <tr>
-          <td>Kelly Criterion sizing guide</td>
-          <td class="val-col"><span class="ft-check n">✕</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
-        </tr>
-        <tr>
-          <td>Win/loss performance tracker</td>
           <td class="val-col"><span class="ft-check y">✓</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
         </tr>
         <tr class="ft-group"><td colspan="4">Alerts & Delivery</td></tr>
         <tr>
           <td>Discord signal feed</td>
           <td class="val-col"><span class="ft-check y">✓</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+        </tr>
+        <tr>
+          <td>Win/loss performance tracker</td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
         </tr>
         <tr>
           <td>SMS + email push alerts</td>
           <td class="val-col"><span class="ft-check n">✕</span></td>
-          <td class="val-col"><span class="ft-check yb">✓</span></td>
-          <td class="val-col"><span class="ft-check yp">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
         </tr>
         <tr>
           <td>Alert latency</td>
-          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--muted)">&lt;60s</span></td>
-          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--blue)">&lt;60s</span></td>
-          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--purple)">&lt;15s</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">&lt;60s</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">&lt;60s</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">&lt;15s</span></td>
         </tr>
         <tr class="ft-group"><td colspan="4">Auto-Betting</td></tr>
         <tr>
-          <td>Auto-trades on Polymarket for you 24/7</td>
+          <td>Auto-trades on Polymarket for you</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">5/day</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--text2)">Unlimited</span></td>
+        </tr>
+        <tr>
+          <td>Bankroll limit & risk controls</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+        </tr>
+        <tr>
+          <td>Live P&L dashboard</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+        </tr>
+        <tr>
+          <td>Cross-market correlation engine</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+        </tr>
+        <tr>
+          <td>Passive income 24/7</td>
           <td class="val-col"><span class="ft-check n">✕</span></td>
           <td class="val-col"><span class="ft-check n">✕</span></td>
           <td class="val-col"><span class="ft-check y">✓</span></td>
