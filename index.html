@@ -80,73 +80,79 @@ h1 .hl-green{color:var(--green)}
 .tm{color:rgba(255,255,255,.55)}.tv{color:#fff;font-weight:600}.tup{color:#7fffd4}.tdn{color:#ffb3b3}.tsep{color:rgba(255,255,255,.18)}
 @keyframes ts{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* BUY / BOTS SECTION */
-.buy-section{padding:80px 40px;background:linear-gradient(180deg,var(--off) 0%,#fff 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
-.buy-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:300px;background:radial-gradient(ellipse,rgba(22,82,240,.06),transparent 70%);pointer-events:none}
+/* ===== NEW PRICING SECTION ===== */
+.pricing-section{padding:88px 40px;background:linear-gradient(180deg,var(--off) 0%,#fff 100%);position:relative;overflow:hidden}
+.pricing-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:300px;background:radial-gradient(ellipse,rgba(22,82,240,.06),transparent 70%);pointer-events:none}
+.pricing-head{text-align:center;margin-bottom:16px}
+.pricing-head h2{font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-1.5px;margin-bottom:10px}
+.pricing-head p{font-size:15px;color:var(--text2);max-width:500px;margin:0 auto}
 
-/* Bot selector tabs */
-.tier-switch-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:44px;flex-wrap:wrap;gap:8px}
-.tier-switch{display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap}
-.tsw-btn{font-size:13px;font-weight:700;padding:9px 18px;border-radius:9px;border:none;background:transparent;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;gap:7px}
-.tsw-btn.active{background:#fff;color:var(--text);box-shadow:0 2px 10px rgba(22,82,240,.08);border:1px solid var(--border)}
-.tsw-btn.pro.active{color:var(--gold-d);border-color:rgba(200,134,10,.2);box-shadow:0 2px 12px rgba(200,134,10,.1)}
-.tsw-btn.pro{color:var(--gold-d);background:linear-gradient(135deg,rgba(254,249,238,.7),rgba(253,239,198,.5));border:1.5px solid rgba(200,134,10,.22);box-shadow:0 0 0 0 rgba(245,200,66,.5);animation:proGlowPulse 2.6s ease-in-out infinite;position:relative;}
-@keyframes proGlowPulse{0%,100%{box-shadow:0 0 6px 1px rgba(245,200,66,.25)}50%{box-shadow:0 0 14px 3px rgba(245,200,66,.45),0 0 28px 6px rgba(200,134,10,.12)}}
-.tsw-btn.pro.active{animation:none;background:linear-gradient(135deg,var(--gold-l),var(--gold-m));box-shadow:0 2px 16px rgba(200,134,10,.2);border-color:rgba(200,134,10,.3);}
-/* Alpha tab — purple */
-.tsw-btn.alpha{color:#5b21b6;background:linear-gradient(135deg,rgba(245,243,255,.7),rgba(237,233,254,.5));border:1.5px solid rgba(124,58,237,.22);animation:alphaGlowPulse 2.6s ease-in-out infinite}
-@keyframes alphaGlowPulse{0%,100%{box-shadow:0 0 6px 1px rgba(124,58,237,.2)}50%{box-shadow:0 0 14px 3px rgba(124,58,237,.38),0 0 28px 6px rgba(124,58,237,.1)}}
-.tsw-btn.alpha.active{animation:none;background:linear-gradient(135deg,var(--purple-l),var(--purple-m));box-shadow:0 2px 16px rgba(124,58,237,.2);border-color:rgba(124,58,237,.3);color:var(--purple-d)}
-/* Titan tab — red */
-.tsw-btn.titan{color:#991b1b;background:linear-gradient(135deg,rgba(254,242,242,.7),rgba(254,202,202,.5));border:1.5px solid rgba(220,38,38,.22);animation:titanGlowPulse 2.6s ease-in-out infinite}
-@keyframes titanGlowPulse{0%,100%{box-shadow:0 0 6px 1px rgba(220,38,38,.2)}50%{box-shadow:0 0 14px 3px rgba(220,38,38,.38),0 0 28px 6px rgba(220,38,38,.1)}}
-.tsw-btn.titan.active{animation:none;background:linear-gradient(135deg,var(--red-l),var(--red-m));box-shadow:0 2px 16px rgba(220,38,38,.2);border-color:rgba(220,38,38,.3);color:var(--red-d)}
+/* Billing toggle */
+.billing-toggle-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px 0 44px}
+.billing-toggle{display:flex;background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:3px;gap:3px}
+.bt-btn{font-size:12px;font-weight:700;padding:7px 18px;border-radius:7px;border:none;background:transparent;color:var(--text2);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s}
+.bt-btn.active{background:#fff;color:var(--text);box-shadow:0 2px 8px rgba(22,82,240,.08);border:1px solid var(--border)}
+.annual-save{background:var(--green-bg);color:var(--green);font-size:10px;font-weight:800;padding:4px 10px;border-radius:10px;letter-spacing:.3px}
 
-.buy-cards-row{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:start;max-width:980px;margin:0 auto}
-.buy-left{}
-.buy-eyebrow{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:2px;text-transform:uppercase;background:var(--blue-l);padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:16px}
-.buy-eyebrow.pro{color:var(--gold);background:var(--gold-l)}
-.buy-title{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1.2px;line-height:1.1;margin-bottom:12px}
-.buy-title .hw{background:linear-gradient(135deg,var(--blue),#4a86ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.buy-title .hw-gold{background:linear-gradient(135deg,var(--gold),var(--gold-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.buy-sub{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:24px}
-.buy-feats{display:flex;flex-direction:column;gap:10px}
-.bf{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
-.bf-ic{width:22px;height:22px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);font-weight:900;flex-shrink:0}
-.bf-ic.gold{background:var(--gold-l);color:var(--gold)}
-.buy-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;box-shadow:0 8px 48px rgba(22,82,240,.1);overflow:hidden;position:relative;}
-.buy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#4a86ff,var(--green))}
-.buy-card.pro-card{border-color:rgba(200,134,10,.25);box-shadow:0 8px 48px rgba(200,134,10,.15)}
-.buy-card.pro-card::before{background:linear-gradient(90deg,var(--gold-d),var(--gold-b),var(--gold))}
-.buy-card-head{padding:24px 24px 20px;border-bottom:1px solid var(--border)}
-.bch-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.bch-name{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-.bch-badge{background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
-.bch-badge.pro{background:linear-gradient(135deg,var(--gold),var(--gold-b));color:#fff}
-.bch-price{font-size:48px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--text);line-height:1;letter-spacing:-2px}
-.bch-price sup{font-size:22px;color:var(--muted);vertical-align:super;letter-spacing:0}
-.bch-price.pro-price{color:var(--gold-d)}
-.bch-price-orig{font-size:14px;color:var(--muted);text-decoration:line-through;margin-left:6px;font-family:'JetBrains Mono',monospace}
-.bch-period{font-size:13px;color:var(--muted);margin-top:4px}
-.buy-card-body{padding:20px 24px 24px}
-.card-perks{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
-.cp{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--text2)}
-.cp-check{width:18px;height:18px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--green);font-weight:900;flex-shrink:0}
-.cp-check.gold{background:var(--gold-l);color:var(--gold)}
-.cp.highlight{color:var(--text);font-weight:700}
-.coupon-row{display:flex;gap:8px;margin-bottom:18px}
-.coupon-input{flex:1;font-family:'Instrument Sans',sans-serif;font-size:13px;background:var(--off);border:1.5px solid var(--border);padding:11px 14px;border-radius:9px;outline:none;color:var(--text);transition:border-color .2s;text-transform:uppercase;}
-.coupon-input:focus{border-color:var(--blue);background:#fff}
-.coupon-input::placeholder{color:var(--muted);text-transform:none}
-.coupon-btn{background:var(--blue-l);color:var(--blue);font-size:12px;font-weight:800;padding:11px 16px;border-radius:9px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s;white-space:nowrap}
-.coupon-btn:hover{background:var(--blue-m)}
-.coupon-input.pro-input:focus{border-color:var(--gold)}
-.coupon-btn.pro-btn{background:var(--gold-l);color:var(--gold)}
-.coupon-btn.pro-btn:hover{background:var(--gold-m)}
-.coupon-msg{font-size:11px;color:var(--green);font-weight:700;margin-top:-10px;margin-bottom:12px;display:none}
-.coupon-msg.show{display:block}
-.coupon-err{font-size:11px;color:#e04040;font-weight:700;margin-top:-10px;margin-bottom:12px;display:none}
-.coupon-err.show{display:block}
+/* 3-column cards */
+.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1060px;margin:0 auto 72px}
+.pc{background:#fff;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;position:relative;transition:all .3s}
+.pc:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.pc.featured{border-color:var(--blue);box-shadow:0 0 0 3px rgba(22,82,240,.1),0 12px 48px rgba(22,82,240,.15);transform:translateY(-6px)}
+.pc.featured:hover{transform:translateY(-10px)}
+.pc-popular{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:10px;font-weight:800;padding:4px 16px;border-radius:0 0 10px 10px;letter-spacing:.5px;white-space:nowrap}
+.pc-popular.purple{background:linear-gradient(135deg,var(--purple-d),var(--purple))}
+.pc-top{padding:28px 24px 22px}
+.pc-name{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.pc-price{font-family:'JetBrains Mono',monospace;font-size:52px;font-weight:700;line-height:1;letter-spacing:-2px;color:var(--text);margin-bottom:4px}
+.pc-price sup{font-size:22px;color:var(--muted);vertical-align:super;letter-spacing:0;font-weight:600}
+.pc-price .mo{font-size:18px;color:var(--muted);font-weight:500;letter-spacing:0}
+.pc-price.blue{color:var(--blue)}
+.pc-price.purple-p{color:var(--purple-d)}
+.pc-billed{font-size:12px;color:var(--muted);margin-bottom:6px}
+.pc-desc{font-size:13px;color:var(--text2);line-height:1.55;margin-bottom:20px}
+.pc-btn{width:100%;font-size:14px;font-weight:800;padding:14px;border-radius:11px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.pc-btn.outline{background:#fff;color:var(--blue);border:1.5px solid var(--border)}
+.pc-btn.outline:hover{border-color:var(--blue);background:var(--blue-l)}
+.pc-btn.solid-blue{background:var(--blue);color:#fff}
+.pc-btn.solid-blue:hover{background:var(--blue-d);box-shadow:0 6px 24px rgba(22,82,240,.35);transform:translateY(-1px)}
+.pc-btn.solid-purple{background:linear-gradient(135deg,var(--purple-d),var(--purple));color:#fff}
+.pc-btn.solid-purple:hover{box-shadow:0 6px 24px rgba(124,58,237,.35);transform:translateY(-1px)}
+.pc-divider{height:1px;background:var(--border);margin:0}
+.pc-feats{padding:20px 24px 24px;display:flex;flex-direction:column;gap:10px}
+.pf{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--text2)}
+.pf-ic{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;flex-shrink:0}
+.pf-ic.yes{background:var(--green-bg);color:var(--green)}
+.pf-ic.yes.blue-ic{background:var(--blue-l);color:var(--blue)}
+.pf-ic.yes.purple-ic{background:var(--purple-l);color:var(--purple)}
+.pf-ic.no{background:var(--border);color:var(--muted);opacity:.5}
+.pf.locked{opacity:.45}
+.pf.locked .pf-ic{background:var(--border);color:var(--muted)}
+.pf-auto-badge{background:linear-gradient(135deg,var(--purple-d),var(--purple));color:#fff;font-size:8px;font-weight:800;padding:2px 6px;border-radius:5px;margin-left:4px;letter-spacing:.3px}
+
+/* Feature comparison table */
+.feat-table-section{max-width:1060px;margin:0 auto;padding:0 0 20px}
+.feat-table-head{margin-bottom:24px}
+.feat-table-head h3{font-size:24px;font-weight:800;letter-spacing:-.5px}
+.ft{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.ft th,.ft td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--border);font-size:13px}
+.ft thead{background:var(--off)}
+.ft th{font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.ft th.plan-col{text-align:center;font-size:12px;letter-spacing:.5px}
+.ft th.plan-col.blue-col{color:var(--blue)}
+.ft th.plan-col.purple-col{color:var(--purple)}
+.ft td{color:var(--text2);font-weight:600}
+.ft td.val-col{text-align:center}
+.ft tr:last-child td{border-bottom:none}
+.ft tr:hover td{background:var(--off)}
+.ft-check{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+.ft-check.y{background:var(--green-bg);color:var(--green)}
+.ft-check.yb{background:var(--blue-l);color:var(--blue)}
+.ft-check.yp{background:var(--purple-l);color:var(--purple)}
+.ft-check.n{background:var(--border);color:var(--muted);opacity:.5;font-size:9px}
+.ft-group{background:var(--off) !important}
+.ft-group td{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;padding:10px 18px}
+/* Sol payment box */
 .sol-box{background:#fff;border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:14px;display:none;box-shadow:0 4px 20px rgba(22,82,240,.06)}
 .sol-box.visible{display:block;animation:solReveal .35s ease both}
 @keyframes solReveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
@@ -165,57 +171,40 @@ h1 .hl-green{color:var(--green)}
 .amr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
 .aml{font-size:12px;color:var(--muted);font-weight:600}
 .amv{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:var(--blue)}
-.amv.gold{color:var(--gold)}
+.amv.gold{color:var(--gold)}.amv.purple{color:var(--purple)}
 .vbtn{width:100%;background:var(--blue-l);color:var(--blue);font-size:13px;font-weight:800;padding:13px;border-radius:10px;border:1.5px solid rgba(22,82,240,.15);cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
-.vbtn:hover{background:var(--blue-m);border-color:rgba(22,82,240,.3)}
-.vbtn.pro-vbtn{background:var(--gold-l);color:var(--gold);border-color:rgba(200,134,10,.2)}
-.vbtn.pro-vbtn:hover{background:var(--gold-m)}
-.buy-btn-main{width:100%;background:var(--blue);color:#fff;font-size:15px;font-weight:800;padding:16px;border-radius:11px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:9px;position:relative;overflow:hidden;margin-bottom:10px;}
-.buy-btn-main:hover{background:var(--blue-d);box-shadow:0 6px 28px rgba(22,82,240,.35);transform:translateY(-1px)}
-.buy-btn-main.pro-btn-main{background:linear-gradient(135deg,var(--gold-d),var(--gold))}
-.buy-btn-main.pro-btn-main:hover{background:linear-gradient(135deg,#8a5a03,var(--gold-d));box-shadow:0 6px 28px rgba(200,134,10,.4)}
-/* AUTO badge on tabs */
-.tsw-auto-label{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;background:linear-gradient(135deg,#7c3aed,#dc2626);color:#fff;padding:2px 7px;border-radius:10px;letter-spacing:.6px;text-transform:uppercase;margin-left:2px;vertical-align:middle;animation:autoPulse 2s ease-in-out infinite}
-@keyframes autoPulse{0%,100%{opacity:1}50%{opacity:.7}}
-.tier-switch-divider{width:1px;background:var(--border);margin:4px 2px;align-self:stretch}
-.buy-card.purple-card{border-color:rgba(124,58,237,.25);box-shadow:0 8px 48px rgba(124,58,237,.12)}
-.buy-card.purple-card::before{background:linear-gradient(90deg,var(--purple-d),var(--purple-b),var(--purple))}
-.bch-price.purple-price{color:var(--purple-d)}
-.buy-btn-main.purple-btn-main{background:linear-gradient(135deg,var(--purple-d),var(--purple))}
-.buy-btn-main.purple-btn-main:hover{background:linear-gradient(135deg,#4c1d95,var(--purple-d));box-shadow:0 6px 28px rgba(124,58,237,.4)}
-.coupon-input.purple-input:focus{border-color:var(--purple)}
-.coupon-btn.purple-btn{background:var(--purple-l);color:var(--purple)}
-.coupon-btn.purple-btn:hover{background:var(--purple-m)}
+.vbtn:hover{background:var(--blue-m)}
 .vbtn.purple-vbtn{background:var(--purple-l);color:var(--purple);border-color:rgba(124,58,237,.2)}
 .vbtn.purple-vbtn:hover{background:var(--purple-m)}
-.amv.purple{color:var(--purple)}
-.buy-eyebrow.purple{color:var(--purple);background:var(--purple-l)}
-.cp-check.purple{background:var(--purple-l);color:var(--purple)}
-.bf-ic.purple{background:var(--purple-l);color:var(--purple)}
-.bch-badge.purple{background:linear-gradient(135deg,var(--purple),var(--purple-b));color:#fff}
-/* RED (Titan) */
-.buy-card.red-card{border-color:rgba(220,38,38,.25);box-shadow:0 8px 48px rgba(220,38,38,.12)}
-.buy-card.red-card::before{background:linear-gradient(90deg,var(--red-d),var(--red-b),var(--red))}
-.bch-price.red-price{color:var(--red-d)}
-.buy-btn-main.red-btn-main{background:linear-gradient(135deg,var(--red-d),var(--red))}
-.buy-btn-main.red-btn-main:hover{background:linear-gradient(135deg,#7f1d1d,var(--red-d));box-shadow:0 6px 28px rgba(220,38,38,.4)}
-.coupon-input.red-input:focus{border-color:var(--red)}
-.coupon-btn.red-btn{background:var(--red-l);color:var(--red)}
-.coupon-btn.red-btn:hover{background:var(--red-m)}
-.vbtn.red-vbtn{background:var(--red-l);color:var(--red);border-color:rgba(220,38,38,.2)}
-.vbtn.red-vbtn:hover{background:var(--red-m)}
-.amv.red{color:var(--red)}
-.buy-eyebrow.red{color:var(--red);background:var(--red-l)}
-.cp-check.red{background:var(--red-l);color:var(--red)}
-.bf-ic.red{background:var(--red-l);color:var(--red)}
-.bch-badge.red{background:linear-gradient(135deg,var(--red-d),var(--red));color:#fff}
-.pro-vs-basic{display:flex;gap:8px;margin-bottom:18px}
-.pvb-item{flex:1;background:var(--off);border:1px solid var(--border);border-radius:9px;padding:10px 12px;text-align:center}
-.pvb-item.active{background:var(--gold-l);border-color:rgba(200,134,10,.2)}
-.pvb-label{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
-.pvb-item.active .pvb-label{color:var(--gold)}
-.pvb-val{font-size:13px;font-weight:800;color:var(--text2)}
-.pvb-item.active .pvb-val{color:var(--gold-d)}
+.coupon-row{display:flex;gap:8px;margin:0 0 10px}
+.coupon-input{flex:1;font-family:'Instrument Sans',sans-serif;font-size:13px;background:var(--off);border:1.5px solid var(--border);padding:11px 14px;border-radius:9px;outline:none;color:var(--text);transition:border-color .2s;text-transform:uppercase}
+.coupon-input:focus{border-color:var(--blue);background:#fff}
+.coupon-input::placeholder{color:var(--muted);text-transform:none}
+.coupon-input.purple-input:focus{border-color:var(--purple)}
+.coupon-btn{background:var(--blue-l);color:var(--blue);font-size:12px;font-weight:800;padding:11px 16px;border-radius:9px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .2s;white-space:nowrap}
+.coupon-btn:hover{background:var(--blue-m)}
+.coupon-btn.purple-btn{background:var(--purple-l);color:var(--purple)}
+.coupon-btn.purple-btn:hover{background:var(--purple-m)}
+.coupon-msg{font-size:11px;color:var(--green);font-weight:700;margin-bottom:8px;display:none}
+.coupon-msg.show{display:block}
+.coupon-err{font-size:11px;color:#e04040;font-weight:700;margin-bottom:8px;display:none}
+.coupon-err.show{display:block}
+/* payment modal overlay */
+.pay-modal-overlay{position:fixed;inset:0;z-index:600;background:rgba(10,13,26,.4);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.pay-modal-overlay.open{opacity:1;pointer-events:all}
+.pay-modal{background:#fff;border-radius:20px;max-width:420px;width:93%;border:1px solid var(--border);box-shadow:0 32px 80px rgba(22,82,240,.13);transform:translateY(16px) scale(.97);transition:all .4s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+.pay-modal-overlay.open .pay-modal{transform:translateY(0) scale(1)}
+.pm-accent{height:3px}
+.pm-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0}
+.pm-title{font-size:16px;font-weight:800;letter-spacing:-.2px}
+.pm-x{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:14px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.pm-x:hover{background:var(--off);color:var(--text)}
+.pm-body{padding:16px 20px 22px}
+.pm-plan-row{display:flex;align-items:center;gap:10px;background:var(--off);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:16px}
+.pm-plan-emoji{font-size:24px}
+.pm-plan-name{font-size:14px;font-weight:800}
+.pm-plan-price{font-size:12px;color:var(--text2)}
+@media(max-width:900px){.pricing-cards{grid-template-columns:1fr}.feat-table-section{overflow-x:auto}}
 
 /* SECTION SHARED */
 section{padding:88px 40px}
@@ -314,43 +303,10 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 .flink:hover{color:var(--blue)}
 .fn{font-size:11px;color:var(--muted)}
 
-/* POPUP */
-.popup-overlay{position:fixed;inset:0;z-index:800;background:rgba(10,13,26,.4);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;pointer-events:none}
-.popup-overlay.open{opacity:1;pointer-events:all}
-.popup{background:#fff;border-radius:22px;max-width:360px;width:92%;border:1px solid var(--border);box-shadow:0 32px 80px rgba(22,82,240,.13),0 4px 20px rgba(0,0,0,.07);transform:translateY(20px) scale(.96);transition:all .5s cubic-bezier(.34,1.56,.64,1);overflow:hidden;}
-.popup-overlay.open .popup{transform:translateY(0) scale(1)}
-.popup-stripe{height:4px;background:linear-gradient(90deg,var(--blue) 0%,#4a86ff 50%,var(--green) 100%)}
-.popup-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 0}
-.popup-tag{font-size:11px;font-weight:700;color:var(--text2);display:flex;align-items:center;gap:6px}
-.popup-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite}
-.popup-x{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:14px;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .18s}
-.popup-x:hover{background:var(--off);color:var(--text)}
-.popup-body{padding:16px 18px 22px}
-.popup-headline{font-size:22px;font-weight:800;letter-spacing:-.6px;line-height:1.2;margin-bottom:4px}
-.popup-headline em{font-style:normal;color:var(--blue)}
-.popup-desc{font-size:13px;color:var(--muted);margin-bottom:20px}
-.pcb-wrap{border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px;}
-.pcb-topbar{background:var(--off);border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;justify-content:space-between;}
-.pcb-topbar-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
-.pcb-whale{font-size:14px;animation:wBob 2.4s ease-in-out infinite}
-@keyframes wBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-.pcb-main{padding:18px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;}
-.pcb-code{font-family:'Instrument Sans',sans-serif;font-size:34px;font-weight:800;letter-spacing:-.5px;color:var(--text);line-height:1;}
-.pcb-code .pcb-num{color:var(--blue)}
-.pcb-copy{flex-shrink:0;background:var(--blue-l);color:var(--blue);border:1.5px solid rgba(22,82,240,.15);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:800;font-family:'Instrument Sans',sans-serif;cursor:none;transition:all .2s;display:flex;align-items:center;gap:6px;}
-.pcb-copy:hover{background:var(--blue-m);border-color:rgba(22,82,240,.3);transform:translateY(-1px)}
-.pcb-copy.ok{background:var(--green-bg);color:var(--green);border-color:rgba(13,171,107,.2)}
-.pcb-copy svg{width:13px;height:13px;transition:transform .3s}
-.pcb-copy.ok svg{transform:scale(1.2)}
-.pcb-footer{background:var(--off);border-top:1px solid var(--border);padding:8px 14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;}
-.pcb-footer-dot{width:4px;height:4px;border-radius:50%;background:var(--green);flex-shrink:0}
-.pcb-confirmed{background:var(--green-bg);border-top:1px solid rgba(13,171,107,.15);padding:10px 14px;display:none;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--green);}
-.pcb-confirmed.show{display:flex;animation:confirmIn .4s cubic-bezier(.34,1.56,.64,1) both}
-@keyframes confirmIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.popup-cta{width:100%;background:var(--blue);color:#fff;font-size:14px;font-weight:800;padding:14px;border-radius:11px;border:none;cursor:none;font-family:'Instrument Sans',sans-serif;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.popup-cta:hover{background:var(--blue-d);box-shadow:0 6px 22px rgba(22,82,240,.28);transform:translateY(-1px)}
-.popup-dismiss{display:block;text-align:center;margin-top:10px;font-size:12px;color:var(--muted);cursor:none;transition:color .18s}
-.popup-dismiss:hover{color:var(--text2)}
+/* removed popup styles */
+
+
+/* removed whale styles */
 
 /* VERIFY MODAL */
 .voverlay{position:fixed;inset:0;z-index:700;background:rgba(10,13,26,.55);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center}
@@ -401,43 +357,6 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <div id="cd"></div>
 <div id="cr"></div>
 
-<!-- OFFER POPUP -->
-<div class="popup-overlay" id="offerPopup">
-  <div class="popup">
-    <div class="popup-stripe"></div>
-    <div class="popup-head">
-      <div class="popup-tag"><span class="popup-tag-dot"></span> Limited time offer</div>
-      <button class="popup-x" onclick="closePopup()">✕</button>
-    </div>
-    <div class="popup-body">
-      <div class="popup-headline">Here's <em>30% off</em>.<br>You're welcome.</div>
-      <div class="popup-desc">Use the code below at checkout — works on all bots.</div>
-      <div class="pcb-wrap">
-        <div class="pcb-topbar">
-          <span class="pcb-topbar-label">Discount code</span>
-          <span class="pcb-whale">🐋</span>
-        </div>
-        <div class="pcb-main">
-          <div class="pcb-code">WHALE<span class="pcb-num">30</span></div>
-          <button class="pcb-copy" id="popCopyBtn" onclick="popCopy(this)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-            Copy
-          </button>
-        </div>
-        <div class="pcb-footer" id="pcbFooter">
-          <span class="pcb-footer-dot"></span>
-          30% off · all bots · one-time use
-        </div>
-        <div class="pcb-confirmed" id="pcbConfirmed">✓ Copied — paste it at checkout</div>
-      </div>
-      <button class="popup-cta" onclick="closePopupAndScroll()">
-        Claim discount
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <span class="popup-dismiss" onclick="closePopup()">No thanks</span>
-    </div>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav>
@@ -451,7 +370,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
     <a class="nl" href="#faq">FAQ</a>
   </div>
   <div class="nav-r">
-    <button class="btn-s" onclick="scrollToBuy()">Get Access — from $71</button>
+    <button class="btn-s" onclick="scrollToBuy()">Get Access — from $7.99/mo</button>
   </div>
 </nav>
 
@@ -483,323 +402,255 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <!-- TICKER -->
 <div class="ticker"><div class="ticker-t" id="ttk"></div></div>
 
-<!-- BUY SECTION -->
-<div class="buy-section" id="buy">
-  <div class="buy-glow"></div>
-  <div style="max-width:980px;margin:0 auto">
-    <div class="tier-switch-wrap reveal">
-      <div class="tier-switch">
-        <button class="tsw-btn active" id="btn2" onclick="switchTier(2)">⚡ Signal — $71</button>
-        <button class="tsw-btn pro" id="btn3" onclick="switchTier(3)"><span>👑</span> Edge — $159</button>
-        <div class="tier-switch-divider"></div>
-        <button class="tsw-btn alpha" id="btn4" onclick="switchTier(4)"><span>🎯</span> Alpha — $399 <span class="tsw-auto-label">AUTO</span></button>
-        <button class="tsw-btn titan" id="btn5" onclick="switchTier(5)"><span>🏛️</span> Titan — $997 <span class="tsw-auto-label">AUTO</span></button>
+<!-- PRICING SECTION -->
+<div class="pricing-section" id="buy">
+  <div class="pricing-glow"></div>
+  <div class="pricing-head reveal">
+    <h2>Simple, transparent pricing</h2>
+    <p>One plan for signals. One plan for power traders. One plan that trades for you — automatically.</p>
+  </div>
+
+  <!-- Billing toggle -->
+  <div class="billing-toggle-wrap reveal">
+    <div class="billing-toggle">
+      <button class="bt-btn active" id="btnMonthly" onclick="setBilling('monthly')">Monthly</button>
+      <button class="bt-btn" id="btnAnnual" onclick="setBilling('annual')">Annual</button>
+    </div>
+    <span class="annual-save" id="annualSaveBadge" style="display:none">Save 20%</span>
+  </div>
+
+  <!-- 3 cards -->
+  <div class="pricing-cards reveal">
+
+    <!-- SIGNAL -->
+    <div class="pc">
+      <div class="pc-top">
+        <div class="pc-name">⚡ Signal</div>
+        <div class="pc-price" id="pc-price-2"><sup>$</sup><span id="pc-num-2">9.99</span><span class="mo">/mo</span></div>
+        <div class="pc-billed" id="pc-billed-2">Billed monthly</div>
+        <div class="pc-desc">Daily whale signals delivered to Discord. Perfect for getting started without the complexity.</div>
+        <button class="pc-btn solid-blue" onclick="openPayModal(2)">Get Signal →</button>
+      </div>
+      <div class="pc-divider"></div>
+      <div class="pc-feats">
+        <div class="pf"><div class="pf-ic yes">✓</div>Up to 3 whale signals/day</div>
+        <div class="pf"><div class="pf-ic yes">✓</div>AI confidence score (0–100)</div>
+        <div class="pf"><div class="pf-ic yes">✓</div>Discord signal feed</div>
+        <div class="pf"><div class="pf-ic yes">✓</div>Win/loss tracker</div>
+        <div class="pf locked"><div class="pf-ic no">✕</div>Order flow alerts</div>
+        <div class="pf locked"><div class="pf-ic no">✕</div>Kelly position sizing</div>
+        <div class="pf locked"><div class="pf-ic no">✕</div>SMS + email alerts</div>
+        <div class="pf locked"><div class="pf-ic no">✕</div>Auto-betting</div>
       </div>
     </div>
 
-
-    <!-- PANEL 2: Signal (original Basic) -->
-    <div id="panel2" class="buy-cards-row">
-      <div class="buy-left reveal">
-        <div class="buy-eyebrow">Lifetime Access · Most Popular</div>
-        <h2 class="buy-title">One payment.<br><span class="hw">Infinite edge.</span></h2>
-        <p class="buy-sub">No subscription. No monthly nonsense. Pay once and receive every whale signal, forever — straight to Discord.</p>
-        <div class="buy-feats">
-          <div class="bf"><div class="bf-ic">✓</div>Real-time whale wallet detection</div>
-          <div class="bf"><div class="bf-ic">✓</div>Confidence score + Kelly position sizing</div>
-          <div class="bf"><div class="bf-ic">✓</div>Order flow & probability drift alerts</div>
-          <div class="bf"><div class="bf-ic">✓</div>Private Discord with 1,200+ traders</div>
-          <div class="bf"><div class="bf-ic">✓</div>Full win/loss tracker & performance log</div>
-          <div class="bf"><div class="bf-ic">✓</div>Lifetime updates included</div>
-        </div>
+    <!-- EDGE (featured) -->
+    <div class="pc featured">
+      <div class="pc-popular">Most Popular</div>
+      <div class="pc-top" style="padding-top:36px">
+        <div class="pc-name" style="color:var(--blue)">👑 Edge</div>
+        <div class="pc-price blue" id="pc-price-3"><sup>$</sup><span id="pc-num-3">49.99</span><span class="mo">/mo</span></div>
+        <div class="pc-billed" id="pc-billed-3">Billed monthly</div>
+        <div class="pc-desc">Full whale intelligence — unlimited real-time alerts, order flow, Kelly sizing, SMS push, and tier-1 $50K+ whales.</div>
+        <button class="pc-btn solid-blue" onclick="openPayModal(3)">Get Edge →</button>
       </div>
-      <div class="buy-card reveal" style="transition-delay:.1s">
-        <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name">PolyWhale Signal</div><div class="bch-badge">⚡ LIFETIME</div></div>
-          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-            <div class="bch-price" id="displayPrice2"><sup>$</sup><span id="priceNum2">71</span></div>
-            <div class="bch-price-orig" id="origLabel2" style="display:none">$71</div>
-          </div>
-          <div class="bch-period" id="periodLabel2">one-time · lifetime access</div>
-        </div>
-        <div class="buy-card-body">
-          <div class="card-perks">
-            <div class="cp"><div class="cp-check">✓</div>Whale wallet tracking & alerts</div>
-            <div class="cp"><div class="cp-check">✓</div>0–100 AI confidence score</div>
-            <div class="cp"><div class="cp-check">✓</div>Kelly Criterion position sizing</div>
-            <div class="cp"><div class="cp-check">✓</div>Order flow & drift alerts</div>
-            <div class="cp"><div class="cp-check">✓</div>Private Discord community</div>
-            <div class="cp"><div class="cp-check">✓</div>All future bot updates</div>
-          </div>
-          <div class="coupon-row">
-            <input class="coupon-input" id="couponInput2" placeholder="Have a discount code?" type="text">
-            <button class="coupon-btn" onclick="applyCoupon(2)">Apply</button>
-          </div>
-          <div class="coupon-msg" id="couponMsg2">✓ WHALE30 applied — 30% off!</div>
-          <div class="coupon-err" id="couponErr2">✕ Invalid code. Try WHALE30</div>
-          <button class="buy-btn-main" id="buyMainBtn2" onclick="toggleSolBox(2)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabel2">Buy Now — $71</span>
-          </button>
-          <div class="sol-box" id="solBox2">
-            <div class="sh">
-              <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
-              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
-              <div class="snb">LIVE</div>
-            </div>
-            <div class="sol-addr">
-              <div class="al">Wallet Address</div>
-              <div class="ar">
-                <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
-                <button class="cb" onclick="doCopy(this)">Copy</button>
-              </div>
-            </div>
-            <div class="amr"><span class="aml">Send exactly:</span><span class="amv" id="solAmt2">0.4972 SOL ≈ $71</span></div>
-          </div>
-          <button class="vbtn" id="verifyBtn2" style="display:none" onclick="startVerify(2)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            I've Sent — Verify Payment
-          </button>
-        </div>
+      <div class="pc-divider"></div>
+      <div class="pc-feats">
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Unlimited real-time whale alerts</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>AI confidence score (0–100)</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Discord + SMS + email alerts</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Order flow & drift alerts</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Kelly position sizing</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Tier-1 $50K+ whale alerts</div>
+        <div class="pf"><div class="pf-ic yes blue-ic">✓</div>Win/loss tracker</div>
+        <div class="pf locked"><div class="pf-ic no">✕</div>Auto-betting</div>
       </div>
     </div>
 
-    <!-- PANEL 3: Edge (original Pro) -->
-    <div id="panel3" class="buy-cards-row" style="display:none">
-      <div class="buy-left reveal">
-        <div class="buy-eyebrow pro">👑 Edge — Pro Tier</div>
-        <h2 class="buy-title">Everything Signal.<br>Plus <span class="hw-gold">maximum edge.</span></h2>
-        <p class="buy-sub">For serious Polymarket traders who want deeper data, tier-1 whale alerts, and a dedicated edge over the market.</p>
-        <div class="buy-feats">
-          <div class="bf"><div class="bf-ic gold">✓</div>Everything in Signal, included</div>
-          <div class="bf"><div class="bf-ic gold">⚡</div><strong>Tier-1 whale alerts — $50K+ wallets only</strong></div>
-          <div class="bf"><div class="bf-ic gold">📊</div><strong>Advanced order book depth analysis</strong></div>
-          <div class="bf"><div class="bf-ic gold">🔔</div><strong>SMS + email push alerts (not just Discord)</strong></div>
-          <div class="bf"><div class="bf-ic gold">🤖</div><strong>Private AI market analysis channel</strong></div>
-          <div class="bf"><div class="bf-ic gold">📈</div><strong>Weekly Pro-only market reports</strong></div>
-          <div class="bf"><div class="bf-ic gold">🎯</div><strong>1-on-1 onboarding call with PolyWhale team</strong></div>
-        </div>
+    <!-- ALPHA -->
+    <div class="pc">
+      <div class="pc-top">
+        <div class="pc-name" style="color:var(--purple)">🎯 Alpha <span class="pf-auto-badge">AUTO</span></div>
+        <div class="pc-price purple-p" id="pc-price-4"><sup>$</sup><span id="pc-num-4">499.99</span><span class="mo">/mo</span></div>
+        <div class="pc-billed" id="pc-billed-4">Billed monthly</div>
+        <div class="pc-desc">Fully automated betting bot. Detects whale moves and places trades on Polymarket for you — 24/7, zero effort.</div>
+        <button class="pc-btn solid-purple" onclick="openPayModal(4)">Start Auto-Betting →</button>
       </div>
-      <div class="buy-card pro-card reveal" style="transition-delay:.1s">
-        <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name" style="color:var(--gold)">PolyWhale Edge</div><div class="bch-badge pro">👑 LIFETIME PRO</div></div>
-          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-            <div class="bch-price pro-price" id="displayPrice3"><sup style="color:var(--gold-b)">$</sup><span id="priceNum3">159</span></div>
-            <div class="bch-price-orig" id="origLabel3" style="display:none">$159</div>
-          </div>
-          <div class="bch-period" id="periodLabel3">one-time · lifetime pro access</div>
-        </div>
-        <div class="buy-card-body">
-          <div class="pro-vs-basic">
-            <div class="pvb-item"><div class="pvb-label">Signal</div><div class="pvb-val">$10K+ whales</div></div>
-            <div class="pvb-item active"><div class="pvb-label">Edge</div><div class="pvb-val">$50K+ tier-1</div></div>
-            <div class="pvb-item active"><div class="pvb-label">Alerts</div><div class="pvb-val">Discord + SMS</div></div>
-          </div>
-          <div class="card-perks">
-            <div class="cp highlight"><div class="cp-check gold">✓</div>Everything in Signal</div>
-            <div class="cp highlight"><div class="cp-check gold">⚡</div>Tier-1 $50K+ whale alerts only</div>
-            <div class="cp"><div class="cp-check gold">✓</div>Order book depth analysis</div>
-            <div class="cp"><div class="cp-check gold">✓</div>SMS + email push alerts</div>
-            <div class="cp"><div class="cp-check gold">✓</div>Private AI analysis channel</div>
-            <div class="cp"><div class="cp-check gold">✓</div>1-on-1 onboarding call</div>
-          </div>
-          <div class="coupon-row">
-            <input class="coupon-input pro-input" id="couponInput3" placeholder="Have a discount code?" type="text">
-            <button class="coupon-btn pro-btn" onclick="applyCoupon(3)">Apply</button>
-          </div>
-          <div class="coupon-msg" id="couponMsg3">✓ WHALE30 applied — 30% off!</div>
-          <div class="coupon-err" id="couponErr3">✕ Invalid code. Try WHALE30</div>
-          <button class="buy-btn-main pro-btn-main" id="buyMainBtn3" onclick="toggleSolBox(3)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabel3">Buy Edge — $159</span>
-          </button>
-          <div class="sol-box pro-sol" id="solBox3">
-            <div class="sh">
-              <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
-              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
-              <div class="snb">LIVE</div>
-            </div>
-            <div class="sol-addr">
-              <div class="al">Wallet Address</div>
-              <div class="ar">
-                <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
-                <button class="cb" onclick="doCopy(this)">Copy</button>
-              </div>
-            </div>
-            <div class="amr"><span class="aml">Send exactly:</span><span class="amv gold" id="solAmt3">1.1119 SOL ≈ $159</span></div>
-          </div>
-          <button class="vbtn pro-vbtn" id="verifyBtn3" style="display:none" onclick="startVerify(3)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            I've Sent — Verify Payment
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL 4: Alpha -->
-    <div id="panel4" class="buy-cards-row" style="display:none">
-      <div class="buy-left reveal">
-        <div class="buy-eyebrow purple">🤖 Fully Automated · Passive Income</div>
-        <h2 class="buy-title">Set it up once.<br><span style="background:linear-gradient(135deg,var(--purple),var(--purple-b));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Earn while you sleep.</span></h2>
-        <p class="buy-sub">Alpha is a <strong>fully automated betting bot</strong>. It detects whale moves, calculates optimal bet sizing, and <strong>places trades on Polymarket for you — 24/7, no clicks required.</strong></p>
-        <div class="buy-feats">
-          <div class="bf"><div class="bf-ic purple">🤖</div><strong>100% hands-free — bot bets automatically</strong></div>
-          <div class="bf"><div class="bf-ic purple">💸</div><strong>Passive income while you sleep or work</strong></div>
-          <div class="bf"><div class="bf-ic purple">⚙️</div><strong>Set your bankroll limit, bot handles the rest</strong></div>
-          <div class="bf"><div class="bf-ic purple">🔬</div>Cross-market correlation for smarter entries</div>
-          <div class="bf"><div class="bf-ic purple">📊</div>Live P&amp;L dashboard — watch profits stack up</div>
-          <div class="bf"><div class="bf-ic purple">🛡️</div>Built-in risk controls &amp; drawdown limits</div>
-        </div>
-        <div style="margin-top:20px;background:var(--purple-l);border:1.5px solid rgba(124,58,237,.2);border-radius:14px;padding:16px 18px">
-          <div style="font-size:11px;font-weight:800;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">⚡ How it works</div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--purple);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">1</span>Connect your Polymarket wallet</div>
-            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--purple);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">2</span>Set your max bankroll &amp; risk level</div>
-            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--purple);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">3</span>Bot auto-bets every whale signal, 24/7</div>
-          </div>
-        </div>
-      </div>
-      <div class="buy-card purple-card reveal" style="transition-delay:.1s">
-        <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name" style="color:var(--purple)">PolyWhale Alpha</div><div class="bch-badge purple">🤖 AUTO-BET BOT</div></div>
-          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-            <div class="bch-price purple-price" id="displayPrice4"><sup style="color:var(--purple-b)">$</sup><span id="priceNum4">399</span></div>
-            <div class="bch-price-orig" id="origLabel4" style="display:none">$399</div>
-          </div>
-          <div class="bch-period" id="periodLabel4">one-time · lifetime auto-betting access</div>
-        </div>
-        <div class="buy-card-body">
-          <div style="background:linear-gradient(135deg,var(--purple-l),var(--purple-m));border:1.5px solid rgba(124,58,237,.2);border-radius:12px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
-            <span style="font-size:22px">💸</span>
-            <div>
-              <div style="font-size:12px;font-weight:800;color:var(--purple-d)">Avg member passive return</div>
-              <div style="font-size:20px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--purple-d)">+$1,840 <span style="font-size:13px;font-weight:600;color:var(--purple)">/month</span></div>
-            </div>
-          </div>
-          <div class="card-perks">
-            <div class="cp highlight"><div class="cp-check purple">🤖</div>Fully automated betting — zero effort</div>
-            <div class="cp highlight"><div class="cp-check purple">💸</div>Passive income 24/7, even while sleeping</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Bankroll limits &amp; auto risk controls</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Live P&amp;L dashboard</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Cross-market correlation engine</div>
-            <div class="cp"><div class="cp-check purple">✓</div>Monthly live Q&amp;A + onboarding call</div>
-          </div>
-          <div class="coupon-row">
-            <input class="coupon-input purple-input" id="couponInput4" placeholder="Have a discount code?" type="text">
-            <button class="coupon-btn purple-btn" onclick="applyCoupon(4)">Apply</button>
-          </div>
-          <div class="coupon-msg" id="couponMsg4">✓ WHALE30 applied — 30% off!</div>
-          <div class="coupon-err" id="couponErr4">✕ Invalid code. Try WHALE30</div>
-          <button class="buy-btn-main purple-btn-main" id="buyMainBtn4" onclick="toggleSolBox(4)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabel4">Start Auto-Betting — $399</span>
-          </button>
-          <div class="sol-box" style="border-color:rgba(124,58,237,.2)" id="solBox4">
-            <div class="sh">
-              <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
-              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
-              <div class="snb">LIVE</div>
-            </div>
-            <div class="sol-addr">
-              <div class="al">Wallet Address</div>
-              <div class="ar">
-                <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
-                <button class="cb" onclick="doCopy(this)">Copy</button>
-              </div>
-            </div>
-            <div class="amr"><span class="aml">Send exactly:</span><span class="amv purple" id="solAmt4">2.7902 SOL ≈ $399</span></div>
-          </div>
-          <button class="vbtn purple-vbtn" id="verifyBtn4" style="display:none" onclick="startVerify(4)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            I've Sent — Verify Payment
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL 5: Titan -->
-    <div id="panel5" class="buy-cards-row" style="display:none">
-      <div class="buy-left reveal">
-        <div class="buy-eyebrow red">🤖 Fully Automated · Institutional</div>
-        <h2 class="buy-title">Your own auto-betting<br><span style="background:linear-gradient(135deg,var(--red-d),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent">money machine.</span></h2>
-        <p class="buy-sub">Titan is the most powerful automated Polymarket bot ever built. It <strong>trades your bankroll around the clock</strong> using institutional-grade whale data — API delivery, custom logic, and a dedicated manager optimising your returns.</p>
-        <div class="buy-feats">
-          <div class="bf"><div class="bf-ic red">🤖</div><strong>Fully automated — bot runs 24/7, no input needed</strong></div>
-          <div class="bf"><div class="bf-ic red">💰</div><strong>Institutional passive income at scale</strong></div>
-          <div class="bf"><div class="bf-ic red">🔌</div><strong>API + webhook — pipe into your own system</strong></div>
-          <div class="bf"><div class="bf-ic red">🛡️</div>Custom risk limits, drawdown stops, bankroll rules</div>
-          <div class="bf"><div class="bf-ic red">👁️</div>500-wallet watchlist — never miss a whale move</div>
-          <div class="bf"><div class="bf-ic red">🎖️</div>Dedicated account manager optimises strategy</div>
-        </div>
-        <div style="margin-top:20px;background:var(--red-l);border:1.5px solid rgba(220,38,38,.2);border-radius:14px;padding:16px 18px">
-          <div style="font-size:11px;font-weight:800;color:var(--red-d);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">⚡ How it works</div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">1</span>Connect wallet &amp; set bankroll + risk profile</div>
-            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">2</span>Bot monitors 500 whale wallets in real time</div>
-            <div style="font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">3</span>Auto-executes bets &amp; compounds profits, 24/7</div>
-          </div>
-        </div>
-      </div>
-      <div class="buy-card red-card reveal" style="transition-delay:.1s">
-        <div class="buy-card-head">
-          <div class="bch-top"><div class="bch-name" style="color:var(--red-d)">PolyWhale Titan</div><div class="bch-badge red">🤖 AUTO-BET INSTITUTIONAL</div></div>
-          <div style="display:flex;align-items:baseline;gap:6px;margin-top:10px">
-            <div class="bch-price red-price" id="displayPrice5"><sup style="color:var(--red-b)">$</sup><span id="priceNum5">997</span></div>
-            <div class="bch-price-orig" id="origLabel5" style="display:none">$997</div>
-          </div>
-          <div class="bch-period" id="periodLabel5">one-time · lifetime institutional auto-betting</div>
-        </div>
-        <div class="buy-card-body">
-          <div style="background:linear-gradient(135deg,var(--red-l),var(--red-m));border:1.5px solid rgba(220,38,38,.2);border-radius:12px;padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px">
-            <span style="font-size:22px">💰</span>
-            <div>
-              <div style="font-size:12px;font-weight:800;color:var(--red-d)">Avg institutional passive return</div>
-              <div style="font-size:20px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--red-d)">+$6,200 <span style="font-size:13px;font-weight:600;color:var(--red)">/month</span></div>
-            </div>
-          </div>
-          <div class="card-perks">
-            <div class="cp highlight"><div class="cp-check red">🤖</div>Fully automated — zero manual trading</div>
-            <div class="cp highlight"><div class="cp-check red">💰</div>Institutional passive income, 24/7</div>
-            <div class="cp"><div class="cp-check red">✓</div>Full API + webhook signal delivery</div>
-            <div class="cp"><div class="cp-check red">✓</div>500-wallet custom watchlist</div>
-            <div class="cp"><div class="cp-check red">✓</div>Dedicated account manager</div>
-            <div class="cp"><div class="cp-check red">✓</div>Custom risk logic &amp; drawdown controls</div>
-          </div>
-          <div class="coupon-row">
-            <input class="coupon-input red-input" id="couponInput5" placeholder="Have a discount code?" type="text">
-            <button class="coupon-btn red-btn" onclick="applyCoupon(5)">Apply</button>
-          </div>
-          <div class="coupon-msg" id="couponMsg5">✓ WHALE30 applied — 30% off!</div>
-          <div class="coupon-err" id="couponErr5">✕ Invalid code. Try WHALE30</div>
-          <button class="buy-btn-main red-btn-main" id="buyMainBtn5" onclick="toggleSolBox(5)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            <span id="buyBtnLabel5">Start Auto-Betting — $997</span>
-          </button>
-          <div class="sol-box" style="border-color:rgba(220,38,38,.2)" id="solBox5">
-            <div class="sh">
-              <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
-              <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
-              <div class="snb">LIVE</div>
-            </div>
-            <div class="sol-addr">
-              <div class="al">Wallet Address</div>
-              <div class="ar">
-                <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
-                <button class="cb" onclick="doCopy(this)">Copy</button>
-              </div>
-            </div>
-            <div class="amr"><span class="aml">Send exactly:</span><span class="amv red" id="solAmt5">6.9734 SOL ≈ $997</span></div>
-          </div>
-          <button class="vbtn red-vbtn" id="verifyBtn5" style="display:none" onclick="startVerify(5)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-            I've Sent — Verify Payment
-          </button>
-        </div>
+      <div class="pc-divider"></div>
+      <div class="pc-feats">
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Everything in Edge</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">🤖</div>100% automated betting — zero effort</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">💸</div>Passive income 24/7</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Set bankroll limit & risk level</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Live P&L dashboard</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Cross-market correlation engine</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Drawdown limits & risk controls</div>
+        <div class="pf"><div class="pf-ic yes purple-ic">✓</div>Monthly live Q&A + onboarding</div>
       </div>
     </div>
 
   </div>
+
+  <!-- Feature comparison table -->
+  <div class="feat-table-section reveal">
+    <div class="feat-table-head">
+      <h3>Features</h3>
+    </div>
+    <table class="ft">
+      <thead>
+        <tr>
+          <th style="width:40%">PolyWhale Features</th>
+          <th class="plan-col" style="width:20%">⚡ Signal</th>
+          <th class="plan-col blue-col" style="width:20%">👑 Edge</th>
+          <th class="plan-col purple-col" style="width:20%">🎯 Alpha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ft-group"><td colspan="4">Signals</td></tr>
+        <tr>
+          <td>Whale wallet alerts</td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--muted)">3/day</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>AI confidence score (0–100)</td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Order flow & probability drift</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Tier-1 $50K+ whale alerts</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr class="ft-group"><td colspan="4">Position Sizing</td></tr>
+        <tr>
+          <td>Kelly Criterion sizing guide</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Win/loss performance tracker</td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr class="ft-group"><td colspan="4">Alerts & Delivery</td></tr>
+        <tr>
+          <td>Discord signal feed</td>
+          <td class="val-col"><span class="ft-check y">✓</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>SMS + email push alerts</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yb">✓</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Alert latency</td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--muted)">&lt;60s</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--blue)">&lt;60s</span></td>
+          <td class="val-col"><span style="font-size:12px;font-weight:700;color:var(--purple)">&lt;15s</span></td>
+        </tr>
+        <tr class="ft-group"><td colspan="4">Auto-Betting (Alpha Only)</td></tr>
+        <tr>
+          <td>Fully automated trade execution</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Set bankroll limit & risk level</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Live P&L dashboard</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Cross-market correlation engine</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Drawdown limits & risk controls</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+        <tr>
+          <td>Monthly live Q&A + onboarding call</td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check n">✕</span></td>
+          <td class="val-col"><span class="ft-check yp">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<!-- PAYMENT MODAL -->
+<div class="pay-modal-overlay" id="payModal">
+  <div class="pay-modal" id="payModalInner">
+    <div class="pm-accent" id="pmAccent" style="background:var(--blue)"></div>
+    <div class="pm-head">
+      <div class="pm-title" id="pmTitle">Complete Purchase</div>
+      <button class="pm-x" onclick="closePayModal()">✕</button>
+    </div>
+    <div class="pm-body">
+      <div class="pm-plan-row">
+        <div class="pm-plan-emoji" id="pmEmoji">⚡</div>
+        <div>
+          <div class="pm-plan-name" id="pmName">PolyWhale Signal</div>
+          <div class="pm-plan-price" id="pmPriceLine">$9.99/mo · cancel anytime</div>
+        </div>
+      </div>
+      <div class="coupon-row">
+        <input class="coupon-input" id="modalCouponInput" placeholder="Discount code?" type="text">
+        <button class="coupon-btn" id="modalCouponBtn" onclick="applyModalCoupon()">Apply</button>
+      </div>
+      <div class="coupon-msg" id="modalCouponMsg">✓ WHALE30 applied — 30% off!</div>
+      <div class="coupon-err" id="modalCouponErr">✕ Invalid code. Try WHALE30</div>
+      <div class="sol-box visible" id="modalSolBox" style="border-color:rgba(22,82,240,.2)">
+        <div class="sh">
+          <div class="slogo"><img src="https://s3.coinmarketcap.com/static-gravity/image/58ba0011f24d47c4b2e8adaa873bb280.jpg" width="38" height="38" style="border-radius:10px;display:block;object-fit:cover"></div>
+          <div><div class="sn">Solana (SOL)</div><div class="ss">Mainnet · Send exact amount</div></div>
+          <div class="snb">LIVE</div>
+        </div>
+        <div class="sol-addr">
+          <div class="al">Wallet Address</div>
+          <div class="ar">
+            <input class="at" value="6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e" readonly onclick="this.select()">
+            <button class="cb" onclick="doCopy(this)">Copy</button>
+          </div>
+        </div>
+        <div class="amr"><span class="aml">Send exactly:</span><span class="amv" id="modalSolAmt">0.0699 SOL ≈ $9.99</span></div>
+      </div>
+      <button class="pc-btn solid-blue" id="modalPayBtn" style="width:100%;margin-bottom:10px" onclick="startVerify()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span id="modalPayBtnLabel">I've Sent — Verify Payment</span>
+      </button>
+      <div style="text-align:center;font-size:11px;color:var(--muted)">🔒 Secure · Solana blockchain · Cancel anytime</div>
+    </div>
+  </div>
+</div>
+
 
 <!-- HOW IT WORKS -->
 <section id="how" style="background:var(--off);border-top:1px solid var(--border)">
@@ -914,7 +765,7 @@ footer{background:#fff;border-top:1px solid var(--border);padding:36px 40px;disp
 <!-- CTA -->
 <div class="cta-sec">
   <h2>Stop guessing.<br>Follow the whales.</h2>
-  <p>1,200 traders are getting PolyWhale signals right now. Six bots. One payment. Lifetime edge.</p>
+  <p>1,200 traders are getting PolyWhale signals right now. From $7.99/mo. Cancel anytime.</p>
   <button class="cta-w" onclick="scrollToBuy()">Get Access →</button>
 </div>
 
@@ -959,7 +810,7 @@ const cd=document.getElementById('cd'),cr=document.getElementById('cr');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('button,a,.step,.tc,.pp,.fq,.nl,.sig-card,.wrow,.tsw-btn,.popup-dismiss').forEach(e=>{
+document.querySelectorAll('button,a,.step,.tc,.pp,.fq,.nl,.sig-card,.wrow,.pc').forEach(e=>{
   e.addEventListener('mouseenter',()=>document.body.classList.add('h'));
   e.addEventListener('mouseleave',()=>document.body.classList.remove('h'));
 });
@@ -996,138 +847,96 @@ setInterval(()=>{
   si++;
 },2800);
 
-// POPUP
-setTimeout(()=>document.getElementById('offerPopup').classList.add('open'), 2000);
-function closePopup(){document.getElementById('offerPopup').classList.remove('open')}
-function closePopupAndScroll(){
-  closePopup();
-  setTimeout(()=>{
-    scrollToBuy();
-    for(let i=2;i<=5;i++) document.getElementById('couponInput'+i).value='WHALE30';
-  },400);
-}
-function popCopy(btn){
-  navigator.clipboard.writeText('WHALE30').then(()=>{
-    btn.classList.add('ok');
-    btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
-    document.getElementById('pcbFooter').style.display='none';
-    document.getElementById('pcbConfirmed').classList.add('show');
-    setTimeout(()=>{
-      btn.classList.remove('ok');
-      btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy`;
-      document.getElementById('pcbFooter').style.display='';
-      document.getElementById('pcbConfirmed').classList.remove('show');
-    }, 2500);
-  });
-}
+// ====== BILLING TOGGLE ======
+let currentBilling='monthly';
+const BILLING={
+  monthly:{
+    2:{price:'9.99', sol:0.0699, billed:'Billed monthly'},
+    3:{price:'49.99',sol:0.3497, billed:'Billed monthly'},
+    4:{price:'499.99',sol:3.4986,billed:'Billed monthly'},
+  },
+  annual:{
+    2:{price:'7.99', sol:0.0559, billed:'$95.88 billed annually · save 20%'},
+    3:{price:'39.99',sol:0.2797, billed:'$479.88 billed annually · save 20%'},
+    4:{price:'399.99',sol:2.7993,billed:'$4,799.88 billed annually · save 20%'},
+  }
+};
 
-// BOT DATA — discPrice = discounted price ending in 9, solDisc = SOL for that price
-const BOTS=[
-  null, // 0 removed
-  null, // 1 removed
-  {name:'Signal',  price:71,  solFull:0.4972, discPrice:49,  solDisc:0.3427, label:'Buy Now — $71',    color:''},
-  {name:'Edge',    price:159, solFull:1.1119, discPrice:109, solDisc:0.7626, label:'Buy Edge — $159',  color:'gold'},
-  {name:'Alpha',   price:399, solFull:2.7902, discPrice:279, solDisc:1.9513, label:'Start Auto-Betting — $399', color:'purple'},
-  {name:'Titan',   price:997, solFull:6.9734, discPrice:699, solDisc:4.8896, label:'Start Auto-Betting — $997', color:'red'},
-];
-
-const BTN_CLASS={2:'',3:'pro',4:'alpha',5:'titan'};
-let activeTier=2;
-function switchTier(t){
-  [2,3,4,5].forEach(i=>{
-    document.getElementById('panel'+i).style.display='none';
-    const b=document.getElementById('btn'+i);
-    b.classList.remove('active');
+function setBilling(type){
+  currentBilling=type;
+  document.getElementById('btnMonthly').classList.toggle('active',type==='monthly');
+  document.getElementById('btnAnnual').classList.toggle('active',type==='annual');
+  document.getElementById('annualSaveBadge').style.display=type==='annual'?'inline-flex':'none';
+  [2,3,4].forEach(i=>{
+    const b=BILLING[type][i];
+    document.getElementById('pc-num-'+i).textContent=b.price;
+    document.getElementById('pc-billed-'+i).textContent=b.billed;
   });
-  activeTier=t;
-  document.getElementById('panel'+t).style.display='grid';
-  document.getElementById('btn'+t).classList.add('active');
-  // close all sol boxes
-  [2,3,4,5].forEach(i=>{
-    document.getElementById('solBox'+i).classList.remove('visible');
-    document.getElementById('verifyBtn'+i).style.display='none';
-    solBoxOpen[i]=false;
-    const b=BOTS[i];
-    const p=couponApplied[i]?b.discPrice:b.price;
-    document.getElementById('buyBtnLabel'+i).textContent=b.label.replace('$'+b.price,'$'+p);
-    document.getElementById('buyMainBtn'+i).style.background='';
-  });
-}
-// init: show Signal (panel2)
-document.getElementById('panel2').style.display='grid';
-document.getElementById('btn2').classList.add('active');
-[3,4,5].forEach(i=>document.getElementById('panel'+i).style.display='none');
-
-// SOL BOXES
-const solBoxOpen={2:false,3:false,4:false,5:false};
-function toggleSolBox(i){
-  const box=document.getElementById('solBox'+i);
-  const label=document.getElementById('buyBtnLabel'+i);
-  const verBtn=document.getElementById('verifyBtn'+i);
-  if(!solBoxOpen[i]){
-    solBoxOpen[i]=true;box.classList.add('visible');verBtn.style.display='flex';
-    label.textContent='Payment Details ↑';
-    document.getElementById('buyMainBtn'+i).style.background='var(--blue-d)';
-  } else {
-    solBoxOpen[i]=false;box.classList.remove('visible');verBtn.style.display='none';
-    const b=BOTS[i];
-    const p=couponApplied[i]?b.discPrice:b.price;
-    label.textContent=b.label.replace('$'+b.price,'$'+p);
-    document.getElementById('buyMainBtn'+i).style.background='';
+  // If modal is open, refresh its sol amount
+  if(activeModalPlan&&document.getElementById('payModal').classList.contains('open')){
+    const b=BILLING[type][activeModalPlan];
+    const disc=modalCouponApplied?Math.round(parseFloat(b.price)*0.7*100)/100:parseFloat(b.price);
+    const solAmt=modalCouponApplied?(b.sol*0.7).toFixed(4):b.sol.toFixed(4);
+    document.getElementById('modalSolAmt').textContent=solAmt+' SOL ≈ $'+disc.toFixed(2);
   }
 }
 
-// COUPONS
-const couponApplied={2:false,3:false,4:false,5:false};
-function applyCoupon(i){
-  const val=document.getElementById('couponInput'+i).value.trim().toUpperCase();
-  document.getElementById('couponMsg'+i).classList.remove('show');
-  document.getElementById('couponErr'+i).classList.remove('show');
+// ====== PAYMENT MODAL ======
+let activeModalPlan=null;
+let modalCouponApplied=false;
+
+const PLANS={
+  2:{emoji:'⚡',name:'PolyWhale Signal',accent:'var(--blue)',btnClass:'solid-blue',couponInputClass:''},
+  3:{emoji:'👑',name:'PolyWhale Edge',accent:'var(--blue)',btnClass:'solid-blue',couponInputClass:''},
+  4:{emoji:'🎯',name:'PolyWhale Alpha',accent:'var(--purple)',btnClass:'solid-purple',couponInputClass:'purple-input'},
+};
+
+function openPayModal(planId){
+  activeModalPlan=planId;
+  modalCouponApplied=false;
+  const plan=PLANS[planId];
+  const billing=BILLING[currentBilling][planId];
+  document.getElementById('pmAccent').style.background=plan.accent;
+  document.getElementById('pmEmoji').textContent=plan.emoji;
+  document.getElementById('pmName').textContent=plan.name;
+  const suffix=planId===4?'/mo (auto-bet)':'/mo · cancel anytime';
+  document.getElementById('pmPriceLine').textContent='$'+billing.price+suffix;
+  document.getElementById('modalSolAmt').textContent=billing.sol.toFixed(4)+' SOL ≈ $'+billing.price;
+  document.getElementById('modalSolBox').style.borderColor=planId===4?'rgba(124,58,237,.2)':'rgba(22,82,240,.2)';
+  document.getElementById('amv') && (document.getElementById('amv').className='amv '+(planId===4?'purple':''));
+  const amv=document.getElementById('modalSolAmt');
+  amv.style.color=planId===4?'var(--purple)':'var(--blue)';
+  document.getElementById('modalCouponInput').value='';
+  document.getElementById('modalCouponMsg').classList.remove('show');
+  document.getElementById('modalCouponErr').classList.remove('show');
+  document.getElementById('modalCouponInput').className='coupon-input'+(planId===4?' purple-input':'');
+  document.getElementById('modalCouponBtn').className='coupon-btn'+(planId===4?' purple-btn':'');
+  const payBtn=document.getElementById('modalPayBtn');
+  payBtn.className='pc-btn '+(planId===4?'solid-purple':'solid-blue');
+  payBtn.style.width='100%';payBtn.style.marginBottom='10px';
+  document.getElementById('payModal').classList.add('open');
+}
+function closePayModal(){document.getElementById('payModal').classList.remove('open');}
+
+function applyModalCoupon(){
+  const val=document.getElementById('modalCouponInput').value.trim().toUpperCase();
+  document.getElementById('modalCouponMsg').classList.remove('show');
+  document.getElementById('modalCouponErr').classList.remove('show');
   if(val==='WHALE30'){
-    if(couponApplied[i])return;
-    applyDiscount(i);
+    modalCouponApplied=true;
+    const b=BILLING[currentBilling][activeModalPlan];
+    const disc=Math.round(parseFloat(b.price)*0.7*100)/100;
+    const solDisc=(b.sol*0.7).toFixed(4);
+    document.getElementById('pmPriceLine').textContent='$'+disc.toFixed(2)+'/mo · 30% off! (was $'+b.price+')';
+    document.getElementById('modalSolAmt').textContent=solDisc+' SOL ≈ $'+disc.toFixed(2);
+    document.getElementById('modalCouponMsg').classList.add('show');
   } else {
-    document.getElementById('couponErr'+i).classList.add('show');
+    document.getElementById('modalCouponErr').classList.add('show');
   }
-}
-function applyDiscount(i){
-  couponApplied[i]=true;
-  const b=BOTS[i];
-  const disc=b.discPrice;
-  const sol=b.solDisc.toFixed(4);
-  const priceEl=document.getElementById('displayPrice'+i);
-  // color theming per tier
-  const colorMap={
-    2:{sup:'<sup>$</sup>',numStyle:'',numColor:''},
-    3:{sup:`<sup style="font-size:22px;color:var(--gold-b);vertical-align:super">$</sup>`,numStyle:'color:var(--gold-d)',numColor:'var(--gold-d)'},
-    4:{sup:`<sup style="font-size:22px;color:var(--purple-b);vertical-align:super">$</sup>`,numStyle:'color:var(--purple-d)',numColor:'var(--purple-d)'},
-    5:{sup:`<sup style="font-size:22px;color:var(--red-b);vertical-align:super">$</sup>`,numStyle:'color:var(--red-d)',numColor:'var(--red-d)'},
-  };
-  const cm=colorMap[i];
-  priceEl.innerHTML=`${cm.sup}<span id="priceNum${i}" style="font-size:48px;font-weight:900;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;${cm.numStyle}">${disc}</span>`;
-  document.getElementById('origLabel'+i).textContent='$'+b.price;
-  document.getElementById('origLabel'+i).style.display='inline';
-  document.getElementById('periodLabel'+i).textContent=`one-time · was $${b.price} · 30% off ✓`;
-  document.getElementById('solAmt'+i).textContent=`${sol} SOL ≈ $${disc}`;
-  document.getElementById('couponMsg'+i).classList.add('show');
-  document.getElementById('couponInput'+i).value='WHALE30';
-  if(!solBoxOpen[i]){
-    const lbl=document.getElementById('buyBtnLabel'+i);
-    lbl.textContent=lbl.textContent.replace(/\$[\d,]+/,'$'+disc);
-  }
-  // flash green then back to tier color
-  setTimeout(()=>{
-    const pn=document.getElementById('priceNum'+i);
-    if(pn){
-      pn.style.transition='color .3s,transform .3s';
-      pn.style.color='var(--green)';pn.style.transform='scale(1.1)';
-      setTimeout(()=>{pn.style.color=cm.numColor||'';pn.style.transform='scale(1)';},500);
-    }
-  },50);
 }
 
 function doCopy(btn){navigator.clipboard.writeText('6w3mWzUR7mxYBShWXTCfDZjkAV7C93meQfBYbVKyaG8e').then(()=>{btn.textContent='✓ Copied';btn.style.background='var(--green-bg)';btn.style.color='var(--green)';setTimeout(()=>{btn.textContent='Copy';btn.style.background='';btn.style.color='';},2000);});}
-function scrollToBuy(){document.getElementById('buy').scrollIntoView({behavior:'smooth',block:'center'});}
+function scrollToBuy(){document.getElementById('buy').scrollIntoView({behavior:'smooth',block:'start'});}
 function toggleFaq(btn){
   const a=btn.nextElementSibling;const isOpen=a.classList.contains('open');
   document.querySelectorAll('.fa').forEach(x=>x.classList.remove('open'));
@@ -1175,11 +984,12 @@ async function verifyOnChain(expectedLamports){
   setStep('s4','done','✓ Access granted');
   return matched;
 }
-function startVerify(i){
-  const amtText=document.getElementById('solAmt'+i).textContent;
+function startVerify(){
+  const amtText=document.getElementById('modalSolAmt').textContent;
   const solMatch=amtText.match(/([\d.]+)\s*SOL/);
   const expectedSol=solMatch?parseFloat(solMatch[1]):0;
   const expectedLamports=Math.round(expectedSol*LAMPORTS);
+  closePayModal();
   const vm=document.getElementById('verM');
   vm.classList.add('open');
   document.getElementById('vw2').classList.remove('gone');
