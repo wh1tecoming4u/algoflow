@@ -479,7 +479,7 @@ button,a{transition:all .2s}
       <a class="nl" href="#faq">FAQ</a>
     </div>
     <div class="nav-r">
-      <button class="btn-s" onclick="scrollToBuy()">Get Access — from $9.99/mo</button>
+      <button class="btn-s" onclick="scrollToBuy()">Get Access — from $9.99</button>
     </div>
   </div>
 </nav>
@@ -531,7 +531,7 @@ button,a{transition:all .2s}
     <div class="pc">
       <div class="pc-top">
         <div class="pc-name">⚡ Signal</div>
-        <div class="pc-price"><sup>$</sup><span>9.99</span><span class="mo">/mo</span></div>
+        <div class="pc-price"><sup>$</sup><span>9.99</span><span class="mo"></span></div>
         <div class="pc-billed">Billed monthly</div>
         <div class="pc-desc">Daily whale signals delivered to Discord. Perfect for getting started without the complexity.</div>
         <button class="pc-btn solid-blue" onclick="openPayModal(2)">Get Signal →</button>
@@ -553,7 +553,7 @@ button,a{transition:all .2s}
       <div class="pc-popular">Most Popular</div>
       <div class="pc-top" style="padding-top:36px">
         <div class="pc-name" style="color:var(--blue)">👑 Edge</div>
-        <div class="pc-price blue"><sup>$</sup><span>29.99</span><span class="mo">/mo</span></div>
+        <div class="pc-price blue"><sup>$</sup><span>29.99</span><span class="mo"></span></div>
         <div class="pc-billed">Billed monthly</div>
         <div class="pc-desc">Full whale intelligence + limited auto-betting. Real-time alerts, order flow, SMS push, and tier-1 $50K+ whales.</div>
         <button class="pc-btn solid-blue" onclick="openPayModal(3)">Get Edge →</button>
@@ -574,7 +574,7 @@ button,a{transition:all .2s}
     <div class="pc">
       <div class="pc-top">
         <div class="pc-name" style="color:var(--purple)">🎯 Alpha <span class="pf-auto-badge">AUTO</span></div>
-        <div class="pc-price purple-p"><sup>$</sup><span>59.99</span><span class="mo">/mo</span></div>
+        <div class="pc-price purple-p"><sup>$</sup><span>59.99</span><span class="mo"></span></div>
         <div class="pc-billed">Billed monthly</div>
         <div class="pc-desc">Fully automated betting bot. Detects whale moves and places trades on Polymarket for you — 24/7, zero effort.</div>
         <button class="pc-btn solid-purple" onclick="openPayModal(4)">Start Auto-Betting →</button>
@@ -644,7 +644,7 @@ button,a{transition:all .2s}
         <div class="pm-plan-emoji" id="pmEmoji">⚡</div>
         <div>
           <div class="pm-plan-name" id="pmName">PolyWhale Signal</div>
-          <div class="pm-plan-price" id="pmPriceLine">$9.99/mo · cancel anytime</div>
+          <div class="pm-plan-price" id="pmPriceLine">$9.99 · cancel anytime</div>
         </div>
       </div>
       <div class="sol-box" id="modalSolBox" style="border-color:rgba(22,82,240,.2)">
@@ -784,7 +784,7 @@ button,a{transition:all .2s}
 <!-- CTA -->
 <div class="cta-sec">
   <h2>Stop guessing.<br>Follow the whales.</h2>
-  <p>1,200 traders are getting PolyWhale signals right now. From $9.99/mo. Cancel anytime.</p>
+  <p>1,200 traders are getting PolyWhale signals right now. From $9.99. Cancel anytime.</p>
   <button class="cta-w" onclick="scrollToBuy()">Get Access →</button>
 </div>
 
@@ -905,9 +905,9 @@ setInterval(()=>{
 // PAYMENT MODAL
 let activeModalPlan=null;
 const PLANS={
-  2:{emoji:'⚡',name:'PolyWhale Signal',price:'9.99',sol:0.0699,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:'/mo · cancel anytime'},
-  3:{emoji:'👑',name:'PolyWhale Edge',price:'29.99',sol:0.2097,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:'/mo · cancel anytime'},
-  4:{emoji:'🎯',name:'PolyWhale Alpha',price:'59.99',sol:0.4197,accent:'var(--purple)',btnClass:'solid-purple',solColor:'var(--purple)',boxBorder:'rgba(124,58,237,.2)',suffix:'/mo (auto-bet)'},
+  2:{emoji:'⚡',name:'PolyWhale Signal',price:'9.99',sol:0.0699,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:' · cancel anytime'},
+  3:{emoji:'👑',name:'PolyWhale Edge',price:'29.99',sol:0.2097,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:' · cancel anytime'},
+  4:{emoji:'🎯',name:'PolyWhale Alpha',price:'59.99',sol:0.4197,accent:'var(--purple)',btnClass:'solid-purple',solColor:'var(--purple)',boxBorder:'rgba(124,58,237,.2)',suffix:' (auto-bet)'},
 };
 
 function openPayModal(planId){
