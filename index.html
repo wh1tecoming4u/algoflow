@@ -644,7 +644,7 @@ button,a{transition:all .2s}
         <div class="pm-plan-emoji" id="pmEmoji">⚡</div>
         <div>
           <div class="pm-plan-name" id="pmName">PolyWhale Signal</div>
-          <div class="pm-plan-price" id="pmPriceLine">$9.99 · cancel anytime</div>
+          <div class="pm-plan-price" id="pmPriceLine">$9.99 · </div>
         </div>
       </div>
       <div class="sol-box" id="modalSolBox" style="border-color:rgba(22,82,240,.2)">
@@ -666,7 +666,7 @@ button,a{transition:all .2s}
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
         <span id="modalPayBtnLabel">I've Sent — Verify Payment</span>
       </button>
-      <div style="text-align:center;font-size:11px;color:var(--muted)">🔒 Secure · Solana blockchain · Cancel anytime</div>
+      <div style="text-align:center;font-size:11px;color:var(--muted)">🔒 Secure · Solana blockchain · </div>
     </div>
   </div>
 </div>
@@ -776,7 +776,7 @@ button,a{transition:all .2s}
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">How does the whale tracking work? <span class="arr">↓</span></div><div class="fa">We monitor all Polymarket on-chain transactions in real time. Any wallet moving $10,000+ is flagged and cross-referenced against historical win rates. When multiple high-performing wallets coordinate on the same market, PolyWhale fires a signal with full context and confidence scoring.</div></div>
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">What is the 73.4% win rate based on? <span class="arr">↓</span></div><div class="fa">Calculated across all signals fired over the trailing 90 days, with a "win" counted as the predicted direction resolving correctly. Full signal log with every call — including losses — is publicly visible in Discord for complete transparency.</div></div>
       <div class="fi"><div class="fq" onclick="toggleFaq(this)">How do I get access after paying? <span class="arr">↓</span></div><div class="fa">Send the exact SOL amount to the wallet address shown, then click "I've Sent — Verify Payment." Our system scans the Solana blockchain, confirms your transaction, and delivers the Discord invite link — typically within 30 seconds.</div></div>
-      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Can I cancel anytime? <span class="arr">↓</span></div><div class="fa">Yes, you can cancel your subscription at any time. There are no lock-in periods or cancellation fees. Your access continues until the end of your current billing period.</div></div>
+      <div class="fi"><div class="fq" onclick="toggleFaq(this)">Can I ? <span class="arr">↓</span></div><div class="fa">Yes, you can cancel your subscription at any time. There are no lock-in periods or cancellation fees. Your access continues until the end of your current billing period.</div></div>
     </div>
   </div>
 </section>
@@ -784,7 +784,7 @@ button,a{transition:all .2s}
 <!-- CTA -->
 <div class="cta-sec">
   <h2>Stop guessing.<br>Follow the whales.</h2>
-  <p>1,200 traders are getting PolyWhale signals right now. From $9.99. Cancel anytime.</p>
+  <p>1,200 traders are getting PolyWhale signals right now. From $9.99. .</p>
   <button class="cta-w" onclick="scrollToBuy()">Get Access →</button>
 </div>
 
@@ -905,8 +905,8 @@ setInterval(()=>{
 // PAYMENT MODAL
 let activeModalPlan=null;
 const PLANS={
-  2:{emoji:'⚡',name:'PolyWhale Signal',price:'9.99',sol:0.0699,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:' · cancel anytime'},
-  3:{emoji:'👑',name:'PolyWhale Edge',price:'29.99',sol:0.2097,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:' · cancel anytime'},
+  2:{emoji:'⚡',name:'PolyWhale Signal',price:'9.99',sol:0.0699,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:' · '},
+  3:{emoji:'👑',name:'PolyWhale Edge',price:'29.99',sol:0.2097,accent:'var(--blue)',btnClass:'solid-blue',solColor:'var(--blue)',boxBorder:'rgba(22,82,240,.2)',suffix:' · '},
   4:{emoji:'🎯',name:'PolyWhale Alpha',price:'59.99',sol:0.4197,accent:'var(--purple)',btnClass:'solid-purple',solColor:'var(--purple)',boxBorder:'rgba(124,58,237,.2)',suffix:' (auto-bet)'},
 };
 
